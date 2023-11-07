@@ -5,7 +5,9 @@ Open index.html in your browser
 
 # What is this
 This is a full backup/copy of my (Drako Hyena) woomy-arras.io copy.
+This has been modified by me (Spade) to have a slightly better Boss Rush
 This version is able to run mostly offline and allows anyone to have full admin permissions.
+- Bots don't have a [AI] badge anymore - a little more realistic
 
 # Non-working Features
 - Discord Bot and other remote services
