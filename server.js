@@ -717,16 +717,16 @@ global.utility = util, global.minifyModules = !1, (async () => {
         };
     let bossRushBosses = [Class.eggQueenTier1AI, Class.eggQueenTier2AI, Class.eggQueenTier3AI, Class.AWP_1AI, Class.AWP_14AI, Class.AWP_sin16AI, Class.AWP_tan54AI, Class.AWP_log24AI, Class.AWP_69AI, Class.AWP_cos39AI, Class.AWP_IceAI, Class.AWP_24AI, Class.AWP_RingAI, Class.AWP_cos5AI, Class.AWP_psAI, Class.AWP_11AI, Class.AWP_8AI, Class.AWP_21AI, Class.AWP_28AI, Class.eliteRifleAI, Class.RK_1AI, Class.hexashipAI, Class.eliteDestroyerAI, Class.eliteGunnerAI, Class.eliteSprayerAI, Class.eliteTwinAI, Class.eliteMachineAI, Class.eliteTrapAI, Class.eliteBorerAI, Class.eliteSniperAI, Class.eliteBasicAI, Class.eliteInfernoAI, Class.fallenBoosterAI, Class.fallenOverlordAI, Class.fallenPistonAI, Class.fallenAutoTankAI, Class.fallenCavalcadeAI, Class.fallenFighterAI, Class.reanimFarmerAI, Class.reanimHeptaTrapAI, Class.reanimUziAI, Class.palisadeAI, Class.skimBossAI, Class.leviathanAI, Class.ultMultitoolAI, Class.nailerAI, Class.gravibusAI, Class.cometAI, Class.brownCometAI, Class.orangicusAI, Class.atriumAI, Class.constructionistAI, Class.dropshipAI, Class.armySentrySwarmAI, Class.armySentryGunAI, Class.armySentryTrapAI, Class.armySentryRangerAI, Class.armySentrySwarmAI, Class.armySentryGunAI, Class.armySentryTrapAI, Class.armySentryRangerAI, Class.derogatorAI, Class.hexadecagorAI, Class.blitzkriegAI, Class.demolisherAI, Class.octogeddonAI, Class.octagronAI, Class.ultimateAI, Class.cutterAI, Class.alphaSentryAI, Class.asteroidAI, Class.trapeFighterAI, Class.visUltimaAI, Class.gunshipAI, Class.messengerAI, Class.pulsarAI, Class.colliderAI, Class.deltrabladeAI, Class.aquamarineAI, Class.kioskAI, Class.vanguardAI, Class.magnetarAI, Class.guardianAI, Class.summonerAI, Class.defenderAI, Class.xyvAI, Class.conquistadorAI, Class.sassafrasAI, Class.constAI, Class.bowAI, Class.snowflakeAI, Class.greenGuardianAI].filter((e => null != e));
     const bossRushLoop = () => {
-            room.bossRushWave++, sockets.broadcast(`Wave ${room.bossRushWave} has arrived!`), bossRushBosses = bossRushBosses.sort((() => .5 - Math.random()));
+            room.bossRushWave++, sockets.broadcast(`[!] WARNING: Wave ${room.bossRushWave} has arrived. DO YOUR JOBS.`), bossRushBosses = bossRushBosses.sort((() => .5 - Math.random()));
             let e = 0,
                 t = 50 === room.bossRushWave ? 1 : Math.round(3 * Math.random() + 3);
             for (let s = 0; s < t; s++) {
                 const t = new Entity(room.random());
                 t.team = -100, 50 === room.bossRushWave ? t.define(ran.choose([Class.gaea, Class.eggBossTier5AI])) : t.define(bossRushBosses[s]), t.modeDead = function() {
-                    e--, e <= 0 ? 50 === room.bossRushWave ? (sockets.broadcast("Victory!"), setTimeout(closeArena, 2500)) : (sockets.broadcast("The storm is coming."), setTimeout(bossRushLoop, 1e4)) : sockets.broadcast(`${e} Boss${e > 1 ? "es" : ""} left!`)
+                    e--, e <= 0 ? 50 === room.bossRushWave ? (sockets.broadcast("[=)] Victory!"), setTimeout(closeArena, 2500)) : (sockets.broadcast("Prepare for the next wave."), setTimeout(bossRushLoop, 1e4)) : sockets.broadcast(`${e} Boss${e > 1 ? "es" : ""} left!`)
                 }, e++
             }
-            sockets.broadcast(e + " Bosses to kill!")
+            sockets.broadcast("[>] There are " + e + " bosses invading. Eliminate them immediately.")
         },
         trenchWarefare = function() {
             const e = [];
