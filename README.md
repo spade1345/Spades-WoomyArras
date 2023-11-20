@@ -4,10 +4,15 @@ MORE UPDATED VERSION, THE WOOMYARCHIVES: https://github.com/DrakoHyena/WoomyArch
 # How to play
 Download the ZIP file (the green CODE button, then Download ZIP)
 Open index.html
+Or go to https://woomy-arras.vercel.app
+
+## Alternate URLs
+- https://spades-woomy-arras.vercel.app
+- https://woomy-arras.vercel.app
 
 # What is this
 This is a full backup/copy of Drako Hyena's woomy-arras.io copy.
-This has been modified by me (Spade1345/The Highwayman) have many tanks readded.
+This has been modified by me (Spade1345/The Highwayman) to have many tanks readded.
 This version is able to run mostly offline and allows anyone to have full admin permissions.
 - Bots don't have an [AI] badge anymore - a little more realistic
 
