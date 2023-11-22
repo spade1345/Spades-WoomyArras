@@ -215,9 +215,9 @@ global.utility = util, global.minifyModules = !1, (async () => {
     class Room {
         constructor(e) {
             this.config = e, this.width = e.WIDTH, this.height = e.HEIGHT, this.setup = e.ROOM_SETUP, this.xgrid = this.setup[0].length, this.ygrid = this.setup.length, this.xgridWidth = this.width / this.xgrid, this.ygridHeight = this.height / this.ygrid, this.lastCycle = void 0, this.cycleSpeed = 1e3 / c.gameSpeed / 30, this.gameMode = e.MODE, this.testingMode = c.testingMode, this.speed = c.gameSpeed, this.timeUntilRestart = c.restarts.interval, this.maxBots = c.BOTS, this.skillBoost = e.SKILL_BOOST, this.topPlayerID = -1, this.arenaClosed = !1, this.teamAmount = c.TEAM_AMOUNT, this.modelMode = c.modelMode, this.bossRushOver = !1, this.bossRushWave = 0, this.bossString = "", this.motherships = [], this.nextTagBotTeam = [], this.manualOffset = 0, this.defeatedTeams = [], this.squadronPoints = {}, this.wallCollisions = [], this.cardinals = [
-                ["NW", "Northern", "NE"],
+                ["Northwest", "Northern", "Northeast"],
                 ["Western", "Center", "Eastern"],
-                ["SW", "Southern", "SE"]
+                ["Southwest", "Southern", "Southeast"]
             ], this.cellTypes = (() => {
                 const e = ["nest", "norm", "rock", "roid", "port", "wall", "door", "edge", "domi", "outb", "door"];
                 for (let t = 1; t <= 8; t++) e.push("bas" + t), e.push("bad" + t), e.push("n_b" + t), e.push("dom" + t), e.push("mot" + t), e.push("spn" + t);
