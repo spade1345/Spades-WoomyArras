@@ -348,9 +348,9 @@ global.utility = util, global.minifyModules = !1, (async () => {
             if (e && (util.warn("c.X_GRID has conflicts with the current room setup. Please check these configs and relaunch."), process.exit()), util.log(this.width + " x " + this.height + " room initalized. Max food: " + Math.round(this.maxFood) + ". Max nest food: " + Math.round(this.maxFood * this.nestFoodAmount) + "."), c.restarts.enabled) {
                 let e = c.restarts.interval;
                 setTimeout((() => util.log("Automatic server restarting is enabled. Time until restart: " + this.timeUntilRestart / 3600 + " hours.")), 340), setInterval((() => {
-                    if (this.timeUntilRestart--, 1800 !== this.timeUntilRestart && 900 !== this.timeUntilRestart && 600 !== this.timeUntilRestart && 300 !== this.timeUntilRestart || (c.serverName.includes("Boss") ? sockets.broadcast(`WARNING: Tanks have ${this.timeUntilRestart / 60} minutes to defeat the boss rush!`, "#FFE46B") : sockets.broadcast(`WARNING: The server will automatically restart in ${this.timeUntilRestart / 60} minutes!`, "#FFE46B"), util.warn(`Automatic restart will occur in ${this.timeUntilRestart / 60} minutes.`)), !this.timeUntilRestart) {
+                    if (this.timeUntilRestart--, 1800 !== this.timeUntilRestart && 900 !== this.timeUntilRestart && 600 !== this.timeUntilRestart && 300 !== this.timeUntilRestart || (c.serverName.includes("Boss") ? sockets.broadcast(`Warning, tanks have ${this.timeUntilRestart / 60} minutes to defeat the boss rush!`, "#FFE46B") : sockets.broadcast(`WARNING: The server will automatically restart in ${this.timeUntilRestart / 60} minutes!`, "#FFE46B"), util.warn(`Automatic restart will occur in ${this.timeUntilRestart / 60} minutes.`)), !this.timeUntilRestart) {
                         let t = c.serverName.includes("Boss") ? "Reason: The tanks could only defeat " + this.bossRushWave + "/30 waves" : "Reason: Uptime has reached " + e / 60 / 60 + " hours";
-                        c.enableBot && sendClosed(c.serverName, t, "Preparing the server for an automatic restart..."), util.warn("Automatic server restart initialized! Closing arena...");
+                        c.enableBot && sendClosed(c.serverName, t, "Warning, preparing the server for an automatic restart..."), util.warn("Warning, automatic server restart initialized! Closing arena...");
                         let s = c.serverName.includes("Boss") ? "Tanks have run out of time to kill the bosses!" : c.serverName.includes("Domination") ? "No team has managed to capture all of the Dominators! " : c.serverName.includes("Mothership") ? "No team's Mothership has managed to become the last Mothership standing! " : "";
                         sockets.broadcast(s + "Automatic server restart initializing...", "#FFE46B"), setTimeout((() => closeArena()), 2500), c.serverName.includes("Boss") && (this.bossRushOver = !0)
                     }
@@ -594,7 +594,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                     [6, 7, 7, 7, 6, 3, 2, 2, 3, 3],
                     [9, 7, 7, 7, 6, 0, 0, 0, 0, 9]
                 ]);
-            i.isBot = !0, i.define(Class[o]), i.tank = a, i.define(a), i.name = ran.chooseBotName(), i.nameColor = i.name.includes("Bee") ? "#FFF782" : i.name.includes("Honey Bee") ? "#FCCF3B" : i.name.includes("Fallen") ? "#CCCCCC" : "#C1CAFF", i.autoOverride = !0, i.invuln = !0, i.skill.score = 59212, setTimeout((() => {
+            i.isBot = !0, i.define(Class[o]), i.tank = a, i.define(a), i.name = ran.chooseBotName(), i.nameColor = i.name.includes("Bee") ? "#FFF782" : i.name.includes("Honey Bee") ? "#FCCF3B" : i.name.includes("Fallen") ? "#CCCCCC" : "#FFFFFF" /* BOT TAG ORIGINAL COLOR: #c1caff */, i.autoOverride = !0, i.invuln = !0, i.skill.score = 59212, setTimeout((() => {
                 i.invuln = !1, i.autoOverride = !1, "Carrier Battle" === c.serverName && (i.controllers = [new ioTypes.carrierThinking(i), new ioTypes.carrierAI(i)]), i.skill.maintain(), i.refreshBodyAttributes(), i.skill.set(r), i.controllers.push(new ioTypes.roamWhenIdle(i))
             }), 7500), room.maxBots > 0 && bots.push(i)
         },
@@ -700,7 +700,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         l = ["INVALID", "BLUE", "RED", "GREEN", "PURPLE", "YELLOW", "ORANGE", "PINK", "TEAL"][-o],
                         h = ["#000000", "#00B0E1", "#F04F54", "#00E06C", "#BE7FF5", "#FFEB8E", "#F37C20", "#E85DDF", "#8EFFFB"][-o]; - 100 !== a.team && (o = 0);
                     for (let e of Object.keys(t)) t[e] !== o && n++;
-                    for (let e of entities) e.team !== o || "tank" !== e.type || e.underControl || e.sendMessage("Press H to control the Dominator!");
+                    for (let e of entities) e.team !== o || "tank" !== e.type || e.underControl || e.sendMessage("Press H to control the dominator. (Unavaliable in Boss Rush)");
                     sockets.broadcast("The " + room.cardinals[Math.floor(3 * s.y / room.height)][Math.floor(3 * s.x / room.height)] + " Dominator is " + (o ? "now captured by " + l : "being contested") + "!", o ? h : "#FFE46B"), room.setType(`dom${-o || "i"}`, s), r.define(i), r.isDominator = !0, r.alwaysActive = !0, r.team = o || -100, r.SIZE = 70, r.color = [13, 10, 12, 11, 15, 3, 35, 36, 0][-o], r.onDead = a.onDead, r.settings.hitsOwnType = "pushOnlyTeam", r.miscIdentifier = "appearOnMinimap", r.FOV = .5, a = r, t[s.id] = o || -100, 1 === n && o && !room.arenaClosed && c.serverName.includes("Domination") && (util.warn(l + " has won the game! Closing arena..."), setTimeout((() => sockets.broadcast(l + " has won the game!", h)), 2e3), c.enableBot && sendClosed(c.serverName, "Reason: Round Over", l + " has won the game! Closing arena..."), setTimeout((() => closeArena()), 5e3))
                 }, t[s.id] = -100
             }
@@ -717,16 +717,16 @@ global.utility = util, global.minifyModules = !1, (async () => {
         };
     let bossRushBosses = [Class.eggQueenTier1AI, Class.eggQueenTier2AI, Class.eggQueenTier3AI, Class.AWP_1AI, Class.AWP_14AI, Class.AWP_sin16AI, Class.AWP_tan54AI, Class.AWP_log24AI, Class.AWP_69AI, Class.AWP_cos39AI, Class.AWP_IceAI, Class.AWP_24AI, Class.AWP_RingAI, Class.AWP_cos5AI, Class.AWP_psAI, Class.AWP_11AI, Class.AWP_8AI, Class.AWP_21AI, Class.AWP_28AI, Class.eliteRifleAI, Class.RK_1AI, Class.hexashipAI, Class.eliteDestroyerAI, Class.eliteGunnerAI, Class.eliteSprayerAI, Class.eliteTwinAI, Class.eliteMachineAI, Class.eliteTrapAI, Class.eliteBorerAI, Class.eliteSniperAI, Class.eliteBasicAI, Class.eliteInfernoAI, Class.fallenBoosterAI, Class.fallenOverlordAI, Class.fallenPistonAI, Class.fallenAutoTankAI, Class.fallenCavalcadeAI, Class.fallenFighterAI, Class.reanimFarmerAI, Class.reanimHeptaTrapAI, Class.reanimUziAI, Class.palisadeAI, Class.skimBossAI, Class.leviathanAI, Class.ultMultitoolAI, Class.nailerAI, Class.gravibusAI, Class.cometAI, Class.brownCometAI, Class.orangicusAI, Class.atriumAI, Class.constructionistAI, Class.dropshipAI, Class.armySentrySwarmAI, Class.armySentryGunAI, Class.armySentryTrapAI, Class.armySentryRangerAI, Class.armySentrySwarmAI, Class.armySentryGunAI, Class.armySentryTrapAI, Class.armySentryRangerAI, Class.derogatorAI, Class.hexadecagorAI, Class.blitzkriegAI, Class.demolisherAI, Class.octogeddonAI, Class.octagronAI, Class.ultimateAI, Class.cutterAI, Class.alphaSentryAI, Class.asteroidAI, Class.trapeFighterAI, Class.visUltimaAI, Class.gunshipAI, Class.messengerAI, Class.pulsarAI, Class.colliderAI, Class.deltrabladeAI, Class.aquamarineAI, Class.kioskAI, Class.vanguardAI, Class.magnetarAI, Class.guardianAI, Class.summonerAI, Class.defenderAI, Class.xyvAI, Class.conquistadorAI, Class.sassafrasAI, Class.constAI, Class.bowAI, Class.snowflakeAI, Class.greenGuardianAI].filter((e => null != e));
     const bossRushLoop = () => {
-            room.bossRushWave++, sockets.broadcast(`[!] WARNING: Wave ${room.bossRushWave} has arrived. DO YOUR JOBS.`), bossRushBosses = bossRushBosses.sort((() => .5 - Math.random()));
+            room.bossRushWave++, sockets.broadcast(`Warning, wave ${room.bossRushWave} has started.`), bossRushBosses = bossRushBosses.sort((() => .5 - Math.random()));
             let e = 0,
-                t = 50 === room.bossRushWave ? 1 : Math.round(3 * Math.random() + 3);
+                t = 50 === room.bossRushWave ? 1 : Math.round(5 * Math.random() + 5);
             for (let s = 0; s < t; s++) {
                 const t = new Entity(room.random());
                 t.team = -100, 50 === room.bossRushWave ? t.define(ran.choose([Class.gaea, Class.eggBossTier5AI])) : t.define(bossRushBosses[s]), t.modeDead = function() {
-                    e--, e <= 0 ? 50 === room.bossRushWave ? (sockets.broadcast("[=)] Victory!"), setTimeout(closeArena, 2500)) : (sockets.broadcast("Prepare for the next wave."), setTimeout(bossRushLoop, 1e4)) : sockets.broadcast(`${e} Boss${e > 1 ? "es" : ""} left!`)
+                    e--, e <= 0 ? 50 === room.bossRushWave ? (sockets.broadcast("Victory."), setTimeout(closeArena, 2500)) : (sockets.broadcast("Wave cleared. Next wave incoming."), setTimeout(bossRushLoop, 1e4)) : sockets.broadcast(`${e} boss${e > 1 ? "es" : ""} left.`)
                 }, e++
             }
-            sockets.broadcast("[>] There are " + e + " bosses invading. Eliminate them immediately.")
+            sockets.broadcast(e + " bosses have been detected, get to work.")
         },
         trenchWarefare = function() {
             const e = [];
@@ -3629,7 +3629,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                     let s = e[t];
                     s.label.includes("Collision") ? n = "a Collision and " : n += util.addArticle(s.label) + " and "
                 }
-                if (o += n, o = o.slice(0, -5), this.killedByK ? o = "You killed yourself" : this.killedByWalls ? o = "You got stuck in the walls" : "You have been kille" === o && (o = "You have died a stupid death"), this.underControl || this.sendMessage(o + "."), this.id === room.topPlayerID && !c.RANKED_BATTLE) {
+                if (o += n, o = o.slice(0, -5), this.killedByK ? o = "You self-destructed" : this.killedByWalls ? o = "You got stuck in the walls" : "You have been kille" === o && (o = "You have died a stupid death"), this.underControl || this.sendMessage(o + "."), this.id === room.topPlayerID && !c.RANKED_BATTLE) {
                     let t = this.name || "The leader";
                     if (s) {
                         t += " has been usurped by";
