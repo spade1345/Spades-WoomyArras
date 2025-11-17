@@ -3624,7 +3624,6 @@ global.utility = util, global.minifyModules = !1, (async () => {
                     o = o.slice(0, -4), o += "killed you with "
                 }
                 this.settings.broadcastMessage && sockets.broadcast(this.settings.broadcastMessage);
-                                // MODIFIED CODE SNIPPET (generates 'n' based on projectiles 't')
                 let n = "";
                 // Loop through the objects that actually hit (t)
                 for (let i = 0, o = t.length; i < o; i++) {
@@ -3636,7 +3635,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (!n.includes("a Collision")) n += "a Collision and ";
                     } else {
                         let articleLabel = util.addArticle(label);
-                        if (!n.includes(articleLabel)) n += articleLabel + " and ";
+                        n += articleLabel + " and ";
                     }
                 }
                 if ("" === n) {
