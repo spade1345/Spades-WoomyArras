@@ -3624,14 +3624,31 @@ global.utility = util, global.minifyModules = !1, (async () => {
                     o = o.slice(0, -4), o += "killed you with "
                 }
                 this.settings.broadcastMessage && sockets.broadcast(this.settings.broadcastMessage);
+                                // MODIFIED CODE SNIPPET (generates 'n' based on projectiles 't')
                 let n = "";
-                // Loop through the actual colliding objects (t) instead of just the kill-credited masters (e)
-                for (let t = 0, s = t.length; t < s; t++) {
-                    let s = t[t]; // Now 's' is the actual object that hit you
-                    s.label.includes("Collision") ? n = "a Collision and " : n += util.addArticle(s.label) + " and "
+                // Loop through the objects that actually hit (t)
+                for (let i = 0, o = t.length; i < o; i++) {
+                    let o = t[i];
+                    // Check if the label is already in n to avoid duplicates
+                    let label = o.label;
+                    if (label.includes("Collision")) {
+                        // Handle "Collision" specifically if needed
+                        if (!n.includes("a Collision")) n += "a Collision and ";
+                    } else {
+                        let articleLabel = util.addArticle(label);
+                        if (!n.includes(articleLabel)) n += articleLabel + " and ";
+                    }
                 }
-                if (o += n, o = o.slice(0, -5), this.killedByK ? o = "You self-destructed" : this.killedByWalls ? o = "You got stuck in the walls" : "You have been kille" === o && (o = "You have died a stupid death"), this.underControl || this.sendMessage(o + "."), this.id === room.topPlayerID && !c.RANKED_BATTLE) {
-                    let t = this.name || "The leader";
+                if ("" === n) {
+                    // Fallback if 't' was empty for some reason, use 'e' (masters) as before
+                    for (let t = 0, s = e.length; t < s; t++) {
+                        let s = e[t];
+                        s.label.includes("Collision") ? n = "a Collision and " : n += util.addArticle(s.label) + " and "
+                    }
+                }
+                // 'o' is the main message, add 'n' (the projectiles/causes)
+                if (o += n, o = o.slice(0, -5), this.killedByK ? o = "You self-destructed" : this.killedByWalls ? o = "You got stuck in the walls" : "You have been kille" === o && (o = "You have died a stupid death"), this.underControl || this.sendMessage(o + "."), this.id === room.topPlayerID && !c.RANKED_BATTLE) {   
+                let t = this.name || "The leader";
                     if (s) {
                         t += " has been usurped by";
                         for (let s = 0, i = e.length; s < i; s++) {
