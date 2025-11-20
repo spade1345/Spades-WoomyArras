@@ -715,7 +715,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                 room.arenaClosed || 1 !== room.motherships.length || (util.warn(i[-room.motherships[0].team - 1] + " has won the game! Closing arena..."), setTimeout((() => sockets.broadcast(i[-room.motherships[0].team - 1] + " has won the game!", a[-room.motherships[0].team - 1])), 2e3), c.enableBot && sendClosed(c.serverName, "Reason: Round Over", i[-room.motherships[0].team - 1] + " has won the game! Closing arena..."), setTimeout((() => closeArena()), 5e3))
             }, room.motherships.push(s)
         };
-    let bossRushBosses = [Class.armySentryGunAI, Class.armySentryRangerAI, Class.armySentrySwarmAI, Class.armySentryTrapAI, Class.bowCore, Class.snowflakeCore, Class.snowflakeShard, Class.bowShard, Class.constCore, Class.constShard].filter((e => null != e));
+    let bossRushBosses = [Class.armySentryGunAI, Class.armySentryRangerAI, Class.armySentrySwarmAI, Class.armySentryTrapAI,Class.armySentryGunAI, Class.armySentryRangerAI, Class.armySentrySwarmAI, Class.armySentryTrapAI,Class.armySentryGunAI, Class.armySentryRangerAI, Class.armySentrySwarmAI, Class.armySentryTrapAI, Class.bowCore, Class.snowflakeCore, Class.snowflakeShard, Class.bowShard, Class.snowflakeShard, Class.bowShard, Class.constCore, Class.constShard].filter((e => null != e));
     const bossRushLoop = () => {
         room.bossRushWave++, sockets.broadcast(`Wave ${room.bossRushWave} has started.`), bossRushBosses = bossRushBosses.sort((() => .5 - Math.random()));
         let e = 0,
