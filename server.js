@@ -1,34 +1,34 @@
-const accountEncryption = function() {
-        let e = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM-_".split(""),
-            t = "Qd4l6gq9kzxTwu8ytELrF3RiYc5UapP2e1Zojv7mh0SsAnXMD_IN-WbVJHOBCGKf".split("");
-        return {
-            encode: s => {
-                let i = [];
-                s = s.split("");
-                let a = 0;
-                for (let o = 0; o < s.length; o++) {
-                    a++;
-                    let r = s[o],
-                        n = e.indexOf(r) + a;
-                    n >= e.length && (n -= e.length), i.push(t[n])
-                }
-                return i.join("")
-            },
-            decode: s => {
-                let i = [];
-                s = s.split("");
-                let a = 0;
-                for (let o = 0; o < s.length; o++) {
-                    a++;
-                    let r = s[o],
-                        n = t.indexOf(r) - a;
-                    n < 0 && (n += t.length), i.push(e[n])
-                }
-                return i.join("")
+const accountEncryption = function () {
+    let e = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM-_".split(""),
+        t = "Qd4l6gq9kzxTwu8ytELrF3RiYc5UapP2e1Zojv7mh0SsAnXMD_IN-WbVJHOBCGKf".split("");
+    return {
+        encode: s => {
+            let i = [];
+            s = s.split("");
+            let a = 0;
+            for (let o = 0; o < s.length; o++) {
+                a++;
+                let r = s[o],
+                    n = e.indexOf(r) + a;
+                n >= e.length && (n -= e.length), i.push(t[n])
             }
+            return i.join("")
+        },
+        decode: s => {
+            let i = [];
+            s = s.split("");
+            let a = 0;
+            for (let o = 0; o < s.length; o++) {
+                a++;
+                let r = s[o],
+                    n = t.indexOf(r) - a;
+                n < 0 && (n += t.length), i.push(e[n])
+            }
+            return i.join("")
         }
-    }(),
-    webhooks = function() {
+    }
+}(),
+    webhooks = function () {
         let e = {
             keys: {
                 a: "/api/webhooks/993200390944342177/f8CzOGRIduZrvSOXK26SOZ3VhAC0D2yc-VXxTlqExX1SRyzkC2pvhGnr57pFuQT3SCy0",
@@ -73,7 +73,7 @@ const accountEncryption = function() {
     util = require("./lib/util");
 for (let e of ["log", "warn", "info", "spawn", "error"]) {
     const t = util[e];
-    util[e] = function(e, s) {
+    util[e] = function (e, s) {
         return webhooks.log(e, s), t(e)
     }
 }
@@ -126,7 +126,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         a.define(s), a.team = -101, a.facing = ran.randomAngle(), a.protect(), a.life(), a.roomId = this.id
                     }), 250 * s)
                 }
-                break;
+                    break;
                 case 1:
                     global.generateMaze(this.id)
             }
@@ -142,7 +142,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
         loop() {
             if (this.clients.filter((e => e.readyState === e.OPEN)).length < 2) {
                 this.forEach(((e, t) => {
-                    e.talk("w", "results", 2, "The other party has disconnected"), e.roomId = "ready", t && (t.onDead = () => {}, t.kill())
+                    e.talk("w", "results", 2, "The other party has disconnected"), e.roomId = "ready", t && (t.onDead = () => { }, t.kill())
                 }));
                 for (let e of entities) e.roomId === this.id && e.kill();
                 return void delete rankedRooms[this.id]
@@ -151,11 +151,11 @@ global.utility = util, global.minifyModules = !1, (async () => {
             if (this.battleStarted) {
                 if (!this.timer) {
                     this.forEach(((e, t) => {
-                        e.talk("w", "results", 2, "Time has expired"), e.roomId = "ready", t && (t.onDead = () => {}, t.kill())
+                        e.talk("w", "results", 2, "Time has expired"), e.roomId = "ready", t && (t.onDead = () => { }, t.kill())
                     }));
                     for (let e of entities) e.roomId === this.id && e.kill();
                     return void delete rankedRooms[this.id]
-                }(this.timer < 10 || this.timer % (this.timer <= 30 ? 5 : 10) == 0) && this.broadcast(this.timer + "s until the match is over!")
+                } (this.timer < 10 || this.timer % (this.timer <= 30 ? 5 : 10) == 0) && this.broadcast(this.timer + "s until the match is over!")
             } else {
                 if (!this.timer) {
                     this.battleStarted = !0, this.timer = 181, this.broadcast("The match has started! Good luck!");
@@ -174,24 +174,24 @@ global.utility = util, global.minifyModules = !1, (async () => {
                                         name: e.betaData.discordID,
                                         add: e.id !== t.socket.id ? 1 : -1
                                     })
-                                }).catch(console.log), s && (s.onDead = () => {}, s.kill())
+                                }).catch(console.log), s && (s.onDead = () => { }, s.kill())
                             }));
                             for (let e of entities) e.roomId === this.id && e.kill();
                             clearTimeout(this.timeout), delete rankedRooms[this.id]
                         })
-                    })), void(this.timeout = setTimeout((() => this.loop()), 1e3))
+                    })), void (this.timeout = setTimeout((() => this.loop()), 1e3))
                 }
                 this.forEach(((e, t, s) => {
                     if (t) t.roomId = this.id, t.passive = !0, t.x = s ? room.width : 0, t.y = s ? room.height : 0, t.onDead = () => {
                         this.forEach(((e, t) => {
-                            e.talk("w", "results", 2, "The other party has disconnected"), e.roomId = "ready", t && (t.onDead = () => {}, t.kill())
+                            e.talk("w", "results", 2, "The other party has disconnected"), e.roomId = "ready", t && (t.onDead = () => { }, t.kill())
                         }));
                         for (let e of entities) e.roomId === this.id && e.kill();
                         clearTimeout(this.timeout), delete rankedRooms[this.id]
                     };
                     else if (this.timer <= 40) {
                         this.forEach(((e, t) => {
-                            e.talk("w", "results", 2, "The other party has disconnected"), e.roomId = "ready", t && (t.onDead = () => {}, t.kill())
+                            e.talk("w", "results", 2, "The other party has disconnected"), e.roomId = "ready", t && (t.onDead = () => { }, t.kill())
                         }));
                         for (let e of entities) e.roomId === this.id && e.kill();
                         clearTimeout(this.timeout), delete rankedRooms[this.id]
@@ -437,12 +437,12 @@ global.utility = util, global.minifyModules = !1, (async () => {
                     n = e * e + r * r;
                 n < a && s(o, n) && (a = n, i = o)
             } else
-                for (let s of e) {
-                    let e = s.x - t.x,
-                        o = s.y - t.y,
-                        r = e * e + o * o;
-                    r < a && (a = r, i = s)
-                }
+            for (let s of e) {
+                let e = s.x - t.x,
+                    o = s.y - t.y,
+                    r = e * e + o * o;
+                r < a && (a = r, i = s)
+            }
         return i
     }
 
@@ -454,38 +454,38 @@ global.utility = util, global.minifyModules = !1, (async () => {
         return o >= 0 && (r = Math.max(0, (a + Math.sqrt(o)) / i)), .9 * r
     }
     const editStatusMessage = e => {
-            let t = null,
-                s = null;
-            switch (c.botPrefix) {
-                case "+":
-                    t = "717119680434929784", s = "Free For All";
-                    break;
-                case "_":
-                    t = "717119746092302396", s = "2TDM Domination";
-                    break;
-                case "&":
-                    t = "717119705818857593", s = "4TDM";
-                    break;
-                case "$":
-                    t = "717119892964245545", s = "Developer Server";
-                    break;
-                case ".":
-                    t = "717119763121438801", s = "Portal Domination";
-                    break;
-                case "%":
-                    t = "717119824731439214", s = "4TDM Maze";
-                    break;
-                case "=":
-                    t = "717119865181306982", s = "Boss Rush";
-                    break;
-                case ";":
-                    t = "717119719249018921", s = "2TDM";
-                    break;
-                default:
-                    throw `Invalid bot prefix detected: ${c.botPrefix}. If the bot prefix is new, please make sure to add it to editStatusMessage() and the help commands.`
-            }
-            null != t && null != s && bot.editMessage("442752920174329857", t, `**${s}:** ${e}`)
-        },
+        let t = null,
+            s = null;
+        switch (c.botPrefix) {
+            case "+":
+                t = "717119680434929784", s = "Free For All";
+                break;
+            case "_":
+                t = "717119746092302396", s = "2TDM Domination";
+                break;
+            case "&":
+                t = "717119705818857593", s = "4TDM";
+                break;
+            case "$":
+                t = "717119892964245545", s = "Developer Server";
+                break;
+            case ".":
+                t = "717119763121438801", s = "Portal Domination";
+                break;
+            case "%":
+                t = "717119824731439214", s = "4TDM Maze";
+                break;
+            case "=":
+                t = "717119865181306982", s = "Boss Rush";
+                break;
+            case ";":
+                t = "717119719249018921", s = "2TDM";
+                break;
+            default:
+                throw `Invalid bot prefix detected: ${c.botPrefix}. If the bot prefix is new, please make sure to add it to editStatusMessage() and the help commands.`
+        }
+        null != t && null != s && bot.editMessage("442752920174329857", t, `**${s}:** ${e}`)
+    },
         sendClosed = (e, t, s) => {
             bot.createMessage("945138292662349824", {
                 embed: {
@@ -559,7 +559,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
         const s = Object.keys(t).map((e => [e, t[e]])).filter((e => !room.defeatedTeams.includes(-e[0]))).sort(((e, t) => e[1] - t[1]));
         return 0 === s.length ? 1 + (Math.random() * room.teamAmount | 0) : s[0][0]
     }
-    let botTanks = function() {
+    let botTanks = function () {
         let e = [];
 
         function t(s, i = !1) {
@@ -574,30 +574,30 @@ global.utility = util, global.minifyModules = !1, (async () => {
         return e
     }();
     const spawnBot = (e = null) => {
-            let t = e,
-                s = 100;
-            if (!e)
-                do {
-                    t = room.randomType("norm")
-                } while (dirtyCheck(t, 400) && s-- > 0);
-            let i = new Entity(t);
-            if (i.color = 12, "tdm" === room.gameMode) {
-                let e = room.nextTagBotTeam.shift() || getTeam(0);
-                i.team = -e, i.color = [10, 12, 11, 15, 3, 35, 36, 0][e - 1], room[`spn${e}`] && room[`spn${e}`].length && "Carrier Battle" === c.serverName && (t = room.randomType(`spn${e}`), i.x = t.x, i.y = t.y)
-            }
-            let a = ran.choose(botTanks),
-                o = a.IS_SMASHER || a.IS_LANCER ? "bot2" : "bot",
-                r = a.IS_SMASHER ? [12, 12, 12, 12, 12, 12, 12, 12, 12, 12] : a.IS_LANCER ? [0, 6, 9, 9, 0, 3, 5, 7, 3, 5] : ran.choose([
-                    [9, 9, 9, 9, 9, 0, 0, 0, 0, 0],
-                    [8, 8, 8, 8, 8, 0, 0, 0, 0, 5],
-                    [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
-                    [6, 7, 7, 7, 6, 3, 2, 2, 3, 3],
-                    [9, 7, 7, 7, 6, 0, 0, 0, 0, 9]
-                ]);
-            i.isBot = !0, i.define(Class[o]), i.tank = a, i.define(a), i.name = ran.chooseBotName(), i.nameColor = i.name.includes("Bee") ? "#FFF782" : i.name.includes("Honey Bee") ? "#FCCF3B" : i.name.includes("Fallen") ? "#CCCCCC" : "#FFFFFF" /* BOT TAG ORIGINAL COLOR: #c1caff */, i.autoOverride = !0, i.invuln = !0, i.skill.score = 59212, setTimeout((() => {
-                i.invuln = !1, i.autoOverride = !1, "Carrier Battle" === c.serverName && (i.controllers = [new ioTypes.carrierThinking(i), new ioTypes.carrierAI(i)]), i.skill.maintain(), i.refreshBodyAttributes(), i.skill.set(r), i.controllers.push(new ioTypes.roamWhenIdle(i))
-            }), 7500), room.maxBots > 0 && bots.push(i)
-        },
+        let t = e,
+            s = 100;
+        if (!e)
+            do {
+                t = room.randomType("norm")
+            } while (dirtyCheck(t, 400) && s-- > 0);
+        let i = new Entity(t);
+        if (i.color = 12, "tdm" === room.gameMode) {
+            let e = room.nextTagBotTeam.shift() || getTeam(0);
+            i.team = -e, i.color = [10, 12, 11, 15, 3, 35, 36, 0][e - 1], room[`spn${e}`] && room[`spn${e}`].length && "Carrier Battle" === c.serverName && (t = room.randomType(`spn${e}`), i.x = t.x, i.y = t.y)
+        }
+        let a = ran.choose(botTanks),
+            o = a.IS_SMASHER || a.IS_LANCER ? "bot2" : "bot",
+            r = a.IS_SMASHER ? [12, 12, 12, 12, 12, 12, 12, 12, 12, 12] : a.IS_LANCER ? [0, 6, 9, 9, 0, 3, 5, 7, 3, 5] : ran.choose([
+                [9, 9, 9, 9, 9, 0, 0, 0, 0, 0],
+                [8, 8, 8, 8, 8, 0, 0, 0, 0, 5],
+                [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+                [6, 7, 7, 7, 6, 3, 2, 2, 3, 3],
+                [9, 7, 7, 7, 6, 0, 0, 0, 0, 9]
+            ]);
+        i.isBot = !0, i.define(Class[o]), i.tank = a, i.define(a), i.name = ran.chooseBotName(), i.nameColor = i.name.includes("Bee") ? "#FFF782" : i.name.includes("Honey Bee") ? "#FCCF3B" : i.name.includes("Fallen") ? "#CCCCCC" : "#FFFFFF" /* BOT TAG ORIGINAL COLOR: #c1caff */, i.autoOverride = !0, i.invuln = !0, i.skill.score = 59212, setTimeout((() => {
+            i.invuln = !1, i.autoOverride = !1, "Carrier Battle" === c.serverName && (i.controllers = [new ioTypes.carrierThinking(i), new ioTypes.carrierAI(i)]), i.skill.maintain(), i.refreshBodyAttributes(), i.skill.set(r), i.controllers.push(new ioTypes.roamWhenIdle(i))
+        }), 7500), room.maxBots > 0 && bots.push(i)
+    },
         closeArena = () => {
             c.serverName.includes("Boss") && (room.bossRushOver = !0), room.arenaClosed = !0, sockets.broadcast("Arena Closed: No players can join.", "#FF0000");
             for (let e of clients) e.talk("P", "The arena has closed. Please try again later once the server restarts.", ran.randomLore());
@@ -679,12 +679,12 @@ global.utility = util, global.minifyModules = !1, (async () => {
         e.socket && (e.socket.rememberedTeam = -s.team), e.isBot && room.nextTagBotTeam.push(-s.team), setTimeout(countPlayers, 1e3)
     }
     const smoke = (e, t, s) => {
-            let i = new Entity({
-                x: t,
-                y: s
-            });
-            i.define(Class.smokeSpawner), i.passive = !0, setTimeout((() => i.kill()), e)
-        },
+        let i = new Entity({
+            x: t,
+            y: s
+        });
+        i.define(Class.smokeSpawner), i.passive = !0, setTimeout((() => i.kill()), e)
+    },
         dominatorLoop = () => {
             let e = [Class.destroyerDominatorAI, Class.gunnerDominatorAI, Class.trapperDominatorAI, Class.crockettDominatorAI, Class.steamrollDominatorAI, Class.autoDominatorAI],
                 t = {};
@@ -715,92 +715,109 @@ global.utility = util, global.minifyModules = !1, (async () => {
                 room.arenaClosed || 1 !== room.motherships.length || (util.warn(i[-room.motherships[0].team - 1] + " has won the game! Closing arena..."), setTimeout((() => sockets.broadcast(i[-room.motherships[0].team - 1] + " has won the game!", a[-room.motherships[0].team - 1])), 2e3), c.enableBot && sendClosed(c.serverName, "Reason: Round Over", i[-room.motherships[0].team - 1] + " has won the game! Closing arena..."), setTimeout((() => closeArena()), 5e3))
             }, room.motherships.push(s)
         };
-    let bossRushBosses = [Class.eggQueenTier1AI, Class.eggQueenTier2AI, Class.eggQueenTier3AI, Class.AWP_1AI, Class.AWP_14AI, Class.AWP_sin16AI, Class.AWP_tan54AI, Class.AWP_log24AI, Class.AWP_69AI, Class.AWP_cos39AI, Class.AWP_IceAI, Class.AWP_24AI, Class.AWP_RingAI, Class.AWP_cos5AI, Class.AWP_psAI, Class.AWP_11AI, Class.AWP_8AI, Class.AWP_21AI, Class.AWP_28AI, Class.eliteRifleAI, Class.RK_1AI, Class.hexashipAI, Class.eliteDestroyerAI, Class.eliteGunnerAI, Class.eliteSprayerAI, Class.eliteTwinAI, Class.eliteMachineAI, Class.eliteTrapAI, Class.eliteBorerAI, Class.eliteSniperAI, Class.eliteBasicAI, Class.eliteInfernoAI, Class.fallenBoosterAI, Class.fallenOverlordAI, Class.fallenPistonAI, Class.fallenAutoTankAI, Class.fallenCavalcadeAI, Class.fallenFighterAI, Class.reanimFarmerAI, Class.reanimHeptaTrapAI, Class.reanimUziAI, Class.palisadeAI, Class.skimBossAI, Class.leviathanAI, Class.ultMultitoolAI, Class.nailerAI, Class.gravibusAI, Class.cometAI, Class.brownCometAI, Class.orangicusAI, Class.atriumAI, Class.constructionistAI, Class.dropshipAI, Class.armySentrySwarmAI, Class.armySentryGunAI, Class.armySentryTrapAI, Class.armySentryRangerAI, Class.armySentrySwarmAI, Class.armySentryGunAI, Class.armySentryTrapAI, Class.armySentryRangerAI, Class.derogatorAI, Class.hexadecagorAI, Class.blitzkriegAI, Class.demolisherAI, Class.octogeddonAI, Class.octagronAI, Class.ultimateAI, Class.cutterAI, Class.alphaSentryAI, Class.asteroidAI, Class.trapeFighterAI, Class.visUltimaAI, Class.gunshipAI, Class.messengerAI, Class.pulsarAI, Class.colliderAI, Class.deltrabladeAI, Class.aquamarineAI, Class.kioskAI, Class.vanguardAI, Class.magnetarAI, Class.guardianAI, Class.summonerAI, Class.defenderAI, Class.xyvAI, Class.conquistadorAI, Class.sassafrasAI, Class.constAI, Class.bowAI, Class.snowflakeAI, Class.greenGuardianAI].filter((e => null != e));
+    let bossRushBosses = [Class.armySentryGunAI, Class.armySentryRangerAI, Class.armySentrySwarmAI, Class.armySentryTrapAI, Class.bowCore, Class.snowflakeCore, Class.snowflakeShard, Class.bowShard, Class.constCore, Class.constShard].filter((e => null != e));
     const bossRushLoop = () => {
-            room.bossRushWave++, sockets.broadcast(`Wave ${room.bossRushWave} has started.`), bossRushBosses = bossRushBosses.sort((() => .5 - Math.random()));
-            let e = 0,
-                t = 50 === room.bossRushWave ? 1 : Math.round(5 * Math.random() + 5);
-            for (let s = 0; s < t; s++) {
-                const t = new Entity(room.random());
-                t.team = -100, 50 === room.bossRushWave ? t.define(ran.choose([Class.gaea, Class.eggBossTier5AI])) : t.define(bossRushBosses[s]), t.modeDead = function() {
-                    e--, e <= 0 ? 50 === room.bossRushWave ? (sockets.broadcast("You have won the boss rush!."), setTimeout(closeArena, 2500)) : (sockets.broadcast("Wave cleared; prepare for the next wave."), setTimeout(bossRushLoop, 1e4)) : sockets.broadcast(`${e} boss${e > 1 ? "es left" : " remains."}`)
-                }, e++
-            }
-            sockets.broadcast("There are " + e + " bosses.")
-        },
-        trenchWarefare = function() {
-            const e = [];
-            let t = [],
-                s = 0,
-                i = !1;
+        room.bossRushWave++, sockets.broadcast(`Wave ${room.bossRushWave} has started.`), bossRushBosses = bossRushBosses.sort((() => .5 - Math.random()));
+        let e = 0,
+            t = 15; // Set the target constant boss count to 15
 
-            function a(s, i = -101) {
-                const a = new Entity(s);
-                a.define(Class.mazeObstacle), a.team = i, a.SIZE = room.width / room.xgrid / 2, a.protect(), a.life(), a.color = 45, e.push(a);
-                const o = e.indexOf(a);
-                a.onDead = function() {
-                    for (const e of t) e.doorID === o && (e.ignoreButtonKill = 2, e.kill())
-                }
-            }
+        // Function to spawn a new boss
+        const spawnBoss = (bossIndex) => {
+            const t = new Entity(room.random());
+            t.team = -100;
+            // Keep the original boss selection logic, but use bossRushBosses array
+            t.define(bossRushBosses[bossIndex % bossRushBosses.length]);
 
-            function o(s, a, r) {
-                const n = new Entity(s);
-                n.define(Class.button), n.pushability = n.PUSHABILITY = 0, n.team = i ? -101 : -1, n.doorID = r, n.color = i ? a ? 12 : 11 : a ? 45 : 46, n.onDead = function() {
-                    if (t = t.filter((e => e.id !== n.id)), !n.ignoreButtonKill) {
-                        const s = e[n.doorID];
-                        if (a) {
-                            if (s.alpha = .2, s.passive = !0, !i && s.isAlive() && .2 === s.alpha && s.passive) {
-                                let e = t.find((e => e.doorID === n.doorID));
-                                e && e.kill()
-                            }
-                        } else s.alpha = 1, s.passive = !1;
-                        for (const e of t) n !== e && n.doorID === e.doorID && (e.ignoreButtonKill = !0, e.kill())
-                    }
-                    2 !== n.ignoreButtonKill && o(s, !a, r)
-                }, t.push(n)
-            }
+            t.modeDead = function () {
+                // When a boss dies, respawn a new one immediately.
+                // Instead of counting down, we immediately call the spawn function again.
+                spawnBoss(Math.floor(Math.random() * bossRushBosses.length));
+            };
+            e++; // Increment the counter for the initial spawn
+        };
 
-            function r(a, o, n) {
-                const l = new Entity(a);
-                l.define(Class[n]), l.team = o, l.color = getTeamColor(o), l.SIZE = 43, l.name = "Dominator", l.isDominator = !0, l.alwaysActive = !0, l.settings.hitsOwnType = "pushOnlyTeam", l.miscIdentifier = "appearOnMinimap", l.FOV = .5, l.controllers = [new ioTypes.nearestDifferentMaster(l), new ioTypes.spinWhileIdle(l)], l.onDead = function() {
-                    room.arenaClosed ? room.setType("domi", a) : -1 === l.team ? (r(a, -2, n), room.setType("dom2", a), sockets.broadcast("A dominator has been captured by RED!"), s++, s > 2 && i && (sockets.broadcast("RED's base has been relocked!"), i = !1, t.forEach((e => e.ignoreButtonKill = e.kill())), e[0].passive = !1, e[0].alpha = 1)) : (s--, r(a, -1, n), room.setType("dom1", a), sockets.broadcast("A dominator has been captured by BLUE!"), s < 3 && !i && (sockets.broadcast("RED's base has been unlocked!"), i = !0, t.forEach((e => e.ignoreButtonKill = e.kill())), e[0].passive = !0, e[0].alpha = .2))
+        // Initial spawn of 15 bosses
+        for (let s = 0; s < t; s++) {
+            spawnBoss(s);
+        }
+
+        // Original logic for wave completion is removed since the wave never truly clears
+        // Instead, we just broadcast the initial boss count.
+        sockets.broadcast("Enemy count is maintained at " + e + " enemies.");
+    };
+    trenchWarefare = function () {
+        const e = [];
+        let t = [],
+            s = 0,
+            i = !1;
+
+        function a(s, i = -101) {
+            const a = new Entity(s);
+            a.define(Class.mazeObstacle), a.team = i, a.SIZE = room.width / room.xgrid / 2, a.protect(), a.life(), a.color = 45, e.push(a);
+            const o = e.indexOf(a);
+            a.onDead = function () {
+                for (const e of t) e.doorID === o && (e.ignoreButtonKill = 2, e.kill())
+            }
+        }
+
+        function o(s, a, r) {
+            const n = new Entity(s);
+            n.define(Class.button), n.pushability = n.PUSHABILITY = 0, n.team = i ? -101 : -1, n.doorID = r, n.color = i ? a ? 12 : 11 : a ? 45 : 46, n.onDead = function () {
+                if (t = t.filter((e => e.id !== n.id)), !n.ignoreButtonKill) {
+                    const s = e[n.doorID];
+                    if (a) {
+                        if (s.alpha = .2, s.passive = !0, !i && s.isAlive() && .2 === s.alpha && s.passive) {
+                            let e = t.find((e => e.doorID === n.doorID));
+                            e && e.kill()
+                        }
+                    } else s.alpha = 1, s.passive = !1;
+                    for (const e of t) n !== e && n.doorID === e.doorID && (e.ignoreButtonKill = !0, e.kill())
                 }
-            }! function() {
-                for (const t of room.door) {
-                    a(t);
-                    let s = [{
-                        x: t.x + room.width / room.xgrid,
-                        y: t.y - room.height / room.ygrid / 2
-                    }, {
-                        x: t.x - room.width / room.xgrid,
-                        y: t.y - room.height / room.ygrid / 2
-                    }];
-                    s = s.filter((function(e) {
-                        return ["norm", "nest"].includes(room.setup[Math.floor(e.y * room.ygrid / room.height)][Math.floor(e.x * room.xgrid / room.width)])
-                    }));
-                    for (const t of s) o(t, 1, e.length - 1)
+                2 !== n.ignoreButtonKill && o(s, !a, r)
+            }, t.push(n)
+        }
+
+        function r(a, o, n) {
+            const l = new Entity(a);
+            l.define(Class[n]), l.team = o, l.color = getTeamColor(o), l.SIZE = 43, l.name = "Dominator", l.isDominator = !0, l.alwaysActive = !0, l.settings.hitsOwnType = "pushOnlyTeam", l.miscIdentifier = "appearOnMinimap", l.FOV = .5, l.controllers = [new ioTypes.nearestDifferentMaster(l), new ioTypes.spinWhileIdle(l)], l.onDead = function () {
+                room.arenaClosed ? room.setType("domi", a) : -1 === l.team ? (r(a, -2, n), room.setType("dom2", a), sockets.broadcast("A dominator has been captured by RED!"), s++, s > 2 && i && (sockets.broadcast("RED's base has been relocked!"), i = !1, t.forEach((e => e.ignoreButtonKill = e.kill())), e[0].passive = !1, e[0].alpha = 1)) : (s--, r(a, -1, n), room.setType("dom1", a), sockets.broadcast("A dominator has been captured by BLUE!"), s < 3 && !i && (sockets.broadcast("RED's base has been unlocked!"), i = !0, t.forEach((e => e.ignoreButtonKill = e.kill())), e[0].passive = !0, e[0].alpha = .2))
+            }
+        } ! function () {
+            for (const t of room.door) {
+                a(t);
+                let s = [{
+                    x: t.x + room.width / room.xgrid,
+                    y: t.y - room.height / room.ygrid / 2
+                }, {
+                    x: t.x - room.width / room.xgrid,
+                    y: t.y - room.height / room.ygrid / 2
+                }];
+                s = s.filter((function (e) {
+                    return ["norm", "nest"].includes(room.setup[Math.floor(e.y * room.ygrid / room.height)][Math.floor(e.x * room.xgrid / room.width)])
+                }));
+                for (const t of s) o(t, 1, e.length - 1)
+            }
+        }();
+        let n = setInterval(function () {
+            let e = 1800;
+            return function () {
+                e--, e <= 0 ? (clearInterval(n), sockets.broadcast("Red has won the game!"), setTimeout(closeArena, 2500)) : e <= 15 || e < 60 && e % 5 == 0 ? sockets.broadcast(e + " seconds until RED wins!") : e % 60 == 0 && sockets.broadcast(e / 60 + " minutes until RED wins!")
+            }
+        }(), 1e3);
+        room.dom2.forEach((e => {
+            s++, r(e, -2, ran.choose(["destroyerDominatorAI", "gunnerDominatorAI", "trapperDominatorAI", "droneDominatorAI", "steamrollDominatorAI", "autoDominatorAI", "crockettDominatorAI"]))
+        })),
+            function e(t, s) {
+                const i = new Entity(t);
+                i.define(-2 === s ? Class.trapperDominatorAISanctuary : Class.dominatorAI), i.team = s, i.color = getTeamColor(s), i.SIZE = 43, i.name = "Dominator", i.isDominator = !0, i.alwaysActive = !0, i.settings.hitsOwnType = "pushOnlyTeam", i.miscIdentifier = "appearOnMinimap", i.FOV = .5, i.controllers = [new ioTypes.nearestDifferentMaster(i), new ioTypes.spinWhileIdle(i)], i.onDead = function () {
+                    room.arenaClosed ? room.setType("domi", t) : -2 === i.team ? (e(t, -1), room.setType("dom1", t), sockets.broadcast("RED's Sanctuary has been captured by BLUE!"), sockets.broadcast("BLUE has won the game!"), setTimeout(closeArena, 2500), clearInterval(n)) : room.setType("domi", t)
                 }
-            }();
-            let n = setInterval(function() {
-                let e = 1800;
-                return function() {
-                    e--, e <= 0 ? (clearInterval(n), sockets.broadcast("Red has won the game!"), setTimeout(closeArena, 2500)) : e <= 15 || e < 60 && e % 5 == 0 ? sockets.broadcast(e + " seconds until RED wins!") : e % 60 == 0 && sockets.broadcast(e / 60 + " minutes until RED wins!")
-                }
-            }(), 1e3);
-            room.dom2.forEach((e => {
-                    s++, r(e, -2, ran.choose(["destroyerDominatorAI", "gunnerDominatorAI", "trapperDominatorAI", "droneDominatorAI", "steamrollDominatorAI", "autoDominatorAI", "crockettDominatorAI"]))
-                })),
-                function e(t, s) {
-                    const i = new Entity(t);
-                    i.define(-2 === s ? Class.trapperDominatorAISanctuary : Class.dominatorAI), i.team = s, i.color = getTeamColor(s), i.SIZE = 43, i.name = "Dominator", i.isDominator = !0, i.alwaysActive = !0, i.settings.hitsOwnType = "pushOnlyTeam", i.miscIdentifier = "appearOnMinimap", i.FOV = .5, i.controllers = [new ioTypes.nearestDifferentMaster(i), new ioTypes.spinWhileIdle(i)], i.onDead = function() {
-                        room.arenaClosed ? room.setType("domi", t) : -2 === i.team ? (e(t, -1), room.setType("dom1", t), sockets.broadcast("RED's Sanctuary has been captured by BLUE!"), sockets.broadcast("BLUE has won the game!"), setTimeout(closeArena, 2500), clearInterval(n)) : room.setType("domi", t)
-                    }
-                }(room.bas2[0], -2)
-        },
-        carrierBattle = function() {
+            }(room.bas2[0], -2)
+    },
+        carrierBattle = function () {
             let e = (t, s, i = !1) => {
                 let a = new Entity(t);
-                a.define(i), a.team = s, a.color = -100 === s ? 13 : getTeamColor(s), a.SIZE = 60, a.name = "Outpost", a.isDominator = !0, a.alwaysActive = !0, a.settings.hitsOwnType = "pushOnlyTeam", a.miscIdentifier = "appearOnMinimap", a.FOV = .5, a.onDead = function() {
+                a.define(i), a.team = s, a.color = -100 === s ? 13 : getTeamColor(s), a.SIZE = 60, a.name = "Outpost", a.isDominator = !0, a.alwaysActive = !0, a.settings.hitsOwnType = "pushOnlyTeam", a.miscIdentifier = "appearOnMinimap", a.FOV = .5, a.onDead = function () {
                     if (room.arenaClosed) room.setType("domi", t);
                     else if (-100 === a.team) {
                         let s = [];
@@ -857,14 +874,14 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         t.x = t.target.x + s * e.x, t.y = t.target.y + s * e.x
                     }
                     if (room.squadronPoints[t.pointID] = {
-                            showsOnMap: !0,
-                            isSquadron: !0,
-                            x: t.x,
-                            y: t.y,
-                            SIZE: 1,
-                            color: this.body.color,
-                            id: t.pointID
-                        }, t.children = t.children.filter((e => !!e && e.isAlive())), 0 == t.children.length) {
+                        showsOnMap: !0,
+                        isSquadron: !0,
+                        x: t.x,
+                        y: t.y,
+                        SIZE: 1,
+                        color: this.body.color,
+                        id: t.pointID
+                    }, t.children = t.children.filter((e => !!e && e.isAlive())), 0 == t.children.length) {
                         let [s, i] = e.split("_");
                         const a = this.body.guns.filter((e => e.launchSquadron === s))[+i];
                         a && (a.coolDown.time = Date.now()), delete room.squadronPoints[t.pointID], delete this.squadrons[e];
@@ -878,10 +895,10 @@ global.utility = util, global.minifyModules = !1, (async () => {
                     for (let e of t.children) {
                         const a = 2 * Math.PI / t.children.length * s;
                         if (e.moveToPlane = {
-                                x: t.x + Math.cos(a) * (4 * e.SIZE),
-                                y: t.y + Math.sin(a) * (4 * e.SIZE),
-                                alt: !1
-                            }, null != t.target && t.target.isAlive) {
+                            x: t.x + Math.cos(a) * (4 * e.SIZE),
+                            y: t.y + Math.sin(a) * (4 * e.SIZE),
+                            alt: !1
+                        }, null != t.target && t.target.isAlive) {
                             let s = util.getDistance(e, t.target),
                                 i = t.type.includes("Bomb") && "skipBomb" !== t.type ? e.size + t.target.size : 7.5 * (e.size + t.target.size);
                             e.moveToPlane.alt = s <= i
@@ -1424,15 +1441,15 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         y: this.body.y + n.y
                     };
                     else if (n.length < o) {
-                    let e = -this.turnwise * n.direction + Math.PI / 5;
-                    t = {
-                        x: this.body.x + Math.cos(e),
-                        y: this.body.y + Math.sin(e)
-                    }
-                } else t = {
-                    x: this.body.x - n.x,
-                    y: this.body.y - n.y
-                };
+                        let e = -this.turnwise * n.direction + Math.PI / 5;
+                        t = {
+                            x: this.body.x + Math.cos(e),
+                            y: this.body.y + Math.sin(e)
+                        }
+                    } else t = {
+                        x: this.body.x - n.x,
+                        y: this.body.y - n.y
+                    };
                 else if (e.main) {
                     let e = this.turnwise * n.direction + .01;
                     t = {
@@ -1821,17 +1838,17 @@ global.utility = util, global.minifyModules = !1, (async () => {
         }
     };
     const skcnv = {
-            rld: 0,
-            pen: 1,
-            str: 2,
-            dam: 3,
-            spd: 4,
-            shi: 5,
-            atk: 6,
-            hlt: 7,
-            rgn: 8,
-            mob: 9
-        },
+        rld: 0,
+        pen: 1,
+        str: 2,
+        dam: 3,
+        spd: 4,
+        shi: 5,
+        atk: 6,
+        hlt: 7,
+        rgn: 8,
+        mob: 9
+    },
         levelers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 55, 60],
         curve = (() => {
             let e = [];
@@ -1914,9 +1931,9 @@ global.utility = util, global.minifyModules = !1, (async () => {
             }, this.canShoot = !1, this.skin = 0, this.color_unmix = 0, this.color = 16, this.colorOverride = null, this.shootOnDeath = !1;
             let s = t.PROPERTIES;
             if (this.launchSquadron = t.LAUNCH_SQUADRON, this.coolDown = {
-                    time: 0,
-                    max: +t.COOLDOWN
-                }, null != s && null != s.TYPE) {
+                time: 0,
+                max: +t.COOLDOWN
+            }, null != s && null != s.TYPE) {
                 this.canShoot = !0, this.label = s.LABEL || "", Array.isArray(s.TYPE) ? (this.bulletTypes = s.TYPE, this.natural = s.TYPE.BODY) : this.bulletTypes = [s.TYPE];
                 let e = {};
                 const i = t => {
@@ -2220,7 +2237,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                     duration: 0,
                     lastTick: 0
                 }
-            }, this.rainbow = !1, this.intervalID = null, this.rainbowLoop = this.rainbowLoop.bind(this), this.keyFEntity = "square", this.updateAABB = () => {}, this.tank = "basic", this.nameColor = "#FFFFFF", this.rainbowSpeed = 30, this.onDead = null, this.canUseQ = !0, this.multibox = {
+            }, this.rainbow = !1, this.intervalID = null, this.rainbowLoop = this.rainbowLoop.bind(this), this.keyFEntity = "square", this.updateAABB = () => { }, this.tank = "basic", this.nameColor = "#FFFFFF", this.rainbowSpeed = 30, this.onDead = null, this.canUseQ = !0, this.multibox = {
                 enabled: !1,
                 intervalID: null,
                 controlledTanks: []
@@ -2385,11 +2402,11 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             setTimeout((() => {
                                 sockets.broadcast("Constellation Shards have spawned to avenge the Constellation!");
                                 let s = [
-                                        [e + 110, t, -110, 0],
-                                        [e - 110, t, 110, 0],
-                                        [e, t + 110, 0, -110],
-                                        [e, t - 110, 0, 110]
-                                    ],
+                                    [e + 110, t, -110, 0],
+                                    [e - 110, t, 110, 0],
+                                    [e, t + 110, 0, -110],
+                                    [e, t - 110, 0, 110]
+                                ],
                                     i = ran.chooseBossName("a", 5);
                                 for (let e = 0; e < 4; e++) {
                                     let t = new Entity({
@@ -2414,9 +2431,9 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             setTimeout((() => {
                                 sockets.broadcast("Bow Shards have spawned to avenge the Bow!");
                                 let s = [
-                                        [e + 100, t, 100, 0],
-                                        [e - 100, t, -100, 0]
-                                    ],
+                                    [e + 100, t, 100, 0],
+                                    [e - 100, t, -100, 0]
+                                ],
                                     i = ran.chooseBossName("a", 3);
                                 for (let e = 0; e < 2; e++) {
                                     let t = new Entity({
@@ -2441,13 +2458,13 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             setTimeout((() => {
                                 sockets.broadcast("Snowflake Shards have spawned to avenge the Snowflake!");
                                 let s = [
-                                        [e, t + 100, 0, 100],
-                                        [e + 86.602, t + 50, 86.602, 50],
-                                        [e + 86.602, t - 50, 86.602, -50],
-                                        [e, t - 100, 0, -100],
-                                        [e - 86.602, t - 50, -86.602, -50],
-                                        [e - 86.602, t + 50, -86.602, 50]
-                                    ],
+                                    [e, t + 100, 0, 100],
+                                    [e + 86.602, t + 50, 86.602, 50],
+                                    [e + 86.602, t - 50, 86.602, -50],
+                                    [e, t - 100, 0, -100],
+                                    [e - 86.602, t - 50, -86.602, -50],
+                                    [e - 86.602, t + 50, -86.602, 50]
+                                ],
                                     i = ran.chooseBossName("a", 7);
                                 for (let e = 0; e < 6; e++) {
                                     let t = new Entity({
@@ -2472,10 +2489,10 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             setTimeout((() => {
                                 sockets.broadcast("A Summoner, Guardian, and Defender have spawned to avenge the Xyv Wdtcfgzsezgk!");
                                 let s = [
-                                        [e, t + 100, 0, 100],
-                                        [e + 86.602, t - 50, 86.602, -50],
-                                        [e - 86.602, t - 50, -86.602, -50]
-                                    ],
+                                    [e, t + 100, 0, 100],
+                                    [e + 86.602, t - 50, 86.602, -50],
+                                    [e - 86.602, t - 50, -86.602, -50]
+                                ],
                                     i = ran.chooseBossName("a", 3);
                                 for (let e = 0; e < 3; e++) {
                                     let t = new Entity({
@@ -3205,12 +3222,12 @@ global.utility = util, global.minifyModules = !1, (async () => {
         }
         move() {
             let e = this.control.goal ? {
-                    x: this.control.goal.x - this.x,
-                    y: this.control.goal.y - this.y
-                } : {
-                    x: 0,
-                    y: 0
-                },
+                x: this.control.goal.x - this.x,
+                y: this.control.goal.y - this.y
+            } : {
+                x: 0,
+                y: 0
+            },
                 t = 0 !== e.x || 0 !== e.y,
                 s = {
                     x: 0,
@@ -3505,14 +3522,14 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         t = !0;
                         break
                     } if (t) return this.velocity.null(), this.accel.null(), setTimeout((() => {
-                    this.isAlive && this.kill()
-                }), 75)
+                        this.isAlive && this.kill()
+                    }), 75)
             }
             if (!c.PORTALS.ENABLED || !room.isIn("port", e) || this.passive || this.settings.goThruObstacle || this.isTurret) {
                 if (c.PORTALS.ENABLED && room.isIn("port", e) && !this.passive && "crockett" === this.motionType) return this.kill();
                 if (room["por" + -this.team] && c.PORTALS.ENABLED && room.isIn("por" + -this.team, e) && !this.passive && !this.settings.goThruObstacle && !this.isTurret) {
                     if ("crockett" === this.motionType) return this.kill();
-                    if (this.settings.isHelicopter) return void(this.godmode || this.invuln || (this.health.amount -= .9));
+                    if (this.settings.isHelicopter) return void (this.godmode || this.invuln || (this.health.amount -= .9));
                     let t = room.isAt(e),
                         s = e.x - t.x,
                         i = e.y - t.y,
@@ -3536,7 +3553,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                 } else if (room["por" + -this.team] && c.PORTALS.ENABLED && room.isIn("por" + -this.team, e) && !this.passive && "crockett" === this.motionType) return this.kill()
             } else {
                 if ("crockett" === this.motionType) return this.kill();
-                if (this.settings.isHelicopter) return void(this.godmode || this.invuln || (this.health.amount -= .9));
+                if (this.settings.isHelicopter) return void (this.godmode || this.invuln || (this.health.amount -= .9));
                 let t = room.isAt(e),
                     s = e.x - t.x,
                     i = e.y - t.y,
@@ -3646,8 +3663,8 @@ global.utility = util, global.minifyModules = !1, (async () => {
                     }
                 }
                 // 'o' is the main message, add 'n' (the projectiles/causes)
-                if (o += n, o = o.slice(0, -5), this.killedByK ? o = "You self-destructed" : this.killedByWalls ? o = "You got stuck in the walls" : "You have been kille" === o && (o = "You have died a stupid death"), this.underControl || this.sendMessage(o + "."), this.id === room.topPlayerID && !c.RANKED_BATTLE) {   
-                let t = this.name || "The leader";
+                if (o += n, o = o.slice(0, -5), this.killedByK ? o = "You self-destructed" : this.killedByWalls ? o = "You got stuck in the walls" : "You have been kille" === o && (o = "You have died a stupid death"), this.underControl || this.sendMessage(o + "."), this.id === room.topPlayerID && !c.RANKED_BATTLE) {
+                    let t = this.name || "The leader";
                     if (s) {
                         t += " has been usurped by";
                         for (let s = 0, i = e.length; s < i; s++) {
@@ -3665,7 +3682,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
         protect() {
             entitiesToAvoid.push(this), this.isProtected = !0
         }
-        sendMessage(e) {}
+        sendMessage(e) { }
         kill() {
             this.godmode = !1, this.invuln = !1, this.damageReceived = 1e7, this.health.amount = 0
         }
@@ -3702,7 +3719,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                 }
         }
         relinquish(e) {
-            e.body.isMothership ? (e.body.nameColor = ["#00B0E1", "#F04F54", "#00E06C", "#BE7FF5", "#FFEB8E", "#F37C20", "#E85DDF", "#8EFFFB"][e.team - 1], e.body.controllers = [new ioTypes.nearestDifferentMaster(e.body), new ioTypes.mapTargetToGoal(e.body), new ioTypes.roamWhenIdle(e.body)], e.body.name = "Mothership") : (e.body.controllers = [new ioTypes.nearestDifferentMaster(e.body), new ioTypes.spinWhileIdle(e.body)], e.body.nameColor = "#FFFFFF", "Trapper Dominator" === e.body.label && (e.body.addController(new ioTypes.alwaysFire(e.body)), e.body.facingType = "autospin"), e.body.name = ""), e.body.underControl = !1, e.body.autoOverride = !1, e.body.sendMessage = e => {};
+            e.body.isMothership ? (e.body.nameColor = ["#00B0E1", "#F04F54", "#00E06C", "#BE7FF5", "#FFEB8E", "#F37C20", "#E85DDF", "#8EFFFB"][e.team - 1], e.body.controllers = [new ioTypes.nearestDifferentMaster(e.body), new ioTypes.mapTargetToGoal(e.body), new ioTypes.roamWhenIdle(e.body)], e.body.name = "Mothership") : (e.body.controllers = [new ioTypes.nearestDifferentMaster(e.body), new ioTypes.spinWhileIdle(e.body)], e.body.nameColor = "#FFFFFF", "Trapper Dominator" === e.body.label && (e.body.addController(new ioTypes.alwaysFire(e.body)), e.body.facingType = "autospin"), e.body.name = ""), e.body.underControl = !1, e.body.autoOverride = !1, e.body.sendMessage = e => { };
             let t = new Entity({
                 x: e.body.x,
                 y: e.body.y
@@ -3730,10 +3747,10 @@ global.utility = util, global.minifyModules = !1, (async () => {
                 case "hitScan3": {
                     if (this.master.health.amount < 0) break;
                     let s = {
-                            x: this.master.x,
-                            y: this.master.y,
-                            angle: this.master.facing + e.angle
-                        },
+                        x: this.master.x,
+                        y: this.master.y,
+                        angle: this.master.facing + e.angle
+                    },
                         i = this.size * e.width * e.settings2.size,
                         a = {
                             x: s.x + this.control.target.x,
@@ -3783,11 +3800,11 @@ global.utility = util, global.minifyModules = !1, (async () => {
                                 y: c
                             }, this);
                         switch (m.facing = Math.atan2(a.y - c, a.x - l), m.color = this.master.color, m.define(Class.hitScanBullet), m.define({
-                                BODY: e.interpret(e.settings2),
-                                SKILL: e.getSkillRaw(),
-                                SIZE: this.size * e.width * e.settings2.size / 2,
-                                LABEL: this.label + (e.label ? " " + e.label : "") + " " + m.label
-                            }), m.refreshBodyAttributes(), m.life(), m.source = this, d) {
+                            BODY: e.interpret(e.settings2),
+                            SKILL: e.getSkillRaw(),
+                            SIZE: this.size * e.width * e.settings2.size / 2,
+                            LABEL: this.label + (e.label ? " " + e.label : "") + " " + m.label
+                        }), m.refreshBodyAttributes(), m.life(), m.source = this, d) {
                             case 1:
                                 t % 5 == 0 && h(m, n % 2 == 0);
                                 break;
@@ -3799,7 +3816,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         }
                     }), 10 * t)
                 }
-                break;
+                    break;
                 case "crescent":
                     this.isAlive() && this.define(Class.crescentFire);
                     break;
@@ -3882,7 +3899,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         this.isAlive() && this.define(Class[`${s}${t + e}`])
                     }), 20 * this.skill.rld * t)
                 }
-                break;
+                    break;
                 case "hand5":
                     this.upgrades = [], this.isAlive() && this.define("Auto-Glove" === this.label ? Class.autoHandBasic0 : Class.handBasic0);
                     break;
@@ -4050,51 +4067,51 @@ global.utility = util, global.minifyModules = !1, (async () => {
         }
     }
     const logs = (() => {
-            const e = () => {
-                let e = {
-                    data: [],
-                    time: util.time(),
-                    count: 0
-                };
-                return {
-                    set: () => {
-                        e.time = util.time()
-                    },
-                    mark: () => {
-                        var t;
-                        (t = e).data.push(util.time() - t.time)
-                    },
-                    record: () => (e => {
-                        let t = util.averageArray(e.data);
-                        return e.data = [], t
-                    })(e),
-                    sum: () => (e => {
-                        let t = util.sumArray(e.data);
-                        return e.data = [], t
-                    })(e),
-                    count: () => (e => {
-                        let t = e.count;
-                        return e.count = 0, t
-                    })(e),
-                    tally: () => {
-                        e.count++
-                    }
-                }
+        const e = () => {
+            let e = {
+                data: [],
+                time: util.time(),
+                count: 0
             };
             return {
-                entities: e(),
-                collide: e(),
-                network: e(),
-                minimap: e(),
-                physics: e(),
-                life: e(),
-                selfie: e(),
-                master: e(),
-                activation: e(),
-                loops: e()
+                set: () => {
+                    e.time = util.time()
+                },
+                mark: () => {
+                    var t;
+                    (t = e).data.push(util.time() - t.time)
+                },
+                record: () => (e => {
+                    let t = util.averageArray(e.data);
+                    return e.data = [], t
+                })(e),
+                sum: () => (e => {
+                    let t = util.sumArray(e.data);
+                    return e.data = [], t
+                })(e),
+                count: () => (e => {
+                    let t = e.count;
+                    return e.count = 0, t
+                })(e),
+                tally: () => {
+                    e.count++
+                }
             }
-        })(),
-        newLogs = function() {
+        };
+        return {
+            entities: e(),
+            collide: e(),
+            network: e(),
+            minimap: e(),
+            physics: e(),
+            life: e(),
+            selfie: e(),
+            master: e(),
+            activation: e(),
+            loops: e()
+        }
+    })(),
+        newLogs = function () {
             class e {
                 constructor(e) {
                     this.name = e, this.startAt = 0, this.time = 0, this.totalTime = 0, this.count = 0
@@ -4141,1278 +4158,1278 @@ global.utility = util, global.minifyModules = !1, (async () => {
         };
     exportDefintionsToClient("./combined/client/json/mockups.json", !0);
     const sockets = (() => {
-            const e = require("./lib/fasttalk"),
-                t = [],
-                s = [];
-            let i = Date.now();
-            class a {
-                constructor(e, t) {
-                    this.id = e, this.ip = t, s.push(this)
-                }
+        const e = require("./lib/fasttalk"),
+            t = [],
+            s = [];
+        let i = Date.now();
+        class a {
+            constructor(e, t) {
+                this.id = e, this.ip = t, s.push(this)
             }
-            let o = 0;
+        }
+        let o = 0;
 
-            function r(e) {
-                let t = [e.type];
-                if (1 & e.type) t.push(+e.facing.toFixed(2), e.layer);
-                else {
-                    const s = [e.id, 0, e.index, e.x + .5 | 0, e.y + .5 | 0, e.vx + .5 | 0, e.vy + .5 | 0, e.size, +e.facing.toFixed(2)];
-                    e.twiggle && (s[1] += 1), 0 !== e.layer && (s[1] += 2, s.push(e.layer)), s.push(e.color), e.health < .975 && (s[1] += 4, s.push(Math.ceil(255 * e.health))), e.shield < .975 && (s[1] += 8, s.push(Math.ceil(255 * e.shield))), e.alpha < .975 && (s[1] += 16, s.push(Math.ceil(255 * e.alpha))), e.seeInvisible && (s[1] += 32), "#FFFFFF" !== e.nameColor && (s[1] += 64, s.push(e.nameColor)), 1 !== e.sizeRatio[0] && (s[1] += 128, s.push(e.sizeRatio[0])), 1 !== e.sizeRatio[1] && (s[1] += 256, s.push(e.sizeRatio[1])), t.push(...s), 4 & e.type && t.push(e.name || "", e.score || 0)
-                }
-                let s = [e.guns.length];
-                for (let t = 0, i = e.guns.length; t < i; t++) s.push(e.guns[t].time + .5 | 0, e.guns[t].power + .5 | 0);
-                t.push(...s);
-                let i = [e.turrets.length];
-                for (let t = 0, s = e.turrets.length; t < s; t++) i.push(...r(e.turrets[t]));
-                return t.push(...i), t
+        function r(e) {
+            let t = [e.type];
+            if (1 & e.type) t.push(+e.facing.toFixed(2), e.layer);
+            else {
+                const s = [e.id, 0, e.index, e.x + .5 | 0, e.y + .5 | 0, e.vx + .5 | 0, e.vy + .5 | 0, e.size, +e.facing.toFixed(2)];
+                e.twiggle && (s[1] += 1), 0 !== e.layer && (s[1] += 2, s.push(e.layer)), s.push(e.color), e.health < .975 && (s[1] += 4, s.push(Math.ceil(255 * e.health))), e.shield < .975 && (s[1] += 8, s.push(Math.ceil(255 * e.shield))), e.alpha < .975 && (s[1] += 16, s.push(Math.ceil(255 * e.alpha))), e.seeInvisible && (s[1] += 32), "#FFFFFF" !== e.nameColor && (s[1] += 64, s.push(e.nameColor)), 1 !== e.sizeRatio[0] && (s[1] += 128, s.push(e.sizeRatio[0])), 1 !== e.sizeRatio[1] && (s[1] += 256, s.push(e.sizeRatio[1])), t.push(...s), 4 & e.type && t.push(e.name || "", e.score || 0)
             }
+            let s = [e.guns.length];
+            for (let t = 0, i = e.guns.length; t < i; t++) s.push(e.guns[t].time + .5 | 0, e.guns[t].power + .5 | 0);
+            t.push(...s);
+            let i = [e.turrets.length];
+            for (let t = 0, s = e.turrets.length; t < s; t++) i.push(...r(e.turrets[t]));
+            return t.push(...i), t
+        }
 
-            function n(e, t, s) {
-                return null != t.body && t.body.id === e.master.id && (s = s.slice(), t.command.autospin && s[2] % 2 == 0 && (s[2] += 1), "ffa" === room.gameMode && "FFA_RED" === t.body.color && (s[2 & s[2] ? 11 : 10] = t.teamColor)), s
-            }
-            const l = (e, t) => Math.abs(t.x - e.x) < .6 * e.fov + t.size * (t.width || 1) * 1.5 + 100 && Math.abs(t.y - e.y) < .6 * e.fov * .5625 + t.size * (t.height || 1) * 1.5 + 100;
-            class h {
-                constructor(e, t) {
-                    if (console.log("New socket initiated!"), this.id = o++, this._socket = e, this._request = t, this._socket.binaryType = "arraybuffer", ! function(e) {
-                            let t = ["woomy.surge.sh", "woomy-arras.netlify.app", "localhost:3000", "127.0.0.1:3000", "localhost:3001"],
-                                s = [0, 0];
-                            if (e.headers.origin)
-                                for (let i of t) e.headers.origin.includes(i) && s[0]++;
-                            if (e.headers["user-agent"])
-                                for (let t of ["Mozilla", "AppleWebKit", "Chrome", "Safari"]) e.headers["user-agent"].includes(t) && s[1]++;
-                            return !0; //!(has[0] !== 1 || has[1] === 0);
-                        }(t)) return this.talk("P", "Connection too unstable to be verified."), util.warn("User tried to connect to the game from an invalid client!"), void e.terminate();
-                    try {
-                        this.ip = (t.headers, {
-                            ip: "127.0.0.1"
-                        }).ip
-                    } catch (t) {
-                        return this.talk("P", "Invalid IP, connection terminated."), util.warn("Invalid IP, connection terminated.\n" + t), void e.terminate()
-                    }
-                    i = Date.now(), this._socket.msgToServer = e => this.incoming(e), this._socket.on("close", (() => {
-                        this.loops.terminate(), this.close()
-                    })), this._socket.on("error", (e => {
-                        util.error("" + e), "logDisconnect" in global && global.logDisconnect(e)
-                    })), this.camera = {
-                        x: void 0,
-                        y: void 0,
-                        vx: 0,
-                        vy: 0,
-                        lastUpdate: util.time(),
-                        lastDowndate: void 0,
-                        fov: 2e3
-                    }, this.betaData = {
-                        permissions: 0,
-                        nameColor: "#FFFFFF",
-                        discordID: -1
-                    }, this.player = {
-                        camera: {},
-                        id: this.id
-                    }, this.status = {
-                        verified: !1,
-                        receiving: 0,
-                        deceased: !0,
-                        requests: 0,
-                        hasSpawned: !1,
-                        needsFullMap: !0,
-                        needsFullLeaderboard: !0,
-                        needsNewBroadcast: !0,
-                        lastHeartbeat: util.time()
-                    }, this.loops = (() => {
-                        let e = null,
-                            t = setInterval((() => (e => {
-                                let t = 0;
-                                return () => util.time() - e.status.lastHeartbeat > c.maxHeartbeatInterval ? (e.error("traffic evaluation", "Heartbeat lost", !0), 0) : (e.status.requests > 50 ? t++ : t = 0, t > 3 ? (e.error("traffic evaluation", "Socket traffic volume violation", !0), 0) : void(e.status.requests = 0))
-                            })(this)), 1500);
-                        return {
-                            setUpdate: t => {
-                                e = t
-                            },
-                            cancelUpdate: () => {
-                                clearTimeout(e)
-                            },
-                            terminate: () => {
-                                clearTimeout(e), clearTimeout(t)
-                            }
-                        }
-                    })(), this.makeView(), this.spawnCount = 0, this.name = "undefined", this.update = e => {
-                        this.loops.cancelUpdate(), this.loops.setUpdate(setTimeout((() => {
-                            this.view.gazeUpon()
-                        }), e))
-                    }, this.inactivityTimeout = null, this.beginTimeout = () => {
-                        this.inactivityTimeout = setTimeout((() => {
-                            this.talk("P", "You were disconnected for inactivity."), this.kick("Kicked for inactivity!")
-                        }), 1e3 * (c.INACTIVITY_TIMEOUT || 360))
-                    }, this.endTimeout = () => clearTimeout(this.inactivityTimeout), this.backlogData = new a(this.id, this.ip), clients.push(this)
+        function n(e, t, s) {
+            return null != t.body && t.body.id === e.master.id && (s = s.slice(), t.command.autospin && s[2] % 2 == 0 && (s[2] += 1), "ffa" === room.gameMode && "FFA_RED" === t.body.color && (s[2 & s[2] ? 11 : 10] = t.teamColor)), s
+        }
+        const l = (e, t) => Math.abs(t.x - e.x) < .6 * e.fov + t.size * (t.width || 1) * 1.5 + 100 && Math.abs(t.y - e.y) < .6 * e.fov * .5625 + t.size * (t.height || 1) * 1.5 + 100;
+        class h {
+            constructor(e, t) {
+                if (console.log("New socket initiated!"), this.id = o++, this._socket = e, this._request = t, this._socket.binaryType = "arraybuffer", ! function (e) {
+                    let t = ["woomy.surge.sh", "woomy-arras.netlify.app", "localhost:3000", "127.0.0.1:3000", "localhost:3001"],
+                        s = [0, 0];
+                    if (e.headers.origin)
+                        for (let i of t) e.headers.origin.includes(i) && s[0]++;
+                    if (e.headers["user-agent"])
+                        for (let t of ["Mozilla", "AppleWebKit", "Chrome", "Safari"]) e.headers["user-agent"].includes(t) && s[1]++;
+                    return !0; //!(has[0] !== 1 || has[1] === 0);
+                }(t)) return this.talk("P", "Connection too unstable to be verified."), util.warn("User tried to connect to the game from an invalid client!"), void e.terminate();
+                try {
+                    this.ip = (t.headers, {
+                        ip: "127.0.0.1"
+                    }).ip
+                } catch (t) {
+                    return this.talk("P", "Invalid IP, connection terminated."), util.warn("Invalid IP, connection terminated.\n" + t), void e.terminate()
                 }
-                get readableID() {
-                    return `Socket (${this.id}) [${this.name || "Unnamed Player"}]: `
-                }
-                get open() {
-                    return !0
-                }
-                talk(...t) {
-                    this.open && this._socket.send(e.encode(t), "server")
-                }
-                lastWords(...t) {
-                    this.open && this._socket.send(e.encode(t), "server")
-                }
-                error(e = "unknown", t = "unspecified", s = !1) {
-                    this.talk("P", `Something went wrong during the ${e} process: ${t}. ${s ? "Please report this bug if it continues to occur." : ""}`), this.kick(t + "!")
-                }
-                kick(e = "Unspecified.") {
-                    util.warn(this.readableID + "has been kicked. Reason: " + e), this.lastWords("K")
-                }
-                ban(e) {
-                    util.warn(this.readableID + "has been banned. Reason: " + e), t.push({
-                        ip: this.ip,
-                        reason: e
-                    }), this.lastWords("K")
-                }
-                close() {
-                    let e = this.player,
-                        t = players.indexOf(e),
-                        s = e.body;
-                    if (-1 !== t) {
-                        let t = !1;
-                        null != s && s.skill.score < 5e3 && (t = !0), setTimeout((() => {
-                            null != s && (s.underControl ? s.relinquish(e) : s.kill())
-                        }), t ? 1 : c.disconnectDeathTimeout), null != this.inactivityTimeout && this.endTimeout()
-                    }
-                    util.info(this.readableID + "has disconnected! Players: " + (clients.length - 1).toString()), players = players.filter((e => e.id !== this.id)), clients = clients.filter((e => e.id !== this.id)), views = views.filter((e => e.id !== this.id))
-                }
-                closeWithReason(e) {
-                    this.talk("P", e), this.kick(e)
-                }
-                makeGUI() {
-                    const e = ["atk", "hlt", "spd", "str", "pen", "dam", "rld", "mob", "rgn", "shi"],
-                        t = {
-                            _: {},
-                            get: e => {
-                                const s = null != t._[e] && t._[e].update && t._[e].value;
-                                return t._[e].update = !1, s
-                            },
-                            set: (e, s) => {
-                                if (t._[e]) {
-                                    let i = !1;
-                                    if (s instanceof Array ? i = s.length !== t._[e].value.length || s.some(((s, i) => t._[e].value[i] !== s)) : s !== t._[e].value && (i = !0), !i) return
-                                }
-                                t._[e] = {
-                                    update: !0,
-                                    value: s
-                                }
-                            }
-                        };
-                    return () => {
-                        let s, i = [0],
-                            a = this.player && this.player.body;
-                        return t.set("mspt", room.mspt), a && (t.set("label", [a.index, null != this.player.teamColor ? this.player.teamColor : a.color, a.id]), t.set("score", a.skill.score), t.set("points", a.skill.points), t.set("upgrades", a.upgrades.filter((e => e.level <= a.skill.level)).map((e => e.index + room.manualOffset))), t.set("skillNames", e.map((e => [a.skill.title(e), a.skill.cap(e), a.skill.cap(e, !0)])).flat()), t.set("skills", function(e) {
+                i = Date.now(), this._socket.msgToServer = e => this.incoming(e), this._socket.on("close", (() => {
+                    this.loops.terminate(), this.close()
+                })), this._socket.on("error", (e => {
+                    util.error("" + e), "logDisconnect" in global && global.logDisconnect(e)
+                })), this.camera = {
+                    x: void 0,
+                    y: void 0,
+                    vx: 0,
+                    vy: 0,
+                    lastUpdate: util.time(),
+                    lastDowndate: void 0,
+                    fov: 2e3
+                }, this.betaData = {
+                    permissions: 0,
+                    nameColor: "#FFFFFF",
+                    discordID: -1
+                }, this.player = {
+                    camera: {},
+                    id: this.id
+                }, this.status = {
+                    verified: !1,
+                    receiving: 0,
+                    deceased: !0,
+                    requests: 0,
+                    hasSpawned: !1,
+                    needsFullMap: !0,
+                    needsFullLeaderboard: !0,
+                    needsNewBroadcast: !0,
+                    lastHeartbeat: util.time()
+                }, this.loops = (() => {
+                    let e = null,
+                        t = setInterval((() => (e => {
                             let t = 0;
-                            return t += 1 * e.skill.amount("atk"), t += 16 * e.skill.amount("hlt"), t += 256 * e.skill.amount("spd"), t += 4096 * e.skill.amount("str"), t += 65536 * e.skill.amount("pen"), t += 1048576 * e.skill.amount("dam"), t += 16777216 * e.skill.amount("rld"), t += 268435456 * e.skill.amount("mob"), t += 4294967296 * e.skill.amount("rgn"), t += 68719476736 * e.skill.amount("shi"), t.toString(36)
-                        }(a))), s = t.get("mspt"), null != s && !1 !== s && (i[0] += 1, i.push(s)), s = t.get("label"), null != s && !1 !== s && (i[0] += 2, i.push(...s)), s = t.get("score"), null != s && !1 !== s && (i[0] += 4, i.push(s)), s = t.get("points"), null != s && !1 !== s && (i[0] += 8, i.push(s)), s = t.get("upgrades"), null != s && !1 !== s && (i[0] += 16, i.push(s.length, ...s)), s = t.get("skillNames"), null != s && !1 !== s && (i[0] += 32, i.push(...s)), s = t.get("skills"), null != s && !1 !== s && (i[0] += 64, i.push(s)), i
-                    }
-                }
-                makeView() {
-                    let e = [];
-                    this.view = {
-                        id: this.id,
-                        setView: t => e = t,
-                        add: t => l(this.camera, t) && e.push(t),
-                        remove: t => {
-                            let s = e.indexOf(t);
-                            s > -1 && util.remove(e, s)
+                            return () => util.time() - e.status.lastHeartbeat > c.maxHeartbeatInterval ? (e.error("traffic evaluation", "Heartbeat lost", !0), 0) : (e.status.requests > 50 ? t++ : t = 0, t > 3 ? (e.error("traffic evaluation", "Socket traffic volume violation", !0), 0) : void (e.status.requests = 0))
+                        })(this)), 1500);
+                    return {
+                        setUpdate: t => {
+                            e = t
                         },
-                        check: e => l(this.camera, e),
-                        gazeUpon: () => {
-                            newLogs.network.start();
-                            let t = this.player,
-                                s = this.camera,
-                                i = room.lastCycle;
-                            s.lastUpdate = i, this.status.receiving++;
-                            let a = s.fov;
-                            if (null != t.body) {
-                                if (t.body.isDead() && !this.status.deceased) {
-                                    this.status.deceased = !0;
-                                    const e = t.records();
-                                    if (this.talk("F", ...e), e[0] > 3e5) {
-                                        const s = Math.round(e[2] + e[3] / 2 + 2 * e[4]);
-                                        s >= Math.floor(e[0] / 1e5) && sendRecordValid({
-                                            name: this.name || "Unnamed",
-                                            tank: t.body.label,
-                                            score: e[0],
-                                            totalKills: s,
-                                            timeAlive: util.formatTime(1e3 * e[1])
-                                        }), "No Death Log" !== t.body.miscIdentifier && util.info(trimName(t.body.name) + " has died. Final Score: " + t.body.skill.score + ". Tank Used: " + t.body.label + ". Players: " + clients.length + "."), this.beginTimeout(), t.body = null
-                                    }
-                                } else if (t.body.photo && (s.x = t.body.photo.cx, s.y = t.body.photo.cy, s.vx = t.body.photo.vx, s.vy = t.body.photo.vy, a = t.body.fov, null !== t.body.submarine && (t.body.submarine.submerged && (a /= 1.25), t.body.submarine.hydro.enabled && (a *= t.body.submarine.submerged ? 2 : 1.5)), t.viewId = t.body.id, t.body.guns.find((e => "string" == typeof e.launchSquadron))))
-                                    if (t.body.strikeCarrier) {
-                                        let e = {};
-                                        for (let s of t.body.guns)
-                                            if ("string" == typeof s.launchSquadron) {
-                                                e[s.launchSquadron] = e[s.launchSquadron] || [];
-                                                let t = 10 + s.countsOwnKids * s.coolDown.max,
-                                                    i = Math.round((Date.now() - s.coolDown.time) / 1e3);
-                                                e[s.launchSquadron].push(t - i)
-                                            } let s = [];
-                                        for (let t in e) s.push(t, e[t].length, ...e[t]);
-                                        this.talk("cv", 1, ...s)
-                                    } else this.talk("cv", 0, 1, ...t.body.guns.map((function(e) {
-                                        if ("string" == typeof e.launchSquadron) {
-                                            let t = 10 + e.countsOwnKids * e.coolDown.max,
-                                                s = Math.round((Date.now() - e.coolDown.time) / 1e3);
-                                            if (t - s >= -1) return [e.launchSquadron, t - s]
-                                        }
-                                    })).filter((e => !!e)).flat())
-                            } else a = 1e3;
-                            s.fov += Math.max(.03 * (a - s.fov), a - s.fov);
-                            let o = [];
-                            for (let s = 0, i = e.length; s < i; s++)
-                                if (!(t.body && !t.body.seeInvisible && e[s].alpha < .1 || c.RANKED_BATTLE && e[s].roomId !== socket.roomId) && e[s].photo) {
-                                    e[s].flattenedPhoto || (e[s].flattenedPhoto = r(e[s].photo));
-                                    let i = n(e[s], t, e[s].flattenedPhoto);
-                                    i && o.push(i)
-                                } let l = o.length;
-                            if (null != t.body && "string" == typeof t.body.displayText && "" != t.body.displayText ? this.talk("displayTextUI", !0, t.body.displayText) : this.talk("displayTextUI", !1), null != this.body && t.body.submarine && t.body.submarine.maxAir > 0) {
-                                const e = t.body.submarine;
-                                this.talk("sub", !0, e.air, e.submerged, e.hydro.duration > 0, e.hydro.enabled, e.hydro.time, e.hydro.duration)
-                            } else this.talk("sub", !1);
-                            this.talk("u", !(null == t.body || !t.body.controllingSquadron), null != t.body && null != t.body.cameraShiftFacing, i, s.x, s.y, a, s.vx, s.vy, ...t.gui(), l, ...o.flat()), newLogs.network.stop()
+                        cancelUpdate: () => {
+                            clearTimeout(e)
+                        },
+                        terminate: () => {
+                            clearTimeout(e), clearTimeout(t)
                         }
-                    }, views.push(this.view)
+                    }
+                })(), this.makeView(), this.spawnCount = 0, this.name = "undefined", this.update = e => {
+                    this.loops.cancelUpdate(), this.loops.setUpdate(setTimeout((() => {
+                        this.view.gazeUpon()
+                    }), e))
+                }, this.inactivityTimeout = null, this.beginTimeout = () => {
+                    this.inactivityTimeout = setTimeout((() => {
+                        this.talk("P", "You were disconnected for inactivity."), this.kick("Kicked for inactivity!")
+                    }), 1e3 * (c.INACTIVITY_TIMEOUT || 360))
+                }, this.endTimeout = () => clearTimeout(this.inactivityTimeout), this.backlogData = new a(this.id, this.ip), clients.push(this)
+            }
+            get readableID() {
+                return `Socket (${this.id}) [${this.name || "Unnamed Player"}]: `
+            }
+            get open() {
+                return !0
+            }
+            talk(...t) {
+                this.open && this._socket.send(e.encode(t), "server")
+            }
+            lastWords(...t) {
+                this.open && this._socket.send(e.encode(t), "server")
+            }
+            error(e = "unknown", t = "unspecified", s = !1) {
+                this.talk("P", `Something went wrong during the ${e} process: ${t}. ${s ? "Please report this bug if it continues to occur." : ""}`), this.kick(t + "!")
+            }
+            kick(e = "Unspecified.") {
+                util.warn(this.readableID + "has been kicked. Reason: " + e), this.lastWords("K")
+            }
+            ban(e) {
+                util.warn(this.readableID + "has been banned. Reason: " + e), t.push({
+                    ip: this.ip,
+                    reason: e
+                }), this.lastWords("K")
+            }
+            close() {
+                let e = this.player,
+                    t = players.indexOf(e),
+                    s = e.body;
+                if (-1 !== t) {
+                    let t = !1;
+                    null != s && s.skill.score < 5e3 && (t = !0), setTimeout((() => {
+                        null != s && (s.underControl ? s.relinquish(e) : s.kill())
+                    }), t ? 1 : c.disconnectDeathTimeout), null != this.inactivityTimeout && this.endTimeout()
                 }
-                incoming(t) {
-                    if (typeof t === Uint8Array) return socket.error("initialization", "Non-binary packet", !0), 1;
-                    let s = e.decode(t);
-                    if (null == s || -1 === s) return socket.error("initialization", "Malformed packet", !0), 1;
-                    let i = this.player,
-                        a = i.body,
-                        o = null != a && a.health.amount > 0 && !a.isGhost,
-                        r = s.shift();
-                    switch (r) {
-                        case "k": {
-                            if (room.arenaClosed) return;
-                            if (2 !== s.length) return this.error("token verification", "Ill-sized token request", !0), 1;
-                            let e = s[0];
-                            if ("string" != typeof e) return this.error("token verification", "Non-string token was offered"), 1;
-                            if (e.length > 64) return this.error("token verification", "Overly-long token offered"), 1;
-                            if (this.status.verified) return this.error("spawn", "Duplicate spawn attempt", !0), 1;
-                            this.key = e.substr(0, 64);
-                            let t = tokens.BETA.find((e => e[0] === this.key)) || this.key === tokens.oblivion_2 && [tokens.oblivion_2, 3, "#FFFFFF", -1];
-                            if (t) this.betaData = {
-                                permissions: room.testingMode || 3 === t[1] ? t[1] : 0,
-                                nameColor: t[2],
-                                discordID: t[3],
-                                name: t[4]
-                            };
+                util.info(this.readableID + "has disconnected! Players: " + (clients.length - 1).toString()), players = players.filter((e => e.id !== this.id)), clients = clients.filter((e => e.id !== this.id)), views = views.filter((e => e.id !== this.id))
+            }
+            closeWithReason(e) {
+                this.talk("P", e), this.kick(e)
+            }
+            makeGUI() {
+                const e = ["atk", "hlt", "spd", "str", "pen", "dam", "rld", "mob", "rgn", "shi"],
+                    t = {
+                        _: {},
+                        get: e => {
+                            const s = null != t._[e] && t._[e].update && t._[e].value;
+                            return t._[e].update = !1, s
+                        },
+                        set: (e, s) => {
+                            if (t._[e]) {
+                                let i = !1;
+                                if (s instanceof Array ? i = s.length !== t._[e].value.length || s.some(((s, i) => t._[e].value[i] !== s)) : s !== t._[e].value && (i = !0), !i) return
+                            }
+                            t._[e] = {
+                                update: !0,
+                                value: s
+                            }
+                        }
+                    };
+                return () => {
+                    let s, i = [0],
+                        a = this.player && this.player.body;
+                    return t.set("mspt", room.mspt), a && (t.set("label", [a.index, null != this.player.teamColor ? this.player.teamColor : a.color, a.id]), t.set("score", a.skill.score), t.set("points", a.skill.points), t.set("upgrades", a.upgrades.filter((e => e.level <= a.skill.level)).map((e => e.index + room.manualOffset))), t.set("skillNames", e.map((e => [a.skill.title(e), a.skill.cap(e), a.skill.cap(e, !0)])).flat()), t.set("skills", function (e) {
+                        let t = 0;
+                        return t += 1 * e.skill.amount("atk"), t += 16 * e.skill.amount("hlt"), t += 256 * e.skill.amount("spd"), t += 4096 * e.skill.amount("str"), t += 65536 * e.skill.amount("pen"), t += 1048576 * e.skill.amount("dam"), t += 16777216 * e.skill.amount("rld"), t += 268435456 * e.skill.amount("mob"), t += 4294967296 * e.skill.amount("rgn"), t += 68719476736 * e.skill.amount("shi"), t.toString(36)
+                    }(a))), s = t.get("mspt"), null != s && !1 !== s && (i[0] += 1, i.push(s)), s = t.get("label"), null != s && !1 !== s && (i[0] += 2, i.push(...s)), s = t.get("score"), null != s && !1 !== s && (i[0] += 4, i.push(s)), s = t.get("points"), null != s && !1 !== s && (i[0] += 8, i.push(s)), s = t.get("upgrades"), null != s && !1 !== s && (i[0] += 16, i.push(s.length, ...s)), s = t.get("skillNames"), null != s && !1 !== s && (i[0] += 32, i.push(...s)), s = t.get("skills"), null != s && !1 !== s && (i[0] += 64, i.push(s)), i
+                }
+            }
+            makeView() {
+                let e = [];
+                this.view = {
+                    id: this.id,
+                    setView: t => e = t,
+                    add: t => l(this.camera, t) && e.push(t),
+                    remove: t => {
+                        let s = e.indexOf(t);
+                        s > -1 && util.remove(e, s)
+                    },
+                    check: e => l(this.camera, e),
+                    gazeUpon: () => {
+                        newLogs.network.start();
+                        let t = this.player,
+                            s = this.camera,
+                            i = room.lastCycle;
+                        s.lastUpdate = i, this.status.receiving++;
+                        let a = s.fov;
+                        if (null != t.body) {
+                            if (t.body.isDead() && !this.status.deceased) {
+                                this.status.deceased = !0;
+                                const e = t.records();
+                                if (this.talk("F", ...e), e[0] > 3e5) {
+                                    const s = Math.round(e[2] + e[3] / 2 + 2 * e[4]);
+                                    s >= Math.floor(e[0] / 1e5) && sendRecordValid({
+                                        name: this.name || "Unnamed",
+                                        tank: t.body.label,
+                                        score: e[0],
+                                        totalKills: s,
+                                        timeAlive: util.formatTime(1e3 * e[1])
+                                    }), "No Death Log" !== t.body.miscIdentifier && util.info(trimName(t.body.name) + " has died. Final Score: " + t.body.skill.score + ". Tank Used: " + t.body.label + ". Players: " + clients.length + "."), this.beginTimeout(), t.body = null
+                                }
+                            } else if (t.body.photo && (s.x = t.body.photo.cx, s.y = t.body.photo.cy, s.vx = t.body.photo.vx, s.vy = t.body.photo.vy, a = t.body.fov, null !== t.body.submarine && (t.body.submarine.submerged && (a /= 1.25), t.body.submarine.hydro.enabled && (a *= t.body.submarine.submerged ? 2 : 1.5)), t.viewId = t.body.id, t.body.guns.find((e => "string" == typeof e.launchSquadron))))
+                                if (t.body.strikeCarrier) {
+                                    let e = {};
+                                    for (let s of t.body.guns)
+                                        if ("string" == typeof s.launchSquadron) {
+                                            e[s.launchSquadron] = e[s.launchSquadron] || [];
+                                            let t = 10 + s.countsOwnKids * s.coolDown.max,
+                                                i = Math.round((Date.now() - s.coolDown.time) / 1e3);
+                                            e[s.launchSquadron].push(t - i)
+                                        } let s = [];
+                                    for (let t in e) s.push(t, e[t].length, ...e[t]);
+                                    this.talk("cv", 1, ...s)
+                                } else this.talk("cv", 0, 1, ...t.body.guns.map((function (e) {
+                                    if ("string" == typeof e.launchSquadron) {
+                                        let t = 10 + e.countsOwnKids * e.coolDown.max,
+                                            s = Math.round((Date.now() - e.coolDown.time) / 1e3);
+                                        if (t - s >= -1) return [e.launchSquadron, t - s]
+                                    }
+                                })).filter((e => !!e)).flat())
+                        } else a = 1e3;
+                        s.fov += Math.max(.03 * (a - s.fov), a - s.fov);
+                        let o = [];
+                        for (let s = 0, i = e.length; s < i; s++)
+                            if (!(t.body && !t.body.seeInvisible && e[s].alpha < .1 || c.RANKED_BATTLE && e[s].roomId !== socket.roomId) && e[s].photo) {
+                                e[s].flattenedPhoto || (e[s].flattenedPhoto = r(e[s].photo));
+                                let i = n(e[s], t, e[s].flattenedPhoto);
+                                i && o.push(i)
+                            } let l = o.length;
+                        if (null != t.body && "string" == typeof t.body.displayText && "" != t.body.displayText ? this.talk("displayTextUI", !0, t.body.displayText) : this.talk("displayTextUI", !1), null != this.body && t.body.submarine && t.body.submarine.maxAir > 0) {
+                            const e = t.body.submarine;
+                            this.talk("sub", !0, e.air, e.submerged, e.hydro.duration > 0, e.hydro.enabled, e.hydro.time, e.hydro.duration)
+                        } else this.talk("sub", !1);
+                        this.talk("u", !(null == t.body || !t.body.controllingSquadron), null != t.body && null != t.body.cameraShiftFacing, i, s.x, s.y, a, s.vx, s.vy, ...t.gui(), l, ...o.flat()), newLogs.network.stop()
+                    }
+                }, views.push(this.view)
+            }
+            incoming(t) {
+                if (typeof t === Uint8Array) return socket.error("initialization", "Non-binary packet", !0), 1;
+                let s = e.decode(t);
+                if (null == s || -1 === s) return socket.error("initialization", "Malformed packet", !0), 1;
+                let i = this.player,
+                    a = i.body,
+                    o = null != a && a.health.amount > 0 && !a.isGhost,
+                    r = s.shift();
+                switch (r) {
+                    case "k": {
+                        if (room.arenaClosed) return;
+                        if (2 !== s.length) return this.error("token verification", "Ill-sized token request", !0), 1;
+                        let e = s[0];
+                        if ("string" != typeof e) return this.error("token verification", "Non-string token was offered"), 1;
+                        if (e.length > 64) return this.error("token verification", "Overly-long token offered"), 1;
+                        if (this.status.verified) return this.error("spawn", "Duplicate spawn attempt", !0), 1;
+                        this.key = e.substr(0, 64);
+                        let t = tokens.BETA.find((e => e[0] === this.key)) || this.key === tokens.oblivion_2 && [tokens.oblivion_2, 3, "#FFFFFF", -1];
+                        if (t) this.betaData = {
+                            permissions: room.testingMode || 3 === t[1] ? t[1] : 0,
+                            nameColor: t[2],
+                            discordID: t[3],
+                            name: t[4]
+                        };
+                        else {
+                            let e = accountEncryption.decode(this.key);
+                            e.startsWith("PASSWORD_") && e.endsWith("_PASSWORD") && (e = e.replace("PASSWORD_", "").replace("_PASSWORD", "").split("-"), this.betaData = {
+                                permissions: 0,
+                                nameColor: "#FFFFFF",
+                                discordID: e[0]
+                            })
+                        }
+                        if (clients.length > c.connectionLimit || players.length > c.connectionLimit) {
+                            if (!t) return this.closeWithReason(`The connection limit (${c.connectionLimit} Players) has been reached. Please try again later.`), 1;
+                            util.warn("A player with the token " + socket.key + " has bypassed the connection limit!")
+                        }
+                        if (!t && room.testingMode) return this.closeWithReason("This server is currently closed to the public; no players may join."), 1;
+                        if (-1 !== multitabIDs.indexOf(s[1]) && this.betaData.permissions < 1) return this.closeWithReason("Please only use one tab at once!"), 1;
+                        this.identification = s[1], this.verified = !0, this.talk("w", !c.RANKED_BATTLE || "queue"), e && util.info("A socket was verified with the token: " + this.betaData.name || "Unknown Token.")
+                    }
+                        break;
+                    case "j":
+                        "ready" === this.roomId && (this.roomId = null);
+                        break;
+                    case "s": {
+                        let e = "";
+                        s[0] = s[0].split(",");
+                        for (let t = 0; t < s[0].length; t++) e += String.fromCharCode(s[0][t]);
+                        if (!this.status.deceased) return this.error("spawn", "Trying to spawn while already alive", !0), 1;
+                        if (2 !== s.length) return this.error("spawn", "Ill-sized spawn request", !0), 1;
+                        let t = s[1];
+                        if (e = 3 === this.betaData.permissions ? e : util.cleanString(e), room.arenaClosed) return this.closeWithReason(`The arena is closed. You may ${t ? "join" : "rejoin"} once the server restarts.`), 1;
+                        if ("string" != typeof e) return this.error("spawn", "Non-string name provided", !0), 1;
+                        if (encodeURI(e).split(/%..|./).length > 25) return this.error("spawn", "Overly-long name"), 1;
+                        if (0 !== t && 1 !== t) return this.error("spawn", "Invalid isNew value", !0), 1;
+                        for (let t of blockedNames)
+                            if (e.toLowerCase().includes(t)) return this.error("spawn", "Inappropriate name (" + trimName(e) + ")"), 1;
+                        this.status.deceased = !1, -1 !== players.indexOf(this.player) && util.remove(players, players.indexOf(this.player)), -1 !== views.indexOf(this.view) && (util.remove(views, views.indexOf(this.view)), this.makeView()), this.player = this.spawn(e), t && this.talk("R", room.width, room.height, JSON.stringify(c.ROOM_SETUP), JSON.stringify(util.serverStartTime), this.player.body.label, room.speed), util.info(trimName(e) + (t ? " joined" : " rejoined") + " the game! Player ID: " + (entitiesIdLog - 1) + ". Players: " + clients.length + "."), this.spawnCount += 1, this.name = trimName(e), null != this.inactivityTimeout && this.endTimeout();
+                        let i = this.player.body;
+                        switch (i.nameColor = this.betaData.nameColor, this.name) {
+                            case "4NAX":
+                                i.nameColor = "#FF9999";
+                                break;
+                            case "Silvy":
+                                i.nameColor = "#99F6FF";
+                                break;
+                            case "SkuTsu":
+                                i.nameColor = "#b2f990"
+                        }
+                    }
+                        break;
+                    case "p":
+                        if (1 !== s.length) return this.error("ping calculation", "Ill-sized ping", !0), 1;
+                        if ("number" != typeof s[0]) return this.error("ping calculation", "Non-numeric ping value", !0), 1;
+                        this.talk("p", s[0]), this.status.lastHeartbeat = util.time();
+                        break;
+                    case "C": {
+                        if (3 !== s.length) return this.error("command handling", "Ill-sized command packet", !0), 1;
+                        let e = {
+                            x: s[0],
+                            y: s[1]
+                        },
+                            t = s[2];
+                        if ("number" != typeof e.x || "number" != typeof e.y || isNaN(e.x) || isNaN(e.y) || "number" != typeof t) return this.kick("Weird downlink."), 1;
+                        if (t >= 255) return this.kick("Malformed command packet."), 1;
+                        i.target = e, null != i.command && null != i.body && (i.command.up = 1 & t, i.command.down = (2 & t) >> 1, i.command.left = (4 & t) >> 2, i.command.right = (8 & t) >> 3, i.command.lmb = (16 & t) >> 4, i.command.mmb = (32 & t) >> 5, i.command.rmb = (64 & t) >> 6)
+                    }
+                        break;
+                    case "t": {
+                        if (1 !== s.length) return this.error("control toggle", "Ill-sized toggle", !0), 1;
+                        let e = "",
+                            t = s[0];
+                        if ("number" != typeof t) return this.error("control toggle", "Non-numeric toggle value", !0), 1;
+                        if (!o) return;
+                        switch (t) {
+                            case 0:
+                                e = "autospin";
+                                break;
+                            case 1:
+                                e = "autofire";
+                                break;
+                            case 2:
+                                e = "override";
+                                break;
+                            default:
+                                return this.error("control toggle", `Unknown toggle value (${t})`, !0), 1
+                        }
+                        null != i.command && (i.command[e] = !i.command[e], a.sendMessage(e.charAt(0).toUpperCase() + e.slice(1) + (i.command[e] ? ": ON" : ": OFF")))
+                    }
+                        break;
+                    case "sub":
+                        null != i.body && i.body.submarine && i.body.submarine.maxAir > 0 && (0 === s[0] ? i.body.submarine.submerged = !i.body.submarine.submerged : i.body.submarine.hydro.duration > 0 && i.body.submarine.hydro.time === i.body.submarine.hydro.duration && (i.body.submarine.hydro.enabled = !0));
+                        break;
+                    case "cv":
+                        if ("number" != typeof s[0]) return this.kick("Invalid CV request."), 1;
+                        if (i.body)
+                            if (0 === s[0]) switch (s[1]) {
+                                case "relinquish": {
+                                    i.body.controllingSquadron = !1;
+                                    const e = i.body.guns.find((e => e.launchSquadron && e.children.length));
+                                    if (e) {
+                                        for (const t of e.children) t.kill();
+                                        i.body.sendMessage("Squadron relinquished.")
+                                    }
+                                }
+                                    break;
+                                case "diveBomb":
+                                case "carpetBomb":
+                                case "skipBomb": {
+                                    const e = i.body.guns.find((e => e.launchSquadron === s[1]));
+                                    if (e && Date.now() - e.coolDown.time >= 1e4 + e.countsOwnKids * (1e3 * e.coolDown.max) && !i.body.controllingSquadron && !i.body.isInMyBase()) {
+                                        e.coolDown.time = Date.now();
+                                        let t = e.offset * Math.cos(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.cos(e.angle + e.body.facing),
+                                            s = e.offset * Math.sin(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.sin(e.angle + e.body.facing),
+                                            a = [];
+                                        for (let i = 0; i < e.countsOwnKids; i++) a.push(e.fire(t, s, e.body.skill, !0));
+                                        a.forEach(((e, t) => {
+                                            const s = 2 * Math.PI / a.length * t;
+                                            e.x = i.body.x + Math.cos(s) * (4 * e.SIZE), e.y = i.body.y + Math.sin(s) * (4 * e.SIZE)
+                                        })), i.body.controllingSquadron = !0, i.body.sendMessage("Right click to fire."), i.body.sendMessage("Squadron airborne.")
+                                    }
+                                }
+                                    break;
+                                case "torpedo":
+                                case "missile": {
+                                    const e = i.body.guns.find((e => e.launchSquadron === s[1]));
+                                    if (e && Date.now() - e.coolDown.time >= 1e4 + e.countsOwnKids * (1e3 * e.coolDown.max) && !i.body.controllingSquadron && !i.body.isInMyBase()) {
+                                        e.coolDown.time = Date.now();
+                                        let t = e.offset * Math.cos(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.cos(e.angle + e.body.facing),
+                                            s = e.offset * Math.sin(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.sin(e.angle + e.body.facing),
+                                            a = [];
+                                        for (let i = 0; i < e.countsOwnKids; i++) a.push(e.fire(t, s, e.body.skill, !0));
+                                        a.forEach(((e, t) => {
+                                            const s = 2 * Math.PI / a.length * t;
+                                            e.x = i.body.x + Math.cos(s) * (4 * e.SIZE), e.y = i.body.y + Math.sin(s) * (4 * e.SIZE)
+                                        })), i.body.controllingSquadron = !0, i.body.sendMessage("Right click to fire."), i.body.sendMessage("Squadron airborne.")
+                                    }
+                                }
+                                    break;
+                                case "rocket":
+                                case "mine": {
+                                    const e = i.body.guns.find((e => e.launchSquadron === s[1]));
+                                    if (e && Date.now() - e.coolDown.time >= 1e4 + e.countsOwnKids * (1e3 * e.coolDown.max) && !i.body.controllingSquadron && !i.body.isInMyBase()) {
+                                        e.coolDown.time = Date.now();
+                                        let t = e.offset * Math.cos(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.cos(e.angle + e.body.facing),
+                                            s = e.offset * Math.sin(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.sin(e.angle + e.body.facing),
+                                            a = [];
+                                        for (let i = 0; i < e.countsOwnKids; i++) a.push(e.fire(t, s, e.body.skill, !0));
+                                        a.forEach(((e, t) => {
+                                            const s = 2 * Math.PI / a.length * t;
+                                            e.x = i.body.x + Math.cos(s) * (4 * e.SIZE), e.y = i.body.y + Math.sin(s) * (4 * e.SIZE)
+                                        })), i.body.controllingSquadron = !0, i.body.sendMessage("Right click to fire."), i.body.sendMessage("Squadron airborne.")
+                                    }
+                                }
+                            } else null == i.body.squadronManager && (i.body.squadronManager = new ioTypes.squadronManager(i.body)), i.body.squadronManager.setSquadron(s[1], s[2], s[3] * room.width, s[4] * room.height);
+                        break;
+                    case "U": {
+                        if (1 !== s.length) return this.error("tank upgrade", "Ill-sized tank upgrade request", !0), 1;
+                        let e = s[0];
+                        if ("number" != typeof e || e < 0) return this.error("tank upgrade", `Invalid tank upgrade value (${e})`, !0), 1;
+                        null != a && a.upgrade(e)
+                    }
+                        break;
+                    case "x": {
+                        if (1 !== s.length) return this.error("skill upgrade", "Ill-sized skill upgrade request", !0), 1;
+                        let e = s[0],
+                            t = "";
+                        if ("number" != typeof e) return this.error("skill upgrade", "Non-numeric stat upgrade value", !0), 1;
+                        if (!o) break;
+                        switch (e) {
+                            case 0:
+                                t = "atk";
+                                break;
+                            case 1:
+                                t = "hlt";
+                                break;
+                            case 2:
+                                t = "spd";
+                                break;
+                            case 3:
+                                t = "str";
+                                break;
+                            case 4:
+                                t = "pen";
+                                break;
+                            case 5:
+                                t = "dam";
+                                break;
+                            case 6:
+                                t = "rld";
+                                break;
+                            case 7:
+                                t = "mob";
+                                break;
+                            case 8:
+                                t = "rgn";
+                                break;
+                            case 9:
+                                t = "shi";
+                                break;
+                            default:
+                                return this.error("skill upgrade", `Unknown skill upgrade value (${e})`, !0), 1
+                        }
+                        a.skillUp(t)
+                    }
+                        break;
+                    case "z":
+                        if (0 !== s.length) return this.error("leaderboard", "Ill-sized leaderboard desync request", !0), 1;
+                        this.status.needsFullLeaderboard = !0;
+                        break;
+                    case "l":
+                        if (0 !== s.length) return this.error("Dominator/Mothership control", "Ill-sized control request", !0), 1;
+                        if ("tdm" !== room.gameMode || !o) return;
+                        if (c.serverName.includes("Domination"))
+                            if (a.underControl) {
+                                let e = room.cardinals[Math.floor(3 * i.body.y / room.height)][Math.floor(3 * i.body.x / room.height)];
+                                i.body.sendMessage("You have relinquished control of the " + e + " Dominator."), i.body.FOV = .5, util.info(trimName(this.name) + " has relinquished control of a Dominator. Location: " + e + " Dominator. Players: " + clients.length + "."), this.talk("F", ...i.records()), i.body.relinquish(i)
+                            } else {
+                                let e = [];
+                                for (let t of entities) t.isDominator && t.team === i.body.team && !t.underControl && e.push(t);
+                                if (!e.length) return i.body.sendMessage("No Dominators are available on your team to control.");
+                                let t = e[Math.floor(Math.random() * e.length)],
+                                    s = a.name,
+                                    o = a.nameColor;
+                                t.underControl = !0, i.body = t, a.controllers = [], a.passive = !1, setTimeout((() => {
+                                    null != a && (a.miscIdentifier = "No Death Log", a.kill())
+                                }), 5e3), i.body.name = s, i.body.nameColor = o, i.body.sendMessage = e => this.talk("m", e), i.body.controllers = [new ioTypes.listenToPlayerStatic(i.body, i)], i.body.FOV = 1, i.body.refreshFOV(), i.body.invuln = i.body.godmode = i.body.passive = !1, i.body.facingType = "Auto-Dominator" === i.body.label ? "autospin" : "toTarget", i.body.sendMessage("Press H or reload your game to relinquish control of the Dominator."), i.body.sendMessage("You are now controlling the " + room.cardinals[Math.floor(3 * i.body.y / room.height)][Math.floor(3 * i.body.x / room.height)] + " Dominator!")
+                            }
+                        else if (c.serverName.includes("Mothership"))
+                            if (a.underControl) i.body.sendMessage("You have relinquished control of your team's Mothership."), util.info(trimName(this.name) + " has relinquished control of their team's Mothership. Players: " + clients.length + "."), this.talk("F", ...i.records()), i.body.relinquish(i);
                             else {
-                                let e = accountEncryption.decode(this.key);
-                                e.startsWith("PASSWORD_") && e.endsWith("_PASSWORD") && (e = e.replace("PASSWORD_", "").replace("_PASSWORD", "").split("-"), this.betaData = {
-                                    permissions: 0,
-                                    nameColor: "#FFFFFF",
-                                    discordID: e[0]
-                                })
-                            }
-                            if (clients.length > c.connectionLimit || players.length > c.connectionLimit) {
-                                if (!t) return this.closeWithReason(`The connection limit (${c.connectionLimit} Players) has been reached. Please try again later.`), 1;
-                                util.warn("A player with the token " + socket.key + " has bypassed the connection limit!")
-                            }
-                            if (!t && room.testingMode) return this.closeWithReason("This server is currently closed to the public; no players may join."), 1;
-                            if (-1 !== multitabIDs.indexOf(s[1]) && this.betaData.permissions < 1) return this.closeWithReason("Please only use one tab at once!"), 1;
-                            this.identification = s[1], this.verified = !0, this.talk("w", !c.RANKED_BATTLE || "queue"), e && util.info("A socket was verified with the token: " + this.betaData.name || "Unknown Token.")
-                        }
+                                let e = [];
+                                for (let t of entities) t.isMothership && t.team === i.body.team && !t.underControl && e.push(t);
+                                if (!e.length) return i.body.sendMessage("Your team's Mothership is unavailable for control.");
+                                let t = e[Math.floor(Math.random() * e.length)],
+                                    s = a.name;
+                                t.underControl = !0, i.body = t, a.controllers = [], a.passive = !1, setTimeout((() => {
+                                    null != a && (a.miscIdentifier = "No Death Log", a.kill())
+                                }), 1e3), i.body.settings.leaderboardable = !1, i.body.name = s, i.body.nameColor = ["#00B0E1", "#F04F54", "#00E06C", "#BE7FF5", "#FFEB8E", "#F37C20", "#E85DDF", "#8EFFFB"][i.team - 1], i.body.sendMessage = e => this.talk("m", e), i.body.controllers = [new ioTypes.listenToPlayer(i.body, i)], i.body.refreshFOV(), i.body.invuln = i.body.godmode = i.body.passive = !1, i.body.facingType = "toTarget", i.body.skill.points = 0, i.body.settings.leaderboardable = !0, i.body.sendMessage("Press H or reload your game to relinquish control of the Mothership."), i.body.sendMessage("You are now controlling your team's Mothership!")
+                            } break;
+                    case "L":
+                        if (0 !== s.length) return this.error("level up", "Ill-sized level-up request", !0), 1;
+                        null != a && !a.underControl && a.skill.level < c.SKILL_CHEAT_CAP && (a.skill.score += a.skill.levelScore, a.skill.maintain(), a.refreshBodyAttributes());
                         break;
-                        case "j":
-                            "ready" === this.roomId && (this.roomId = null);
-                            break;
-                        case "s": {
-                            let e = "";
-                            s[0] = s[0].split(",");
-                            for (let t = 0; t < s[0].length; t++) e += String.fromCharCode(s[0][t]);
-                            if (!this.status.deceased) return this.error("spawn", "Trying to spawn while already alive", !0), 1;
-                            if (2 !== s.length) return this.error("spawn", "Ill-sized spawn request", !0), 1;
-                            let t = s[1];
-                            if (e = 3 === this.betaData.permissions ? e : util.cleanString(e), room.arenaClosed) return this.closeWithReason(`The arena is closed. You may ${t ? "join" : "rejoin"} once the server restarts.`), 1;
-                            if ("string" != typeof e) return this.error("spawn", "Non-string name provided", !0), 1;
-                            if (encodeURI(e).split(/%..|./).length > 25) return this.error("spawn", "Overly-long name"), 1;
-                            if (0 !== t && 1 !== t) return this.error("spawn", "Invalid isNew value", !0), 1;
-                            for (let t of blockedNames)
-                                if (e.toLowerCase().includes(t)) return this.error("spawn", "Inappropriate name (" + trimName(e) + ")"), 1;
-                            this.status.deceased = !1, -1 !== players.indexOf(this.player) && util.remove(players, players.indexOf(this.player)), -1 !== views.indexOf(this.view) && (util.remove(views, views.indexOf(this.view)), this.makeView()), this.player = this.spawn(e), t && this.talk("R", room.width, room.height, JSON.stringify(c.ROOM_SETUP), JSON.stringify(util.serverStartTime), this.player.body.label, room.speed), util.info(trimName(e) + (t ? " joined" : " rejoined") + " the game! Player ID: " + (entitiesIdLog - 1) + ". Players: " + clients.length + "."), this.spawnCount += 1, this.name = trimName(e), null != this.inactivityTimeout && this.endTimeout();
-                            let i = this.player.body;
-                            switch (i.nameColor = this.betaData.nameColor, this.name) {
-                                case "4NAX":
-                                    i.nameColor = "#FF9999";
-                                    break;
-                                case "Silvy":
-                                    i.nameColor = "#99F6FF";
-                                    break;
-                                case "SkuTsu":
-                                    i.nameColor = "#b2f990"
-                            }
-                        }
+                    case "P":
+                        if (1 !== s.length) return this.error("class tree prompting", "Ill-sized class tree prompt request", !0), 1;
+                        if (!o) return;
+                        s[0] && (a.sendMessage("Press U to close the class tree."), a.sendMessage("Use the arrow keys to cycle through the class tree."));
                         break;
-                        case "p":
-                            if (1 !== s.length) return this.error("ping calculation", "Ill-sized ping", !0), 1;
-                            if ("number" != typeof s[0]) return this.error("ping calculation", "Non-numeric ping value", !0), 1;
-                            this.talk("p", s[0]), this.status.lastHeartbeat = util.time();
-                            break;
-                        case "C": {
-                            if (3 !== s.length) return this.error("command handling", "Ill-sized command packet", !0), 1;
-                            let e = {
-                                    x: s[0],
-                                    y: s[1]
-                                },
-                                t = s[2];
-                            if ("number" != typeof e.x || "number" != typeof e.y || isNaN(e.x) || isNaN(e.y) || "number" != typeof t) return this.kick("Weird downlink."), 1;
-                            if (t >= 255) return this.kick("Malformed command packet."), 1;
-                            i.target = e, null != i.command && null != i.body && (i.command.up = 1 & t, i.command.down = (2 & t) >> 1, i.command.left = (4 & t) >> 2, i.command.right = (8 & t) >> 3, i.command.lmb = (16 & t) >> 4, i.command.mmb = (32 & t) >> 5, i.command.rmb = (64 & t) >> 6)
-                        }
-                        break;
-                        case "t": {
-                            if (1 !== s.length) return this.error("control toggle", "Ill-sized toggle", !0), 1;
-                            let e = "",
-                                t = s[0];
-                            if ("number" != typeof t) return this.error("control toggle", "Non-numeric toggle value", !0), 1;
-                            if (!o) return;
-                            switch (t) {
-                                case 0:
-                                    e = "autospin";
-                                    break;
-                                case 1:
-                                    e = "autofire";
-                                    break;
-                                case 2:
-                                    e = "override";
-                                    break;
-                                default:
-                                    return this.error("control toggle", `Unknown toggle value (${t})`, !0), 1
-                            }
-                            null != i.command && (i.command[e] = !i.command[e], a.sendMessage(e.charAt(0).toUpperCase() + e.slice(1) + (i.command[e] ? ": ON" : ": OFF")))
-                        }
-                        break;
-                        case "sub":
-                            null != i.body && i.body.submarine && i.body.submarine.maxAir > 0 && (0 === s[0] ? i.body.submarine.submerged = !i.body.submarine.submerged : i.body.submarine.hydro.duration > 0 && i.body.submarine.hydro.time === i.body.submarine.hydro.duration && (i.body.submarine.hydro.enabled = !0));
-                            break;
-                        case "cv":
-                            if ("number" != typeof s[0]) return this.kick("Invalid CV request."), 1;
-                            if (i.body)
-                                if (0 === s[0]) switch (s[1]) {
-                                    case "relinquish": {
-                                        i.body.controllingSquadron = !1;
-                                        const e = i.body.guns.find((e => e.launchSquadron && e.children.length));
-                                        if (e) {
-                                            for (const t of e.children) t.kill();
-                                            i.body.sendMessage("Squadron relinquished.")
-                                        }
-                                    }
-                                    break;
-                                    case "diveBomb":
-                                    case "carpetBomb":
-                                    case "skipBomb": {
-                                        const e = i.body.guns.find((e => e.launchSquadron === s[1]));
-                                        if (e && Date.now() - e.coolDown.time >= 1e4 + e.countsOwnKids * (1e3 * e.coolDown.max) && !i.body.controllingSquadron && !i.body.isInMyBase()) {
-                                            e.coolDown.time = Date.now();
-                                            let t = e.offset * Math.cos(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.cos(e.angle + e.body.facing),
-                                                s = e.offset * Math.sin(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.sin(e.angle + e.body.facing),
-                                                a = [];
-                                            for (let i = 0; i < e.countsOwnKids; i++) a.push(e.fire(t, s, e.body.skill, !0));
-                                            a.forEach(((e, t) => {
-                                                const s = 2 * Math.PI / a.length * t;
-                                                e.x = i.body.x + Math.cos(s) * (4 * e.SIZE), e.y = i.body.y + Math.sin(s) * (4 * e.SIZE)
-                                            })), i.body.controllingSquadron = !0, i.body.sendMessage("Right click to fire."), i.body.sendMessage("Squadron airborne.")
-                                        }
-                                    }
-                                    break;
-                                    case "torpedo":
-                                    case "missile": {
-                                        const e = i.body.guns.find((e => e.launchSquadron === s[1]));
-                                        if (e && Date.now() - e.coolDown.time >= 1e4 + e.countsOwnKids * (1e3 * e.coolDown.max) && !i.body.controllingSquadron && !i.body.isInMyBase()) {
-                                            e.coolDown.time = Date.now();
-                                            let t = e.offset * Math.cos(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.cos(e.angle + e.body.facing),
-                                                s = e.offset * Math.sin(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.sin(e.angle + e.body.facing),
-                                                a = [];
-                                            for (let i = 0; i < e.countsOwnKids; i++) a.push(e.fire(t, s, e.body.skill, !0));
-                                            a.forEach(((e, t) => {
-                                                const s = 2 * Math.PI / a.length * t;
-                                                e.x = i.body.x + Math.cos(s) * (4 * e.SIZE), e.y = i.body.y + Math.sin(s) * (4 * e.SIZE)
-                                            })), i.body.controllingSquadron = !0, i.body.sendMessage("Right click to fire."), i.body.sendMessage("Squadron airborne.")
-                                        }
-                                    }
-                                    break;
-                                    case "rocket":
-                                    case "mine": {
-                                        const e = i.body.guns.find((e => e.launchSquadron === s[1]));
-                                        if (e && Date.now() - e.coolDown.time >= 1e4 + e.countsOwnKids * (1e3 * e.coolDown.max) && !i.body.controllingSquadron && !i.body.isInMyBase()) {
-                                            e.coolDown.time = Date.now();
-                                            let t = e.offset * Math.cos(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.cos(e.angle + e.body.facing),
-                                                s = e.offset * Math.sin(e.direction + e.angle + e.body.facing) + (1.5 * e.length - e.width * e.settings.size / 2) * Math.sin(e.angle + e.body.facing),
-                                                a = [];
-                                            for (let i = 0; i < e.countsOwnKids; i++) a.push(e.fire(t, s, e.body.skill, !0));
-                                            a.forEach(((e, t) => {
-                                                const s = 2 * Math.PI / a.length * t;
-                                                e.x = i.body.x + Math.cos(s) * (4 * e.SIZE), e.y = i.body.y + Math.sin(s) * (4 * e.SIZE)
-                                            })), i.body.controllingSquadron = !0, i.body.sendMessage("Right click to fire."), i.body.sendMessage("Squadron airborne.")
-                                        }
-                                    }
-                                } else null == i.body.squadronManager && (i.body.squadronManager = new ioTypes.squadronManager(i.body)), i.body.squadronManager.setSquadron(s[1], s[2], s[3] * room.width, s[4] * room.height);
-                            break;
-                        case "U": {
-                            if (1 !== s.length) return this.error("tank upgrade", "Ill-sized tank upgrade request", !0), 1;
-                            let e = s[0];
-                            if ("number" != typeof e || e < 0) return this.error("tank upgrade", `Invalid tank upgrade value (${e})`, !0), 1;
-                            null != a && a.upgrade(e)
-                        }
-                        break;
-                        case "x": {
-                            if (1 !== s.length) return this.error("skill upgrade", "Ill-sized skill upgrade request", !0), 1;
-                            let e = s[0],
-                                t = "";
-                            if ("number" != typeof e) return this.error("skill upgrade", "Non-numeric stat upgrade value", !0), 1;
-                            if (!o) break;
-                            switch (e) {
-                                case 0:
-                                    t = "atk";
-                                    break;
-                                case 1:
-                                    t = "hlt";
-                                    break;
-                                case 2:
-                                    t = "spd";
-                                    break;
-                                case 3:
-                                    t = "str";
-                                    break;
-                                case 4:
-                                    t = "pen";
-                                    break;
-                                case 5:
-                                    t = "dam";
-                                    break;
-                                case 6:
-                                    t = "rld";
-                                    break;
-                                case 7:
-                                    t = "mob";
-                                    break;
-                                case 8:
-                                    t = "rgn";
-                                    break;
-                                case 9:
-                                    t = "shi";
-                                    break;
-                                default:
-                                    return this.error("skill upgrade", `Unknown skill upgrade value (${e})`, !0), 1
-                            }
-                            a.skillUp(t)
-                        }
-                        break;
-                        case "z":
-                            if (0 !== s.length) return this.error("leaderboard", "Ill-sized leaderboard desync request", !0), 1;
-                            this.status.needsFullLeaderboard = !0;
-                            break;
-                        case "l":
-                            if (0 !== s.length) return this.error("Dominator/Mothership control", "Ill-sized control request", !0), 1;
-                            if ("tdm" !== room.gameMode || !o) return;
-                            if (c.serverName.includes("Domination"))
-                                if (a.underControl) {
-                                    let e = room.cardinals[Math.floor(3 * i.body.y / room.height)][Math.floor(3 * i.body.x / room.height)];
-                                    i.body.sendMessage("You have relinquished control of the " + e + " Dominator."), i.body.FOV = .5, util.info(trimName(this.name) + " has relinquished control of a Dominator. Location: " + e + " Dominator. Players: " + clients.length + "."), this.talk("F", ...i.records()), i.body.relinquish(i)
-                                } else {
-                                    let e = [];
-                                    for (let t of entities) t.isDominator && t.team === i.body.team && !t.underControl && e.push(t);
-                                    if (!e.length) return i.body.sendMessage("No Dominators are available on your team to control.");
-                                    let t = e[Math.floor(Math.random() * e.length)],
-                                        s = a.name,
-                                        o = a.nameColor;
-                                    t.underControl = !0, i.body = t, a.controllers = [], a.passive = !1, setTimeout((() => {
-                                        null != a && (a.miscIdentifier = "No Death Log", a.kill())
-                                    }), 5e3), i.body.name = s, i.body.nameColor = o, i.body.sendMessage = e => this.talk("m", e), i.body.controllers = [new ioTypes.listenToPlayerStatic(i.body, i)], i.body.FOV = 1, i.body.refreshFOV(), i.body.invuln = i.body.godmode = i.body.passive = !1, i.body.facingType = "Auto-Dominator" === i.body.label ? "autospin" : "toTarget", i.body.sendMessage("Press H or reload your game to relinquish control of the Dominator."), i.body.sendMessage("You are now controlling the " + room.cardinals[Math.floor(3 * i.body.y / room.height)][Math.floor(3 * i.body.x / room.height)] + " Dominator!")
+                    case "T":
+                        if (1 !== s.length) return this.error("beta-tester level 1-2 key", "Ill-sized key request", !0), 1;
+                        if ("number" != typeof s[0]) return this.error("beta-tester level 1-2 key", "Non-numeric key value", !0), 1;
+                        if (!o || 0 === this.betaData.permissions) return;
+                        if (a.underControl) return a.sendMessage("You cannot use beta-tester keys while controlling a Dominator or Mothership.");
+                        switch (s[0]) {
+                            case 0:
+                                switch (a.define(Class.genericTank), a.define(Class.basic), this.betaData.permissions) {
+                                    case 1:
+                                        a.upgradeTank(Class.testbed_level_1);
+                                        break;
+                                    case 2:
+                                        a.upgradeTank("_test" === defsPrefix ? Class.testbed : Class.testbed_level_2);
+                                        break;
+                                    case 3:
+                                        a.upgradeTank(Class.testbed), a.health.amount = a.health.max, a.shield.amount = a.shield.max
                                 }
-                            else if (c.serverName.includes("Mothership"))
-                                if (a.underControl) i.body.sendMessage("You have relinquished control of your team's Mothership."), util.info(trimName(this.name) + " has relinquished control of their team's Mothership. Players: " + clients.length + "."), this.talk("F", ...i.records()), i.body.relinquish(i);
+                                a.sendMessage("DO NOT use OP tanks to repeatedly kill players. It will result in a permanent demotion. Press P to change to Basic and K to suicide."), "ffa" === room.gameMode ? a.color = "FFA_RED" : a.color = [10, 12, 11, 15, 3, 35, 36, 0][i.team - 1], util.info(trimName(a.name) + " upgraded to TESTBED. Token: " + this.betaData.name || "Unknown Token");
+                                break;
+                            case 1:
+                                a.killedByK = !0, a.kill(), util.info(trimName(a.name) + " used k to suicide. Token: " + this.betaData.name || "Unknown Token");
+                                break;
+                            case 2:
+                                a.define(Class.genericTank), a.upgradeTank(Class.basic), 3 === this.betaData.permissions && (a.health.amount = a.health.max, a.shield.amount = a.shield.max, a.invuln = !0), "ffa" === room.gameMode ? a.color = "FFA_RED" : a.color = [10, 12, 11, 15, 3, 35, 36, 0][i.team - 1];
+                                break;
+                            case 4:
+                                if (room.arenaClosed) return a.sendMessage("Passive Mode is disabled when the arena is closed.");
+                                a.passive = !a.passive;
+                                for (let e of entities) e.master.id === a.id && e.id !== a.id && (e.passive = a.passive);
+                                if (a.multibox.enabled)
+                                    for (let e of a.multibox.controlledTanks) {
+                                        null != e && (e.passive = a.passive);
+                                        for (let t of entities) t.master.id === e.id && t.id !== e.id && (t.passive = e.passive)
+                                    }
+                                a.sendMessage("Passive Mode: " + (a.passive ? "ON" : "OFF"));
+                                break;
+                            case 5:
+                                a.toggleRainbow(), a.sendMessage("Rainbow Mode: " + (a.rainbow ? "ON" : "OFF"));
+                                break;
+                            case 7:
+                                "ffa" === room.gameMode ? a.color = "FFA_RED" : a.color = [10, 12, 11, 15, 3, 35, 36, 0][i.team - 1];
+                                break;
+                            default:
+                                return this.error("beta-tester level 1 key", `Unknown key value (${s[0]})`, !0), 1
+                        }
+                        break;
+                    case "B":
+                        if (1 !== s.length) return this.error("beta-tester level 3 key", "Ill-sized key request!", !0), 1;
+                        if ("number" != typeof s[0]) return this.error("beta-tester level 3 key", "Non-numeric key value", !0), 1;
+                        if (!o || 3 !== this.betaData.permissions) return;
+                        if (a.underControl) return a.sendMessage("You cannot use beta-tester keys while controlling a Dominator or Mothership.");
+                        switch (s[0]) {
+                            case 0:
+                                a.color = Math.floor(42 * Math.random());
+                                break;
+                            case 1:
+                                if (room.arenaClosed) return a.sendMessage("Godmode is disabled when the arena is closed.");
+                                a.godmode = !a.godmode;
+                                for (let e of entities) e.master.id === a.id && e.id !== a.id && (e.diesToTeamBase = !a.godmode);
+                                a.sendMessage("Godmode: " + (a.godmode ? "ON" : "OFF"));
+                                break;
+                            case 2: {
+                                let e = {
+                                    x: i.target.x + a.x,
+                                    y: i.target.y + a.y
+                                };
+                                if ("bot" === a.keyFEntity) spawnBot(e);
                                 else {
-                                    let e = [];
-                                    for (let t of entities) t.isMothership && t.team === i.body.team && !t.underControl && e.push(t);
-                                    if (!e.length) return i.body.sendMessage("Your team's Mothership is unavailable for control.");
-                                    let t = e[Math.floor(Math.random() * e.length)],
-                                        s = a.name;
-                                    t.underControl = !0, i.body = t, a.controllers = [], a.passive = !1, setTimeout((() => {
-                                        null != a && (a.miscIdentifier = "No Death Log", a.kill())
-                                    }), 1e3), i.body.settings.leaderboardable = !1, i.body.name = s, i.body.nameColor = ["#00B0E1", "#F04F54", "#00E06C", "#BE7FF5", "#FFEB8E", "#F37C20", "#E85DDF", "#8EFFFB"][i.team - 1], i.body.sendMessage = e => this.talk("m", e), i.body.controllers = [new ioTypes.listenToPlayer(i.body, i)], i.body.refreshFOV(), i.body.invuln = i.body.godmode = i.body.passive = !1, i.body.facingType = "toTarget", i.body.skill.points = 0, i.body.settings.leaderboardable = !0, i.body.sendMessage("Press H or reload your game to relinquish control of the Mothership."), i.body.sendMessage("You are now controlling your team's Mothership!")
-                                } break;
-                        case "L":
-                            if (0 !== s.length) return this.error("level up", "Ill-sized level-up request", !0), 1;
-                            null != a && !a.underControl && a.skill.level < c.SKILL_CHEAT_CAP && (a.skill.score += a.skill.levelScore, a.skill.maintain(), a.refreshBodyAttributes());
-                            break;
-                        case "P":
-                            if (1 !== s.length) return this.error("class tree prompting", "Ill-sized class tree prompt request", !0), 1;
-                            if (!o) return;
-                            s[0] && (a.sendMessage("Press U to close the class tree."), a.sendMessage("Use the arrow keys to cycle through the class tree."));
-                            break;
-                        case "T":
-                            if (1 !== s.length) return this.error("beta-tester level 1-2 key", "Ill-sized key request", !0), 1;
-                            if ("number" != typeof s[0]) return this.error("beta-tester level 1-2 key", "Non-numeric key value", !0), 1;
-                            if (!o || 0 === this.betaData.permissions) return;
-                            if (a.underControl) return a.sendMessage("You cannot use beta-tester keys while controlling a Dominator or Mothership.");
-                            switch (s[0]) {
-                                case 0:
-                                    switch (a.define(Class.genericTank), a.define(Class.basic), this.betaData.permissions) {
-                                        case 1:
-                                            a.upgradeTank(Class.testbed_level_1);
-                                            break;
-                                        case 2:
-                                            a.upgradeTank("_test" === defsPrefix ? Class.testbed : Class.testbed_level_2);
-                                            break;
-                                        case 3:
-                                            a.upgradeTank(Class.testbed), a.health.amount = a.health.max, a.shield.amount = a.shield.max
-                                    }
-                                    a.sendMessage("DO NOT use OP tanks to repeatedly kill players. It will result in a permanent demotion. Press P to change to Basic and K to suicide."), "ffa" === room.gameMode ? a.color = "FFA_RED" : a.color = [10, 12, 11, 15, 3, 35, 36, 0][i.team - 1], util.info(trimName(a.name) + " upgraded to TESTBED. Token: " + this.betaData.name || "Unknown Token");
-                                    break;
-                                case 1:
-                                    a.killedByK = !0, a.kill(), util.info(trimName(a.name) + " used k to suicide. Token: " + this.betaData.name || "Unknown Token");
-                                    break;
-                                case 2:
-                                    a.define(Class.genericTank), a.upgradeTank(Class.basic), 3 === this.betaData.permissions && (a.health.amount = a.health.max, a.shield.amount = a.shield.max, a.invuln = !0), "ffa" === room.gameMode ? a.color = "FFA_RED" : a.color = [10, 12, 11, 15, 3, 35, 36, 0][i.team - 1];
-                                    break;
-                                case 4:
-                                    if (room.arenaClosed) return a.sendMessage("Passive Mode is disabled when the arena is closed.");
-                                    a.passive = !a.passive;
-                                    for (let e of entities) e.master.id === a.id && e.id !== a.id && (e.passive = a.passive);
-                                    if (a.multibox.enabled)
-                                        for (let e of a.multibox.controlledTanks) {
-                                            null != e && (e.passive = a.passive);
-                                            for (let t of entities) t.master.id === e.id && t.id !== e.id && (t.passive = e.passive)
-                                        }
-                                    a.sendMessage("Passive Mode: " + (a.passive ? "ON" : "OFF"));
-                                    break;
-                                case 5:
-                                    a.toggleRainbow(), a.sendMessage("Rainbow Mode: " + (a.rainbow ? "ON" : "OFF"));
-                                    break;
-                                case 7:
-                                    "ffa" === room.gameMode ? a.color = "FFA_RED" : a.color = [10, 12, 11, 15, 3, 35, 36, 0][i.team - 1];
-                                    break;
-                                default:
-                                    return this.error("beta-tester level 1 key", `Unknown key value (${s[0]})`, !0), 1
-                            }
-                            break;
-                        case "B":
-                            if (1 !== s.length) return this.error("beta-tester level 3 key", "Ill-sized key request!", !0), 1;
-                            if ("number" != typeof s[0]) return this.error("beta-tester level 3 key", "Non-numeric key value", !0), 1;
-                            if (!o || 3 !== this.betaData.permissions) return;
-                            if (a.underControl) return a.sendMessage("You cannot use beta-tester keys while controlling a Dominator or Mothership.");
-                            switch (s[0]) {
-                                case 0:
-                                    a.color = Math.floor(42 * Math.random());
-                                    break;
-                                case 1:
-                                    if (room.arenaClosed) return a.sendMessage("Godmode is disabled when the arena is closed.");
-                                    a.godmode = !a.godmode;
-                                    for (let e of entities) e.master.id === a.id && e.id !== a.id && (e.diesToTeamBase = !a.godmode);
-                                    a.sendMessage("Godmode: " + (a.godmode ? "ON" : "OFF"));
-                                    break;
-                                case 2: {
-                                    let e = {
-                                        x: i.target.x + a.x,
-                                        y: i.target.y + a.y
-                                    };
-                                    if ("bot" === a.keyFEntity) spawnBot(e);
-                                    else {
-                                        let t = new Entity(e);
-                                        t.define(Class[a.keyFEntity]), t.team = -100, "food" === t.type && (t.ACCELERATION = .015 / (t.foodLevel + 1))
-                                    }
+                                    let t = new Entity(e);
+                                    t.define(Class[a.keyFEntity]), t.team = -100, "food" === t.type && (t.ACCELERATION = .015 / (t.foodLevel + 1))
                                 }
-                                break;
-                                case 3:
-                                    a.x = i.target.x + a.x, a.y = i.target.y + a.y;
-                                    break;
-                                case 8:
-                                    a.upgradeTank(tankList[a.index + 1]);
-                                    break;
-                                case 9:
-                                    for (let e of entities) e !== a && util.getDistance(e, {
-                                        x: i.target.x + a.x,
-                                        y: i.target.y + a.y
-                                    }) < 1.15 * e.size && (e.settings.givesKillMessage && ("tank" === e.type ? a.sendMessage(`You killed ${e.name || "An unnamed player"}'s ${e.label}.`) : a.sendMessage(`You killed ${util.addArticle(e.label)}.`)), e.kill());
-                                    break;
-                                case 10:
-                                    a.stealthMode = !a.stealthMode, a.settings.leaderboardable = !a.stealthMode, a.settings.givesKillMessage = !a.stealthMode, a.alpha = a.ALPHA = a.stealthMode ? 0 : null == tankList[a.index].ALPHA ? 1 : tankList[a.index].ALPHA, a.sendMessage("Stealth Mode: " + (a.stealthMode ? "ON" : "OFF"));
-                                    break;
-                                case 11:
-                                    if (i.pickedUpInterval) clearInterval(i.pickedUpInterval), i.pickedUpInterval = null;
-                                    else {
-                                        let e = i.body.x + i.target.x,
-                                            t = i.body.y + i.target.y,
-                                            s = [];
-                                        for (let i of entities)(i.x - e) * (i.x - e) + (i.y - t) * (i.y - t) < i.size * i.size * 1.5 && s.push({
-                                            e: i,
-                                            dx: i.x - e,
-                                            dy: i.y - t
-                                        });
-                                        0 === s.length ? i.body.sendMessage("No entities found to pick up!") : i.pickedUpInterval = setInterval((() => {
-                                            if (!i.body) return clearInterval(i.pickedUpInterval), void(i.pickedUpInterval = null);
-                                            let e = i.body.x + i.target.x,
-                                                t = i.body.y + i.target.y;
-                                            for (let {
-                                                    e: i,
-                                                    dx: a,
-                                                    dy: o
-                                                }
-                                                of s) i.isGhost || (i.x = a + e, i.y = o + t)
-                                        }), 25)
-                                    }
-                                    break;
-                                default:
-                                    return this.error("beta-tester level 2 key", `Unknown key value (${s[0]})`, !0), 1
                             }
-                            break;
-                        case "D":
-                            if (s.length < 0 || s.length > 11) return this.error("beta-tester console", "Ill-sized beta-command request", !0), 1;
-                            if ("number" != typeof s[0]) return this.error("beta-tester console", "Non-numeric beta-command value", !0), 1;
-                            if (3 !== this.betaData.permissions) return this.talk("Z", "[ERROR] You need a beta-tester level 3 token to use these commands.");
-                            if (!o) return this.talk("Z", "[ERROR] You cannot use a beta-tester command while dead.");
-                            switch (s[0]) {
-                                case 0:
-                                    sockets.broadcast(s[1], s[2]);
-                                    break;
-                                case 1:
-                                    a.color = s[1];
-                                    break;
-                                case 2:
-                                    a.skill.points = s[1];
-                                    break;
-                                case 3:
-                                    a.skill.score = s[1];
-                                    break;
-                                case 4:
-                                    a.SIZE = s[1];
-                                    break;
-                                case 5:
-                                    a.upgradeTank(isNaN(s[1]) ? Class[s[1]] : tankList[s[1]]);
-                                    break;
-                                case 6:
-                                    "weapon_speed" === s[1] && (a.skill.spd = s[2]), "weapon_reload" === s[1] && (a.skill.rld = s[2]), "move_speed" === s[1] && (a.SPEED = s[2], a.ACCELERATION = s[2] / 3, a.refreshBodyAttributes()), "max_health" === s[1] && (a.HEALTH = s[2], a.refreshBodyAttributes()), "body_damage" === s[1] && (a.DAMAGE = s[2], a.refreshBodyAttributes()), "weapon_damage" === s[1] && (a.skill.dam = s[2]);
-                                    break;
-                                case 7: {
-                                    let e = new Entity({
-                                        x: "me" === s[2] ? a.x : s[2],
-                                        y: "me" === s[3] ? a.y : s[3]
+                                break;
+                            case 3:
+                                a.x = i.target.x + a.x, a.y = i.target.y + a.y;
+                                break;
+                            case 8:
+                                a.upgradeTank(tankList[a.index + 1]);
+                                break;
+                            case 9:
+                                for (let e of entities) e !== a && util.getDistance(e, {
+                                    x: i.target.x + a.x,
+                                    y: i.target.y + a.y
+                                }) < 1.15 * e.size && (e.settings.givesKillMessage && ("tank" === e.type ? a.sendMessage(`You killed ${e.name || "An unnamed player"}'s ${e.label}.`) : a.sendMessage(`You killed ${util.addArticle(e.label)}.`)), e.kill());
+                                break;
+                            case 10:
+                                a.stealthMode = !a.stealthMode, a.settings.leaderboardable = !a.stealthMode, a.settings.givesKillMessage = !a.stealthMode, a.alpha = a.ALPHA = a.stealthMode ? 0 : null == tankList[a.index].ALPHA ? 1 : tankList[a.index].ALPHA, a.sendMessage("Stealth Mode: " + (a.stealthMode ? "ON" : "OFF"));
+                                break;
+                            case 11:
+                                if (i.pickedUpInterval) clearInterval(i.pickedUpInterval), i.pickedUpInterval = null;
+                                else {
+                                    let e = i.body.x + i.target.x,
+                                        t = i.body.y + i.target.y,
+                                        s = [];
+                                    for (let i of entities) (i.x - e) * (i.x - e) + (i.y - t) * (i.y - t) < i.size * i.size * 1.5 && s.push({
+                                        e: i,
+                                        dx: i.x - e,
+                                        dy: i.y - t
                                     });
-                                    e.define(Class[s[1]]), e.team = "me" === s[4] ? a.team : s[4], e.color = "default" === s[5] ? e.color : s[5], e.SIZE = "default" === s[6] ? e.SIZE : s[6], e.skill.score = "default" === s[7] ? e.skill.score : s[7], "food" === e.type && (e.ACCELERATION = .015 / (e.foodLevel + 1))
+                                    0 === s.length ? i.body.sendMessage("No entities found to pick up!") : i.pickedUpInterval = setInterval((() => {
+                                        if (!i.body) return clearInterval(i.pickedUpInterval), void (i.pickedUpInterval = null);
+                                        let e = i.body.x + i.target.x,
+                                            t = i.body.y + i.target.y;
+                                        for (let {
+                                            e: i,
+                                            dx: a,
+                                            dy: o
+                                        }
+                                            of s) i.isGhost || (i.x = a + e, i.y = o + t)
+                                    }), 25)
                                 }
                                 break;
-                                case 8:
-                                    a.maxChildren = s[1];
-                                    break;
-                                case 9:
-                                    a.x = s[1], a.y = s[2];
-                                    break;
-                                case 10:
-                                    a.invisible = [s[1], s[2], s[3]];
-                                    break;
-                                case 11:
-                                    a.FOV = s[1], a.refreshFOV();
-                                    break;
-                                case 12:
-                                    a.spinSpeed = s[1];
-                                    break;
-                                case 13:
-                                    a.keyFEntity = s[1];
-                                    break;
-                                case 14:
-                                    for (let e of entities) e.master.id === a.id && e.id !== a.id && e.kill();
-                                    break;
-                                case 15:
-                                    if (-s[1] > room.teamAmount) return this.talk("Z", "[ERROR] The maximum team amount for this server is " + room.teamAmount + ".");
-                                    a.team = s[1], i.team = -s[1], this.rememberedTeam = s[1];
-                                    break;
-                                case 17:
-                                    a.skill.set([s[7], s[5], s[4], s[6], s[3], s[10], s[1], s[2], s[9], s[8]]), a.skill.points -= s[1] + s[2] + s[3] + s[4] + s[5] + s[6] + s[7] + s[8] + s[9] + s[10], a.skill.points < 0 && (a.skill.points = 0), a.refreshBodyAttributes();
-                                    break;
-                                case 18:
-                                    a.rainbowSpeed = s[1], a.toggleRainbow(), a.toggleRainbow();
-                                    break;
-                                case 19:
-                                    if (0 === s[1]) return a.multibox.enabled ? (socket.talk("Z", "[INFO] You have disabled multiboxing for yourself."), a.multibox.enabled = !1, a.onDead(), a.onDead = null) : this.talk("Z", "[ERROR] Multiboxing is already disabled for you.");
-                                    for (this.talk("Z", "[INFO] You are now controlling " + s[1] + " new " + (s[1] > 1 ? "entities" : "entity") + "."); s[1]-- > 0;) {
-                                        let e = new Entity({
-                                            x: a.x + 5 * Math.random(),
-                                            y: a.y - 5 * Math.random()
-                                        });
-                                        "tdm" === room.gameMode ? e.team = a.team : a.team = e.team = -9, e.define(Class.basic), e.controllers = [new ioTypes.listenToPlayer(a, i)], e.invuln = !1, e.color = a.color, e.settings.leaderboardable = !1, e.passive = a.passive, e.godmode = a.godmode, a.stealthMode && (e.alpha = e.ALPHA = 0), a.multibox.controlledTanks.push(e)
-                                    }
-                                    a.onDead = () => {
-                                        null != a.multibox.intervalID && clearInterval(a.multibox.intervalID);
-                                        for (let e of a.multibox.controlledTanks) e.isAlive() && e.kill();
-                                        a.multibox.controlledTanks = []
-                                    }, a.multibox.enabled || a.toggleMultibox(), a.multibox.enabled = !0;
-                                    break;
-                                case 20:
-                                    if (null == ioTypes[s[1]]) return void this.talk("Z", "[ERROR] That controller doesn't exist!");
-                                    a.controllers.push(new ioTypes[s[1]](a, i)), this.talk("Z", "[INFO] Added that controller to you!");
-                                    break;
-                                case 21:
-                                    if (null == ioTypes[s[1]]) return void this.talk("Z", "[ERROR] That controller doesn't exist!");
-                                    a.controllers = a.controllers.filter((e => !(e instanceof ioTypes[s[1]]))), this.talk("Z", "[INFO] Removed that controller from you!");
-                                    break;
-                                case 22:
-                                    a.controllers = [], this.talk("Z", "[INFO] Removed all controllers from you!");
-                                    break;
-                                default:
-                                    return this.error("beta-tester console", `Unknown beta-command value (${s[1]})`, !0), 1
-                            }
-                            break;
-                        case "X": {
-                            if (0 !== s.length) return this.error("tier cycle", "Ill-sized tier cycle request", !0), 1;
-                            if (!o || -1 === a.bossTierType || !a.canUseQ) return;
-                            a.canUseQ = !1, setTimeout((() => a.canUseQ = !0), 1e3);
-                            let e = (new Map).set("MK-1", 1).set("MK-2", 2).set("MK-3", 3).set("MK-4", 4).set("MK-5", 0).set("TK-1", 1).set("TK-2", 2).set("TK-3", 3).set("TK-4", 4).set("TK-5", 0).set("PK-1", 1).set("PK-2", 2).set("PK-3", 3).set("PK-4", 0).set("EK-1", 1).set("EK-2", 2).set("EK-3", 3).set("EK-4", 4).set("EK-5", 5).set("EK-6", 0).set("HK-1", 1).set("HK-2", 2).set("HK-3", 3).set("HK-4", 0).set("HPK-1", 1).set("HPK-2", 2).set("HPK-3", 0).set("RK-1", 1).set("RK-2", 2).set("RK-3", 3).set("RK-4", 4).set("RK-5", 0).set("OBP-1", 1).set("OBP-2", 2).set("OBP-3", 0).set("AWP-1", 1).set("AWP-2", 2).set("AWP-3", 3).set("AWP-4", 4).set("AWP-5", 5).set("AWP-6", 6).set("AWP-7", 7).set("AWP-8", 8).set("AWP-9", 9).set("AWP-10", 0).set("Defender", 1).set("Custodian", 0).set("Switcheroo (Ba)", 1).set("Switcheroo (Tw)", 2).set("Switcheroo (Sn)", 3).set("Switcheroo (Ma)", 4).set("Switcheroo (Fl)", 5).set("Switcheroo (Di)", 6).set("Switcheroo (Po)", 7).set("Switcheroo (Pe)", 8).set("Switcheroo (Tr)", 9).set("Switcheroo (Pr)", 10).set("Switcheroo (Au)", 11).set("Switcheroo (Mi)", 12).set("Switcheroo (La)", 13).set("Switcheroo (A-B)", 14).set("Switcheroo (Si)", 15).set("Switcheroo (Hy)", 16).set("Switcheroo (Su)", 17).set("Switcheroo (Mg)", 0).set("CHK-1", 1).set("CHK-2", 2).set("CHK-3", 0).set("GK-1", 1).set("GK-2", 2).set("GK-3", 0).set("NK-1", 1).set("NK-2", 2).set("NK-3", 3).set("NK-4", 4).set("NK-5", 5).set("NK-5", 0).set("Dispositioner", 1).set("Reflector", 2).set("Triad", 0).set("SOULLESS-1", 1).set("Railtwin", 1).set("Synced Railtwin", 0).set("EQ-1", 1).set("EQ-2", 2).set("EQ-3", 0);
-                            switch (e.has(a.label) && 16 !== a.bossTierType && (a.tierCounter = e.get(a.label)), a.bossTierType) {
-                                case 0:
-                                    a.upgradeTank(Class["eggBossTier" + ++a.tierCounter]);
-                                    break;
-                                case 1:
-                                    a.upgradeTank(Class["squareBossTier" + ++a.tierCounter]);
-                                    break;
-                                case 2:
-                                    a.upgradeTank(Class["triangleBossTier" + ++a.tierCounter]);
-                                    break;
-                                case 3:
-                                    a.upgradeTank(Class["pentagonBossTier" + ++a.tierCounter]);
-                                    break;
-                                case 4:
-                                    a.upgradeTank(Class["hexagonBossTier" + ++a.tierCounter]);
-                                    break;
-                                case 5:
-                                    a.upgradeTank(Class["heptagonBossTier" + ++a.tierCounter]);
-                                    break;
-                                case 6:
-                                    a.upgradeTank(Class["rocketBossTier" + ++a.tierCounter]);
-                                    break;
-                                case 7:
-                                    a.upgradeTank(Class["obp" + ++a.tierCounter]);
-                                    break;
-                                case 8:
-                                    a.upgradeTank(Class["AWP_" + ++a.tierCounter]);
-                                    break;
-                                case 9:
-                                    a.upgradeTank(Class["defender" + ++a.tierCounter]);
-                                    break;
-                                case 10:
-                                    a.upgradeTank(Class["switcheroo" + ++a.tierCounter]);
-                                    break;
-                                case 11:
-                                    a.upgradeTank(Class["chk" + ++a.tierCounter]);
-                                    break;
-                                case 12:
-                                    a.upgradeTank(Class["greenBossTier" + ++a.tierCounter]);
-                                    break;
-                                case 13:
-                                    a.upgradeTank(Class["nk" + ++a.tierCounter]);
-                                    break;
-                                case 14:
-                                    a.upgradeTank(Class["hewnPuntUpg" + ++a.tierCounter]);
-                                    break;
-                                case 15:
-                                    a.upgradeTank(Class["soulless" + ++a.tierCounter]);
-                                    break;
-                                case 16:
-                                    for (let e of entities) e.master.id === a.id && "drone" === e.type && e.kill();
-                                    let e = 20 * a.switcherooID;
-                                    for (let t = 1; t < 21; t++) setTimeout((() => {
-                                        a.isAlive() && a.master.define(Class[`switcherooAnim${t + e === 380 ? 0 : t + e}`])
-                                    }), 24 * t);
-                                    if (a.multibox.enabled)
-                                        for (let t of a.multibox.controlledTanks)
-                                            if (t.isAlive()) {
-                                                for (let e of entities) e.master.id === t.id && "drone" === e.type && e.kill();
-                                                for (let s = 1; s < 21; s++) setTimeout((() => {
-                                                    if (t.isAlive()) {
-                                                        let i = s + e === 380 ? 0 : s + e;
-                                                        t.master.define(Class[`switcherooAnim${i}`]), a.tank = `switcherooAnim${i}`
-                                                    }
-                                                }), 24 * s)
-                                            } break;
-                                case 17:
-                                    a.upgradeTank(Class["twinRailgun" + ++a.tierCounter]);
-                                    break;
-                                case 18:
-                                    a.upgradeTank(Class["eggQueenTier" + ++a.tierCounter]);
-                                    break;
-                                default:
-                                    return this.error("tier cycle", `Unknown Q tier value (${a.bossTierType})`, !0), 1
-                            }
+                            default:
+                                return this.error("beta-tester level 2 key", `Unknown key value (${s[0]})`, !0), 1
                         }
                         break;
-                        case "M":
-                            break;
-                        case "N": {
-                            if ("string" != typeof s[0]) return this.kick("Packet shuffling failed!"), 0;
-                            let e = !1;
-                            for (let t of clients)
-                                if (t.identification === s[0]) {
-                                    t.betaData.permissions < 1 && t.kick("Please only use one tab at a time!"), e = !0;
-                                    break
-                                } e || multitabIDs.push(s[0])
+                    case "D":
+                        if (s.length < 0 || s.length > 11) return this.error("beta-tester console", "Ill-sized beta-command request", !0), 1;
+                        if ("number" != typeof s[0]) return this.error("beta-tester console", "Non-numeric beta-command value", !0), 1;
+                        if (3 !== this.betaData.permissions) return this.talk("Z", "[ERROR] You need a beta-tester level 3 token to use these commands.");
+                        if (!o) return this.talk("Z", "[ERROR] You cannot use a beta-tester command while dead.");
+                        switch (s[0]) {
+                            case 0:
+                                sockets.broadcast(s[1], s[2]);
+                                break;
+                            case 1:
+                                a.color = s[1];
+                                break;
+                            case 2:
+                                a.skill.points = s[1];
+                                break;
+                            case 3:
+                                a.skill.score = s[1];
+                                break;
+                            case 4:
+                                a.SIZE = s[1];
+                                break;
+                            case 5:
+                                a.upgradeTank(isNaN(s[1]) ? Class[s[1]] : tankList[s[1]]);
+                                break;
+                            case 6:
+                                "weapon_speed" === s[1] && (a.skill.spd = s[2]), "weapon_reload" === s[1] && (a.skill.rld = s[2]), "move_speed" === s[1] && (a.SPEED = s[2], a.ACCELERATION = s[2] / 3, a.refreshBodyAttributes()), "max_health" === s[1] && (a.HEALTH = s[2], a.refreshBodyAttributes()), "body_damage" === s[1] && (a.DAMAGE = s[2], a.refreshBodyAttributes()), "weapon_damage" === s[1] && (a.skill.dam = s[2]);
+                                break;
+                            case 7: {
+                                let e = new Entity({
+                                    x: "me" === s[2] ? a.x : s[2],
+                                    y: "me" === s[3] ? a.y : s[3]
+                                });
+                                e.define(Class[s[1]]), e.team = "me" === s[4] ? a.team : s[4], e.color = "default" === s[5] ? e.color : s[5], e.SIZE = "default" === s[6] ? e.SIZE : s[6], e.skill.score = "default" === s[7] ? e.skill.score : s[7], "food" === e.type && (e.ACCELERATION = .015 / (e.foodLevel + 1))
+                            }
+                                break;
+                            case 8:
+                                a.maxChildren = s[1];
+                                break;
+                            case 9:
+                                a.x = s[1], a.y = s[2];
+                                break;
+                            case 10:
+                                a.invisible = [s[1], s[2], s[3]];
+                                break;
+                            case 11:
+                                a.FOV = s[1], a.refreshFOV();
+                                break;
+                            case 12:
+                                a.spinSpeed = s[1];
+                                break;
+                            case 13:
+                                a.keyFEntity = s[1];
+                                break;
+                            case 14:
+                                for (let e of entities) e.master.id === a.id && e.id !== a.id && e.kill();
+                                break;
+                            case 15:
+                                if (-s[1] > room.teamAmount) return this.talk("Z", "[ERROR] The maximum team amount for this server is " + room.teamAmount + ".");
+                                a.team = s[1], i.team = -s[1], this.rememberedTeam = s[1];
+                                break;
+                            case 17:
+                                a.skill.set([s[7], s[5], s[4], s[6], s[3], s[10], s[1], s[2], s[9], s[8]]), a.skill.points -= s[1] + s[2] + s[3] + s[4] + s[5] + s[6] + s[7] + s[8] + s[9] + s[10], a.skill.points < 0 && (a.skill.points = 0), a.refreshBodyAttributes();
+                                break;
+                            case 18:
+                                a.rainbowSpeed = s[1], a.toggleRainbow(), a.toggleRainbow();
+                                break;
+                            case 19:
+                                if (0 === s[1]) return a.multibox.enabled ? (socket.talk("Z", "[INFO] You have disabled multiboxing for yourself."), a.multibox.enabled = !1, a.onDead(), a.onDead = null) : this.talk("Z", "[ERROR] Multiboxing is already disabled for you.");
+                                for (this.talk("Z", "[INFO] You are now controlling " + s[1] + " new " + (s[1] > 1 ? "entities" : "entity") + "."); s[1]-- > 0;) {
+                                    let e = new Entity({
+                                        x: a.x + 5 * Math.random(),
+                                        y: a.y - 5 * Math.random()
+                                    });
+                                    "tdm" === room.gameMode ? e.team = a.team : a.team = e.team = -9, e.define(Class.basic), e.controllers = [new ioTypes.listenToPlayer(a, i)], e.invuln = !1, e.color = a.color, e.settings.leaderboardable = !1, e.passive = a.passive, e.godmode = a.godmode, a.stealthMode && (e.alpha = e.ALPHA = 0), a.multibox.controlledTanks.push(e)
+                                }
+                                a.onDead = () => {
+                                    null != a.multibox.intervalID && clearInterval(a.multibox.intervalID);
+                                    for (let e of a.multibox.controlledTanks) e.isAlive() && e.kill();
+                                    a.multibox.controlledTanks = []
+                                }, a.multibox.enabled || a.toggleMultibox(), a.multibox.enabled = !0;
+                                break;
+                            case 20:
+                                if (null == ioTypes[s[1]]) return void this.talk("Z", "[ERROR] That controller doesn't exist!");
+                                a.controllers.push(new ioTypes[s[1]](a, i)), this.talk("Z", "[INFO] Added that controller to you!");
+                                break;
+                            case 21:
+                                if (null == ioTypes[s[1]]) return void this.talk("Z", "[ERROR] That controller doesn't exist!");
+                                a.controllers = a.controllers.filter((e => !(e instanceof ioTypes[s[1]]))), this.talk("Z", "[INFO] Removed that controller from you!");
+                                break;
+                            case 22:
+                                a.controllers = [], this.talk("Z", "[INFO] Removed all controllers from you!");
+                                break;
+                            default:
+                                return this.error("beta-tester console", `Unknown beta-command value (${s[1]})`, !0), 1
                         }
                         break;
-                        default:
-                            return this.error("initialization", `Unknown packet index (${r})`, !0), 1
+                    case "X": {
+                        if (0 !== s.length) return this.error("tier cycle", "Ill-sized tier cycle request", !0), 1;
+                        if (!o || -1 === a.bossTierType || !a.canUseQ) return;
+                        a.canUseQ = !1, setTimeout((() => a.canUseQ = !0), 1e3);
+                        let e = (new Map).set("MK-1", 1).set("MK-2", 2).set("MK-3", 3).set("MK-4", 4).set("MK-5", 0).set("TK-1", 1).set("TK-2", 2).set("TK-3", 3).set("TK-4", 4).set("TK-5", 0).set("PK-1", 1).set("PK-2", 2).set("PK-3", 3).set("PK-4", 0).set("EK-1", 1).set("EK-2", 2).set("EK-3", 3).set("EK-4", 4).set("EK-5", 5).set("EK-6", 0).set("HK-1", 1).set("HK-2", 2).set("HK-3", 3).set("HK-4", 0).set("HPK-1", 1).set("HPK-2", 2).set("HPK-3", 0).set("RK-1", 1).set("RK-2", 2).set("RK-3", 3).set("RK-4", 4).set("RK-5", 0).set("OBP-1", 1).set("OBP-2", 2).set("OBP-3", 0).set("AWP-1", 1).set("AWP-2", 2).set("AWP-3", 3).set("AWP-4", 4).set("AWP-5", 5).set("AWP-6", 6).set("AWP-7", 7).set("AWP-8", 8).set("AWP-9", 9).set("AWP-10", 0).set("Defender", 1).set("Custodian", 0).set("Switcheroo (Ba)", 1).set("Switcheroo (Tw)", 2).set("Switcheroo (Sn)", 3).set("Switcheroo (Ma)", 4).set("Switcheroo (Fl)", 5).set("Switcheroo (Di)", 6).set("Switcheroo (Po)", 7).set("Switcheroo (Pe)", 8).set("Switcheroo (Tr)", 9).set("Switcheroo (Pr)", 10).set("Switcheroo (Au)", 11).set("Switcheroo (Mi)", 12).set("Switcheroo (La)", 13).set("Switcheroo (A-B)", 14).set("Switcheroo (Si)", 15).set("Switcheroo (Hy)", 16).set("Switcheroo (Su)", 17).set("Switcheroo (Mg)", 0).set("CHK-1", 1).set("CHK-2", 2).set("CHK-3", 0).set("GK-1", 1).set("GK-2", 2).set("GK-3", 0).set("NK-1", 1).set("NK-2", 2).set("NK-3", 3).set("NK-4", 4).set("NK-5", 5).set("NK-5", 0).set("Dispositioner", 1).set("Reflector", 2).set("Triad", 0).set("SOULLESS-1", 1).set("Railtwin", 1).set("Synced Railtwin", 0).set("EQ-1", 1).set("EQ-2", 2).set("EQ-3", 0);
+                        switch (e.has(a.label) && 16 !== a.bossTierType && (a.tierCounter = e.get(a.label)), a.bossTierType) {
+                            case 0:
+                                a.upgradeTank(Class["eggBossTier" + ++a.tierCounter]);
+                                break;
+                            case 1:
+                                a.upgradeTank(Class["squareBossTier" + ++a.tierCounter]);
+                                break;
+                            case 2:
+                                a.upgradeTank(Class["triangleBossTier" + ++a.tierCounter]);
+                                break;
+                            case 3:
+                                a.upgradeTank(Class["pentagonBossTier" + ++a.tierCounter]);
+                                break;
+                            case 4:
+                                a.upgradeTank(Class["hexagonBossTier" + ++a.tierCounter]);
+                                break;
+                            case 5:
+                                a.upgradeTank(Class["heptagonBossTier" + ++a.tierCounter]);
+                                break;
+                            case 6:
+                                a.upgradeTank(Class["rocketBossTier" + ++a.tierCounter]);
+                                break;
+                            case 7:
+                                a.upgradeTank(Class["obp" + ++a.tierCounter]);
+                                break;
+                            case 8:
+                                a.upgradeTank(Class["AWP_" + ++a.tierCounter]);
+                                break;
+                            case 9:
+                                a.upgradeTank(Class["defender" + ++a.tierCounter]);
+                                break;
+                            case 10:
+                                a.upgradeTank(Class["switcheroo" + ++a.tierCounter]);
+                                break;
+                            case 11:
+                                a.upgradeTank(Class["chk" + ++a.tierCounter]);
+                                break;
+                            case 12:
+                                a.upgradeTank(Class["greenBossTier" + ++a.tierCounter]);
+                                break;
+                            case 13:
+                                a.upgradeTank(Class["nk" + ++a.tierCounter]);
+                                break;
+                            case 14:
+                                a.upgradeTank(Class["hewnPuntUpg" + ++a.tierCounter]);
+                                break;
+                            case 15:
+                                a.upgradeTank(Class["soulless" + ++a.tierCounter]);
+                                break;
+                            case 16:
+                                for (let e of entities) e.master.id === a.id && "drone" === e.type && e.kill();
+                                let e = 20 * a.switcherooID;
+                                for (let t = 1; t < 21; t++) setTimeout((() => {
+                                    a.isAlive() && a.master.define(Class[`switcherooAnim${t + e === 380 ? 0 : t + e}`])
+                                }), 24 * t);
+                                if (a.multibox.enabled)
+                                    for (let t of a.multibox.controlledTanks)
+                                        if (t.isAlive()) {
+                                            for (let e of entities) e.master.id === t.id && "drone" === e.type && e.kill();
+                                            for (let s = 1; s < 21; s++) setTimeout((() => {
+                                                if (t.isAlive()) {
+                                                    let i = s + e === 380 ? 0 : s + e;
+                                                    t.master.define(Class[`switcherooAnim${i}`]), a.tank = `switcherooAnim${i}`
+                                                }
+                                            }), 24 * s)
+                                        } break;
+                            case 17:
+                                a.upgradeTank(Class["twinRailgun" + ++a.tierCounter]);
+                                break;
+                            case 18:
+                                a.upgradeTank(Class["eggQueenTier" + ++a.tierCounter]);
+                                break;
+                            default:
+                                return this.error("tier cycle", `Unknown Q tier value (${a.bossTierType})`, !0), 1
+                        }
                     }
+                        break;
+                    case "M":
+                        break;
+                    case "N": {
+                        if ("string" != typeof s[0]) return this.kick("Packet shuffling failed!"), 0;
+                        let e = !1;
+                        for (let t of clients)
+                            if (t.identification === s[0]) {
+                                t.betaData.permissions < 1 && t.kick("Please only use one tab at a time!"), e = !0;
+                                break
+                            } e || multitabIDs.push(s[0])
+                    }
+                        break;
+                    default:
+                        return this.error("initialization", `Unknown packet index (${r})`, !0), 1
                 }
-                spawn(e) {
-                    let t = {
-                            id: this.id
-                        },
-                        s = {};
-                    t.team = this.rememberedTeam;
-                    let i = 10;
-                    if ("tdm" === room.gameMode) {
-                        (null == t.team || room.defeatedTeams.includes(-t.team)) && (t.team = getTeam(1));
-                        let e = ["spn", "bas", "n_b", "bad"].map((e => e + t.team)).filter((e => room[e] && room[e].length));
-                        const a = ran.choose(e);
-                        if (a && room[a].length)
-                            do {
-                                s = room.randomType(a)
-                            } while (dirtyCheck(s, 50) && i--);
-                        else
-                            do {
-                                s = room.gaussInverse(5)
-                            } while (dirtyCheck(s, 50) && i--)
-                    } else
+            }
+            spawn(e) {
+                let t = {
+                    id: this.id
+                },
+                    s = {};
+                t.team = this.rememberedTeam;
+                let i = 10;
+                if ("tdm" === room.gameMode) {
+                    (null == t.team || room.defeatedTeams.includes(-t.team)) && (t.team = getTeam(1));
+                    let e = ["spn", "bas", "n_b", "bad"].map((e => e + t.team)).filter((e => room[e] && room[e].length));
+                    const a = ran.choose(e);
+                    if (a && room[a].length)
+                        do {
+                            s = room.randomType(a)
+                        } while (dirtyCheck(s, 50) && i--);
+                    else
                         do {
                             s = room.gaussInverse(5)
-                        } while (dirtyCheck(s, 50) && i--);
-                    this.rememberedTeam = t.team;
-                    let a = new Entity(s);
-                    return c.RANKED_BATTLE && (a.roomId = this.roomId), a.protect(), "Carrier Battle" === c.serverName ? a.define(startingTank = Class.testbed_carriers) : "Corrupted Tanks" === c.serverName ? a.define(Class.corrupted_tanks) : a.define(Class[startingTank]), a.name = e, a.addController(new ioTypes.listenToPlayer(a, t)), a.sendMessage = e => this.talk("m", e), a.isPlayer = !0, a.this = this, this.key === tokens.oblivion_2 && (a.stealthMode = !0, a.alpha = a.ALPHA = 0, a.settings.givesKillMessage = a.settings.leaderboardable = !1, a.sendMessage("DO NOT use this token to get world record scores; stealth mode denies AI from attacking you!")), a.invuln = !0, a.invulnTime = [Date.now(), "tdm" === room.gameMode && room.bas1.length ? 6e4 : 18e4], t.body = a, "tdm" === room.gameMode ? (a.team = -t.team, a.color = [10, 12, 11, 15, 3, 35, 36, 0][t.team - 1]) : a.color = "FFA_RED", t.teamColor = "ffa" === room.gameMode ? 10 : a.color, t.target = {
-                        x: 0,
-                        y: 0
-                    }, t.command = {
-                        up: !1,
-                        down: !1,
-                        left: !1,
-                        right: !1,
-                        lmb: !1,
-                        mmb: !1,
-                        rmb: !1,
-                        autofire: !1,
-                        autospin: !1,
-                        override: !1
-                    }, t.records = (() => {
-                        let e = util.time();
-                        return () => [t.body.skill.score, Math.floor((util.time() - e) / 1e3), t.body.killCount.solo, t.body.killCount.assists, t.body.killCount.bosses, t.body.killCount.killers.length, ...t.body.killCount.killers]
-                    })(), t.gui = this.makeGUI(t), t.socket = this, a.socket = this, players.push(t), this.camera.x = a.x, this.camera.y = a.y, this.camera.fov = 1e3, this.status.hasSpawned = !0, a.sendMessage("You will remain invulnerable until you move, shoot, or your timer runs out."), a.sendMessage("You have spawned! Welcome to the game. Hold N to level up."), this.talk("c", this.camera.x, this.camera.y, this.camera.fov), t
-                }
-            }(() => {
-                let e = e => {
-                    switch (e.team) {
-                        case -100:
-                            return e.color;
-                        case -1:
-                            return 10;
-                        case -2:
-                            return 12;
-                        case -3:
-                            return 11;
-                        case -4:
-                            return 15;
-                        default:
-                            return "1" === room.gameMode[0] || "2" === room.gameMode[0] || "3" === room.gameMode[0] || "4" === room.gameMode[0] ? e.color : 11
-                    }
-                };
-                global.broadcastFunction = function() {
-                    let t = {
-                        minimapAll: [],
-                        minimapCarriers: [],
-                        minimapTeams: {},
-                        leaderboard: []
-                    };
-                    for (let e = 0; e < c.TEAM_AMOUNT; e++) t.minimapTeams[e + 1] = [];
-                    for (let e of players) e.socket && e.socket.rememberedTeam && (t.minimapTeams[-e.socket.rememberedTeam] = []);
-                    if (c.serverName.includes("Tag"))
-                        for (let e = 0; e < c.TEAM_AMOUNT; e++) t.leaderboard.push({
-                            id: e,
-                            skill: {
-                                score: 0
-                            },
-                            index: Class.tagMode.index,
-                            name: ["BLUE", "RED", "GREEN", "PURPLE"][e],
-                            color: [10, 12, 11, 15][e],
-                            nameColor: "#FFFFFF",
-                            team: -e - 1
-                        });
-                    for (let e = 0, s = entities.length; e < s; e++) {
-                        let s = entities[e];
-                        if ((("wall" === s.type || "mazeWall" === s.type) && s.alpha > .2 || s.showsOnMap || "miniboss" === s.type || "tank" === s.type && s.lifetime || s.isMothership || "appearOnMinimap" === s.miscIdentifier) && t.minimapAll.push({
-                                id: s.id,
-                                data: ["wall" === s.type || "mazeWall" === s.type || s.isSquadron ? s.isSquadron ? 3 : 4 === s.shape ? 2 : 1 : 0, util.clamp(Math.floor(256 * s.x / room.width), 0, 255), util.clamp(Math.floor(256 * s.y / room.height), 0, 255), s.color, Math.round(s.SIZE), s.width || 1, s.height || 1]
-                            }), "tank" !== s.type || s.master !== s || s.lifetime || (null != t.minimapTeams[s.team] && t.minimapTeams[s.team].push({
-                                id: s.id,
-                                data: [util.clamp(Math.floor(256 * s.x / room.width), 0, 255), util.clamp(Math.floor(256 * s.y / room.height), 0, 255), s.color]
-                            }), t.minimapCarriers.push({
-                                id: s.id,
-                                data: [util.clamp(Math.floor(256 * s.x / room.width), 0, 255), util.clamp(Math.floor(256 * s.y / room.height), 0, 255), s.color]
-                            })), c.serverName.includes("Mothership")) s.isMothership && t.leaderboard.push(s);
-                        else if (c.serverName.includes("Tag")) {
-                            if (s.isPlayer || s.isBot) {
-                                let e = t.leaderboard.find((e => e.team === s.team));
-                                e && e.skill.score++
-                            }
-                        } else null != s.settings && s.settings.leaderboardable && s.settings.drawShape && ("tank" === s.type || s.killCount.solo || s.killCount.assists) && t.leaderboard.push(s)
-                    }
-                    let s = [];
-                    for (let i = 0; i < 10 && t.leaderboard.length; i++) {
-                        let i, a = 0;
-                        for (let e = 0; e < t.leaderboard.length; e++) {
-                            let s = t.leaderboard[e].skill.score;
-                            s > a && (a = s, i = e)
-                        }
-                        if (0 === a) break;
-                        let o = t.leaderboard[i];
-                        s.push({
-                            id: o.id,
-                            data: [Math.round(c.serverName.includes("Mothership") ? o.health.amount : o.skill.score), o.index, o.name, o.color, e(o), o.nameColor]
-                        }), t.leaderboard.splice(i, 1)
-                    }
-                    room.topPlayerID = s.length ? s[0].id : -1, t.leaderboard = s.sort(((e, t) => e.id - t.id)), t.minimapAll = [t.minimapAll.length, ...t.minimapAll.map((e => [e.id, ...e.data])).flat()], t.minimapCarriers = [t.minimapCarriers.length, ...t.minimapCarriers.map((e => [e.id, ...e.data])).flat()];
-                    for (let e in t.minimapTeams) t.minimapTeams[e] = [t.minimapTeams[e].length, ...t.minimapTeams[e].map((e => [e.id, ...e.data])).flat()];
-                    return t.leaderboard = [t.leaderboard.length, ...t.leaderboard.map((e => [e.id, ...e.data])).flat()], t
-                };
-                setInterval((() => {
+                        } while (dirtyCheck(s, 50) && i--)
+                } else
+                    do {
+                        s = room.gaussInverse(5)
+                    } while (dirtyCheck(s, 50) && i--);
+                this.rememberedTeam = t.team;
+                let a = new Entity(s);
+                return c.RANKED_BATTLE && (a.roomId = this.roomId), a.protect(), "Carrier Battle" === c.serverName ? a.define(startingTank = Class.testbed_carriers) : "Corrupted Tanks" === c.serverName ? a.define(Class.corrupted_tanks) : a.define(Class[startingTank]), a.name = e, a.addController(new ioTypes.listenToPlayer(a, t)), a.sendMessage = e => this.talk("m", e), a.isPlayer = !0, a.this = this, this.key === tokens.oblivion_2 && (a.stealthMode = !0, a.alpha = a.ALPHA = 0, a.settings.givesKillMessage = a.settings.leaderboardable = !1, a.sendMessage("DO NOT use this token to get world record scores; stealth mode denies AI from attacking you!")), a.invuln = !0, a.invulnTime = [Date.now(), "tdm" === room.gameMode && room.bas1.length ? 6e4 : 18e4], t.body = a, "tdm" === room.gameMode ? (a.team = -t.team, a.color = [10, 12, 11, 15, 3, 35, 36, 0][t.team - 1]) : a.color = "FFA_RED", t.teamColor = "ffa" === room.gameMode ? 10 : a.color, t.target = {
+                    x: 0,
+                    y: 0
+                }, t.command = {
+                    up: !1,
+                    down: !1,
+                    left: !1,
+                    right: !1,
+                    lmb: !1,
+                    mmb: !1,
+                    rmb: !1,
+                    autofire: !1,
+                    autospin: !1,
+                    override: !1
+                }, t.records = (() => {
                     let e = util.time();
-                    for (let t of clients) e - t.statuslastHeartbeat > c.maxHeartbeatInterval && t.kick("Lost heartbeat!")
-                }), 1e3), setInterval((function() {
-                    newLogs.broadcast.reset(), newLogs.broadcast.start();
-                    const e = global.broadcastFunction();
-                    newLogs.broadcast.stop();
-                    for (const t of clients)
-                        if (t.status.hasSpawned)
-                            if (t.battleRoom instanceof RankedRoom) t.talk("b", ...t.battleRoom.minimap, 0, ...t.battleRoom.leaderboard);
-                            else {
-                                let s = t.player.body && t.player.body.strikeCarrier ? e.minimapCarriers : e.minimapTeams[-t.player.team];
-                                t.talk("b", ...e.minimapAll, ...s || [0], ...t.anon ? [0] : e.leaderboard)
-                            }
-                }), 250)
-            })();
-            return {
-                broadcast: (e, t = "") => {
-                    for (let s of clients) s.talk("m", e, t)
-                },
-                broadcastRoom: () => {
-                    for (let e of clients) e.talk("r", room.width, room.height, JSON.stringify(c.ROOM_SETUP))
-                },
-                refreshMockups: e => {
-                    for (let t of clients) t.talk("H", e)
-                },
-                connect: (e, t) => new h(e, t),
-                ban: (e, i, o = "") => {
-                    let r;
-                    return r = clients.find((t => t.id === e)), r instanceof h ? (o.length && r.talk("P", o), r.ban(i), !0) : (r = s.find((t => t.id === e)), r instanceof a && (t.push({
-                        ip: r.ip,
-                        reason: i
-                    }), !0))
-                },
-                unban: e => {
-                    let i = s.find((t => t.id === e));
-                    if (i instanceof a) {
-                        let e = t.findIndex((e => e.ip === i.ip));
-                        if (e > -1) return t.splice(e, 1), !0
-                    }
-                    return !1
-                }
+                    return () => [t.body.skill.score, Math.floor((util.time() - e) / 1e3), t.body.killCount.solo, t.body.killCount.assists, t.body.killCount.bosses, t.body.killCount.killers.length, ...t.body.killCount.killers]
+                })(), t.gui = this.makeGUI(t), t.socket = this, a.socket = this, players.push(t), this.camera.x = a.x, this.camera.y = a.y, this.camera.fov = 1e3, this.status.hasSpawned = !0, a.sendMessage("You will remain invulnerable until you move, shoot, or your timer runs out."), a.sendMessage("You have spawned! Welcome to the game. Hold N to level up."), this.talk("c", this.camera.x, this.camera.y, this.camera.fov), t
             }
-        })(),
+        } (() => {
+            let e = e => {
+                switch (e.team) {
+                    case -100:
+                        return e.color;
+                    case -1:
+                        return 10;
+                    case -2:
+                        return 12;
+                    case -3:
+                        return 11;
+                    case -4:
+                        return 15;
+                    default:
+                        return "1" === room.gameMode[0] || "2" === room.gameMode[0] || "3" === room.gameMode[0] || "4" === room.gameMode[0] ? e.color : 11
+                }
+            };
+            global.broadcastFunction = function () {
+                let t = {
+                    minimapAll: [],
+                    minimapCarriers: [],
+                    minimapTeams: {},
+                    leaderboard: []
+                };
+                for (let e = 0; e < c.TEAM_AMOUNT; e++) t.minimapTeams[e + 1] = [];
+                for (let e of players) e.socket && e.socket.rememberedTeam && (t.minimapTeams[-e.socket.rememberedTeam] = []);
+                if (c.serverName.includes("Tag"))
+                    for (let e = 0; e < c.TEAM_AMOUNT; e++) t.leaderboard.push({
+                        id: e,
+                        skill: {
+                            score: 0
+                        },
+                        index: Class.tagMode.index,
+                        name: ["BLUE", "RED", "GREEN", "PURPLE"][e],
+                        color: [10, 12, 11, 15][e],
+                        nameColor: "#FFFFFF",
+                        team: -e - 1
+                    });
+                for (let e = 0, s = entities.length; e < s; e++) {
+                    let s = entities[e];
+                    if ((("wall" === s.type || "mazeWall" === s.type) && s.alpha > .2 || s.showsOnMap || "miniboss" === s.type || "tank" === s.type && s.lifetime || s.isMothership || "appearOnMinimap" === s.miscIdentifier) && t.minimapAll.push({
+                        id: s.id,
+                        data: ["wall" === s.type || "mazeWall" === s.type || s.isSquadron ? s.isSquadron ? 3 : 4 === s.shape ? 2 : 1 : 0, util.clamp(Math.floor(256 * s.x / room.width), 0, 255), util.clamp(Math.floor(256 * s.y / room.height), 0, 255), s.color, Math.round(s.SIZE), s.width || 1, s.height || 1]
+                    }), "tank" !== s.type || s.master !== s || s.lifetime || (null != t.minimapTeams[s.team] && t.minimapTeams[s.team].push({
+                        id: s.id,
+                        data: [util.clamp(Math.floor(256 * s.x / room.width), 0, 255), util.clamp(Math.floor(256 * s.y / room.height), 0, 255), s.color]
+                    }), t.minimapCarriers.push({
+                        id: s.id,
+                        data: [util.clamp(Math.floor(256 * s.x / room.width), 0, 255), util.clamp(Math.floor(256 * s.y / room.height), 0, 255), s.color]
+                    })), c.serverName.includes("Mothership")) s.isMothership && t.leaderboard.push(s);
+                    else if (c.serverName.includes("Tag")) {
+                        if (s.isPlayer || s.isBot) {
+                            let e = t.leaderboard.find((e => e.team === s.team));
+                            e && e.skill.score++
+                        }
+                    } else null != s.settings && s.settings.leaderboardable && s.settings.drawShape && ("tank" === s.type || s.killCount.solo || s.killCount.assists) && t.leaderboard.push(s)
+                }
+                let s = [];
+                for (let i = 0; i < 10 && t.leaderboard.length; i++) {
+                    let i, a = 0;
+                    for (let e = 0; e < t.leaderboard.length; e++) {
+                        let s = t.leaderboard[e].skill.score;
+                        s > a && (a = s, i = e)
+                    }
+                    if (0 === a) break;
+                    let o = t.leaderboard[i];
+                    s.push({
+                        id: o.id,
+                        data: [Math.round(c.serverName.includes("Mothership") ? o.health.amount : o.skill.score), o.index, o.name, o.color, e(o), o.nameColor]
+                    }), t.leaderboard.splice(i, 1)
+                }
+                room.topPlayerID = s.length ? s[0].id : -1, t.leaderboard = s.sort(((e, t) => e.id - t.id)), t.minimapAll = [t.minimapAll.length, ...t.minimapAll.map((e => [e.id, ...e.data])).flat()], t.minimapCarriers = [t.minimapCarriers.length, ...t.minimapCarriers.map((e => [e.id, ...e.data])).flat()];
+                for (let e in t.minimapTeams) t.minimapTeams[e] = [t.minimapTeams[e].length, ...t.minimapTeams[e].map((e => [e.id, ...e.data])).flat()];
+                return t.leaderboard = [t.leaderboard.length, ...t.leaderboard.map((e => [e.id, ...e.data])).flat()], t
+            };
+            setInterval((() => {
+                let e = util.time();
+                for (let t of clients) e - t.statuslastHeartbeat > c.maxHeartbeatInterval && t.kick("Lost heartbeat!")
+            }), 1e3), setInterval((function () {
+                newLogs.broadcast.reset(), newLogs.broadcast.start();
+                const e = global.broadcastFunction();
+                newLogs.broadcast.stop();
+                for (const t of clients)
+                    if (t.status.hasSpawned)
+                        if (t.battleRoom instanceof RankedRoom) t.talk("b", ...t.battleRoom.minimap, 0, ...t.battleRoom.leaderboard);
+                        else {
+                            let s = t.player.body && t.player.body.strikeCarrier ? e.minimapCarriers : e.minimapTeams[-t.player.team];
+                            t.talk("b", ...e.minimapAll, ...s || [0], ...t.anon ? [0] : e.leaderboard)
+                        }
+            }), 250)
+        })();
+        return {
+            broadcast: (e, t = "") => {
+                for (let s of clients) s.talk("m", e, t)
+            },
+            broadcastRoom: () => {
+                for (let e of clients) e.talk("r", room.width, room.height, JSON.stringify(c.ROOM_SETUP))
+            },
+            refreshMockups: e => {
+                for (let t of clients) t.talk("H", e)
+            },
+            connect: (e, t) => new h(e, t),
+            ban: (e, i, o = "") => {
+                let r;
+                return r = clients.find((t => t.id === e)), r instanceof h ? (o.length && r.talk("P", o), r.ban(i), !0) : (r = s.find((t => t.id === e)), r instanceof a && (t.push({
+                    ip: r.ip,
+                    reason: i
+                }), !0))
+            },
+            unban: e => {
+                let i = s.find((t => t.id === e));
+                if (i instanceof a) {
+                    let e = t.findIndex((e => e.ip === i.ip));
+                    if (e > -1) return t.splice(e, 1), !0
+                }
+                return !1
+            }
+        }
+    })(),
         gameLoop = (() => {
             const e = (() => {
-                    const e = (e, t, s = 0) => {
-                        let i, a, o = {
-                                x: e.x + e.m_x,
-                                y: e.y + e.m_y
-                            },
-                            r = {
-                                x: t.x + t.m_x,
-                                y: t.y + t.m_y
-                            },
-                            n = util.getDistance(o, r),
-                            l = Math.max(e.velocity.length, e.topSpeed),
-                            h = Math.max(t.velocity.length, t.topSpeed);
-                        if (0 === n) {
-                            let s = new Vector(2 * Math.random() - 1, 2 * Math.random() - 1);
-                            return e.accel.x += s.x, e.accel.y += s.y, t.accel.x -= s.x, void(t.accel.y -= s.y)
-                        }
-                        if (s > 0 && n <= e.realSize + t.realSize + s) {
-                            let i = (e.acceleration + t.acceleration) * (e.realSize + t.realSize + s - n) / s / room.speed;
-                            e.accel.x += i * (o.x - r.x) / n, e.accel.y += i * (o.y - r.y) / n, t.accel.x -= i * (o.x - r.x) / n, t.accel.y -= i * (o.y - r.y) / n
-                        }
-                        for (; n <= e.realSize + t.realSize && (!i || !a);) a = i = !1, e.velocity.length <= l ? (e.velocity.x -= .05 * (r.x - o.x) / n / room.speed, e.velocity.y -= .05 * (r.y - o.y) / n / room.speed) : i = !0, t.velocity.length <= h ? (t.velocity.x += .05 * (r.x - o.x) / n / room.speed, t.velocity.y += .05 * (r.y - o.y) / n / room.speed) : a = !0, o = {
-                            x: e.x + e.m_x,
-                            y: e.y + e.m_y
-                        }, r = {
+                const e = (e, t, s = 0) => {
+                    let i, a, o = {
+                        x: e.x + e.m_x,
+                        y: e.y + e.m_y
+                    },
+                        r = {
                             x: t.x + t.m_x,
                             y: t.y + t.m_y
-                        }, n = util.getDistance(o, r)
-                    };
-                    const t = (e, t, s, i, a = !1) => {
-                            let o = Math.min(e.stepRemaining, t.stepRemaining),
-                                r = t.size + e.size,
-                                n = new Vector(e.m_x, e.m_y),
-                                l = new Vector(t.m_x, t.m_y),
-                                h = new Vector(o * (n.x - l.x), o * (n.y - l.y)),
-                                d = new Vector(e.x - t.x, e.y - t.y),
-                                m = new Vector(t.x - e.x, t.y - e.y).unit(),
-                                u = Math.max(0, m.x * h.x + m.y * h.y);
-                            if (u >= d.length - r) {
-                                let y, p = !1,
-                                    g = 1 - o,
-                                    f = Math.pow(h.x, 2) + Math.pow(h.y, 2),
-                                    b = 2 * h.x * d.x + 2 * h.y * d.y,
-                                    k = Math.pow(d.x, 2) + Math.pow(d.y, 2) - Math.pow(r, 2),
-                                    v = b * b - 4 * f * k;
-                                if (!f || v < 0 || k < 0) y = 0, k < 0 && (p = !0);
-                                else {
-                                    let e = (-b - Math.sqrt(v)) / (2 * f),
-                                        t = (-b + Math.sqrt(v)) / (2 * f);
-                                    e < g || e > 1 ? t < g || t > 1 ? y = !1 : (y = t, p = !0) : (y = t >= g && t <= 1 ? Math.min(e, t) : e, p = !0)
-                                }
-                                if (p) {
-                                    e.collisionArray.push(t), t.collisionArray.push(e), y && (e.x += n.x * y, e.y += n.y * y, t.x += l.x * y, t.y += l.y * y, e.stepRemaining -= y, t.stepRemaining -= y, d = new Vector(e.x - t.x, e.y - t.y), m = new Vector(t.x - e.x, t.y - e.y).unit(), u = Math.max(0, m.x * h.x + m.y * h.y));
-                                    let o = u / h.length,
-                                        p = {
-                                            _me: 1,
-                                            _n: 1
-                                        },
-                                        g = h.length ? r / 4 / (Math.floor(r / h.length) + 1) : .001,
-                                        f = {
-                                            _me: util.clamp((r - d.length) / (2 * e.size), 0, 1),
-                                            _n: util.clamp((r - d.length) / (2 * t.size), 0, 1)
-                                        },
-                                        b = {
-                                            up: f._me * f._n,
-                                            down: (1 - f._me) * (1 - f._n)
-                                        },
-                                        k = {
-                                            _me: {
-                                                sqr: Math.pow(e.penetration, 2),
-                                                sqrt: Math.sqrt(e.penetration)
-                                            },
-                                            _n: {
-                                                sqr: Math.pow(t.penetration, 2),
-                                                sqrt: Math.sqrt(t.penetration)
-                                            }
-                                        },
-                                        v = {
-                                            _me: e.health.ratio,
-                                            _n: t.health.ratio
-                                        };
-                                    if (s) {
-                                        let s = {
-                                                _me: e.maxSpeed ? Math.pow(n.length / e.maxSpeed, .25) : 1,
-                                                _n: t.maxSpeed ? Math.pow(l.length / t.maxSpeed, .25) : 1
-                                            },
-                                            i = !1;
-                                        if (e.shape === t.shape && e.settings.isNecromancer && "food" === t.type ? i = e.necro(t) : e.shape === t.shape && t.settings.isNecromancer && "food" === e.type && (i = t.necro(e)), !i) {
-                                            let i = e.health.resist - t.health.resist,
-                                                a = {
-                                                    _me: c.DAMAGE_CONSTANT * e.damage * (1 + i) * (1 + t.heteroMultiplier * (e.settings.damageClass === t.settings.damageClass)) * (e.settings.buffVsFood && 1 === t.settings.damageType ? 3 : 1) * e.damageMultiplier() * Math.min(2, Math.max(s._me, 1) * s._me),
-                                                    _n: c.DAMAGE_CONSTANT * t.damage * (1 - i) * (1 + e.heteroMultiplier * (e.settings.damageClass === t.settings.damageClass)) * (t.settings.buffVsFood && 1 === e.settings.damageType ? 3 : 1) * t.damageMultiplier() * Math.min(2, Math.max(s._n, 1) * s._n)
-                                                };
-                                            e.settings.ratioEffects && (a._me *= Math.min(1, Math.pow(Math.max(e.health.ratio, e.shield.ratio), 1 / e.penetration))), t.settings.ratioEffects && (a._n *= Math.min(1, Math.pow(Math.max(t.health.ratio, t.shield.ratio), 1 / t.penetration))), e.settings.damageEffects && (a._me *= g * (1 + (o - 1) * (1 - f._n) / e.penetration) * (1 + k._n.sqrt * f._n - f._n) / k._n.sqrt), t.settings.damageEffects && (a._n *= g * (1 + (o - 1) * (1 - f._me) / t.penetration) * (1 + k._me.sqrt * f._me - f._me) / k._me.sqrt);
-                                            let r = {
-                                                _me: a._me,
-                                                _n: a._n
-                                            };
-                                            t.shield.max && (r._me -= t.shield.getDamage(r._me)), e.shield.max && (r._n -= e.shield.getDamage(r._n));
-                                            let n = e.health.getDamage(r._n, !1);
-                                            p._me = n > e.health.amount ? e.health.amount / n : 1, n = t.health.getDamage(r._me, !1), p._n = n > t.health.amount ? t.health.amount / n : 1, e.damageReceived += a._n * p._n, t.damageReceived += a._me * p._me
-                                        }
-                                        e.onDamaged && e.onDamaged(e, t), e.onDealtDamage && e.onDealtDamage(e, t), e.onDealtDamageUniv && e.onDealtDamageUniv(e, t), e.master && e.master.onDealtDamageUniv && e.master.onDealtDamageUniv(e.master, t), t.onDamaged && t.onDamaged(t, e), t.onDealtDamage && t.onDealtDamage(t, e), t.onDealtDamageUniv && t.onDealtDamageUniv(t, e), t.master && t.master.onDealtDamageUniv && t.master.onDealtDamageUniv(t.master, e), t.poisonStatic.enabled && (e.poison.active = !0, e.poison.mult = t.poisonStatic.mult, e.poison.time = t.poisonStatic.duration, e.poison.remaining = t.master.health.amount), e.poisonStatic.enabled && (t.poison.active = !0, t.poison.mult = e.poisonStatic.mult, t.poison.time = e.poisonStatic.duration, t.poison.remaining = e.master.health.amount)
-                                    }
-                                    if (a < 0) a *= -.5, e.accel.x -= a * u * m.x, e.accel.y -= a * u * m.y, t.accel.x += a * u * m.x, t.accel.y += a * u * m.y;
-                                    else if (a > 0) t.accel.x += a * (u * m.x + b.up), t.accel.y += a * (u * m.y + b.up);
-                                    else {
-                                        let s = 2 - 4 * Math.atan(e.penetration * t.penetration) / Math.PI;
-                                        i && e.settings.motionEffects && t.settings.motionEffects ? s *= v._me / k._me.sqrt + v._n / k._n.sqrt : s *= 2;
-                                        let a = 2 * Math.sqrt(v._me * v._n) / room.speed,
-                                            o = -(Math.pow(b.down, 2) * s * u * e.mass * t.mass / (e.mass + t.mass) + c.KNOCKBACK_CONSTANT * a * b.up) * (1 - e.intangibility) * (1 - t.intangibility),
-                                            r = {
-                                                x: o * m.x,
-                                                y: o * m.y
-                                            },
-                                            n = {
-                                                _me: c.KNOCKBACK_CONSTANT * e.pushability / e.mass * p._n,
-                                                _n: c.KNOCKBACK_CONSTANT * t.pushability / t.mass * p._me
-                                            };
-                                        e.accel.x += n._me * r.x, e.accel.y += n._me * r.y, t.accel.x -= n._n * r.x, t.accel.y -= n._n * r.y
-                                    }
-                                }
-                            }
                         },
-                        s = (e, t) => {
-                            e.SIZE >= t.SIZE ? (e.SIZE += 7, t.kill()) : (t.SIZE += 7, e.kill())
-                        };
-                    return i => {
-                        let a = i[0],
-                            o = i[1];
-                        if (a.isGhost || o.isGhost) {
-                            let e = a.isGhost ? a : o;
-                            return "shield" !== e.settings.hitsOwnType && (util.error("A ghost has been found!"), util.error("Type: " + e.label), util.error("Position: (" + e.x + ", " + e.y + ")"), util.error("Collision Array: " + e.collisionArray), util.error("Health: " + e.health.amount), util.error("Ghost removed successfully.")), grid.checkIfInHSHG(e) && grid.removeObject(e), e.isInGrid = !1, 0
+                        n = util.getDistance(o, r),
+                        l = Math.max(e.velocity.length, e.topSpeed),
+                        h = Math.max(t.velocity.length, t.topSpeed);
+                    if (0 === n) {
+                        let s = new Vector(2 * Math.random() - 1, 2 * Math.random() - 1);
+                        return e.accel.x += s.x, e.accel.y += s.y, t.accel.x -= s.x, void (t.accel.y -= s.y)
+                    }
+                    if (s > 0 && n <= e.realSize + t.realSize + s) {
+                        let i = (e.acceleration + t.acceleration) * (e.realSize + t.realSize + s - n) / s / room.speed;
+                        e.accel.x += i * (o.x - r.x) / n, e.accel.y += i * (o.y - r.y) / n, t.accel.x -= i * (o.x - r.x) / n, t.accel.y -= i * (o.y - r.y) / n
+                    }
+                    for (; n <= e.realSize + t.realSize && (!i || !a);) a = i = !1, e.velocity.length <= l ? (e.velocity.x -= .05 * (r.x - o.x) / n / room.speed, e.velocity.y -= .05 * (r.y - o.y) / n / room.speed) : i = !0, t.velocity.length <= h ? (t.velocity.x += .05 * (r.x - o.x) / n / room.speed, t.velocity.y += .05 * (r.y - o.y) / n / room.speed) : a = !0, o = {
+                        x: e.x + e.m_x,
+                        y: e.y + e.m_y
+                    }, r = {
+                        x: t.x + t.m_x,
+                        y: t.y + t.m_y
+                    }, n = util.getDistance(o, r)
+                };
+                const t = (e, t, s, i, a = !1) => {
+                    let o = Math.min(e.stepRemaining, t.stepRemaining),
+                        r = t.size + e.size,
+                        n = new Vector(e.m_x, e.m_y),
+                        l = new Vector(t.m_x, t.m_y),
+                        h = new Vector(o * (n.x - l.x), o * (n.y - l.y)),
+                        d = new Vector(e.x - t.x, e.y - t.y),
+                        m = new Vector(t.x - e.x, t.y - e.y).unit(),
+                        u = Math.max(0, m.x * h.x + m.y * h.y);
+                    if (u >= d.length - r) {
+                        let y, p = !1,
+                            g = 1 - o,
+                            f = Math.pow(h.x, 2) + Math.pow(h.y, 2),
+                            b = 2 * h.x * d.x + 2 * h.y * d.y,
+                            k = Math.pow(d.x, 2) + Math.pow(d.y, 2) - Math.pow(r, 2),
+                            v = b * b - 4 * f * k;
+                        if (!f || v < 0 || k < 0) y = 0, k < 0 && (p = !0);
+                        else {
+                            let e = (-b - Math.sqrt(v)) / (2 * f),
+                                t = (-b + Math.sqrt(v)) / (2 * f);
+                            e < g || e > 1 ? t < g || t > 1 ? y = !1 : (y = t, p = !0) : (y = t >= g && t <= 1 ? Math.min(e, t) : e, p = !0)
                         }
-                        if (!a.activation.check() && !o.activation.check()) return 0;
-                        if (a.submarine.submerged !== o.submarine.submerged) return 0;
-                        if (c.RANKED_BATTLE && a.roomId !== o.roomId) return 0;
-                        if ("forcedNever" !== a.settings.hitsOwnType && "forcedNever" !== o.settings.hitsOwnType) {
-                            if (a.isPlane && "bullet" !== o.type && "drone" !== o.type && "minion" !== o.type || o.isPlane && "bullet" !== a.type && "drone" !== a.type && "minion" !== a.type) return 0;
-                            switch (!0) {
-                                case a.passive || o.passive:
-                                    if (a.passive && o.passive && a.settings.hitsOwnType === o.settings.hitsOwnType) switch (a.settings.hitsOwnType) {
-                                        case "mountain":
-                                            a.master.id === o.master.id && s(a, o);
-                                        case "push":
-                                            a.master.id === o.master.id && t(a, o, !1, !1);
-                                            break;
-                                        case "hard":
-                                            e(a, o);
-                                            break;
-                                        case "hardWithBuffer":
-                                            a.master.id === o.master.id && e(a, o, 30);
-                                            break;
-                                        case "hardOnlyDrones":
-                                            a.master.id === o.master.id && e(a, o)
+                        if (p) {
+                            e.collisionArray.push(t), t.collisionArray.push(e), y && (e.x += n.x * y, e.y += n.y * y, t.x += l.x * y, t.y += l.y * y, e.stepRemaining -= y, t.stepRemaining -= y, d = new Vector(e.x - t.x, e.y - t.y), m = new Vector(t.x - e.x, t.y - e.y).unit(), u = Math.max(0, m.x * h.x + m.y * h.y));
+                            let o = u / h.length,
+                                p = {
+                                    _me: 1,
+                                    _n: 1
+                                },
+                                g = h.length ? r / 4 / (Math.floor(r / h.length) + 1) : .001,
+                                f = {
+                                    _me: util.clamp((r - d.length) / (2 * e.size), 0, 1),
+                                    _n: util.clamp((r - d.length) / (2 * t.size), 0, 1)
+                                },
+                                b = {
+                                    up: f._me * f._n,
+                                    down: (1 - f._me) * (1 - f._n)
+                                },
+                                k = {
+                                    _me: {
+                                        sqr: Math.pow(e.penetration, 2),
+                                        sqrt: Math.sqrt(e.penetration)
+                                    },
+                                    _n: {
+                                        sqr: Math.pow(t.penetration, 2),
+                                        sqrt: Math.sqrt(t.penetration)
                                     }
-                                    break;
-                                case a.team === o.team && ("pushOnlyTeam" === a.settings.hitsOwnType || "pushOnlyTeam" === o.settings.hitsOwnType): {
-                                    if (a.settings.hitsOwnType === o.settings.hitsOwnType) return;
-                                    let e = "pushOnlyTeam" === a.settings.hitsOwnType ? a : o,
-                                        s = "pushOnlyTeam" === a.settings.hitsOwnType ? o : a;
-                                    if (s.settings.goThruObstacle || "tank" !== s.type || "never" === s.settings.hitsOwnType) return;
-                                    if (s.settings.isHelicopter) return void(s.godmode || s.invuln || (s.health.amount -= .9));
-                                    let i = 1 + 10 / (Math.max(s.velocity.length, e.velocity.length) + 10);
-                                    t(e, s, !1, !1, i)
+                                },
+                                v = {
+                                    _me: e.health.ratio,
+                                    _n: t.health.ratio
+                                };
+                            if (s) {
+                                let s = {
+                                    _me: e.maxSpeed ? Math.pow(n.length / e.maxSpeed, .25) : 1,
+                                    _n: t.maxSpeed ? Math.pow(l.length / t.maxSpeed, .25) : 1
+                                },
+                                    i = !1;
+                                if (e.shape === t.shape && e.settings.isNecromancer && "food" === t.type ? i = e.necro(t) : e.shape === t.shape && t.settings.isNecromancer && "food" === e.type && (i = t.necro(e)), !i) {
+                                    let i = e.health.resist - t.health.resist,
+                                        a = {
+                                            _me: c.DAMAGE_CONSTANT * e.damage * (1 + i) * (1 + t.heteroMultiplier * (e.settings.damageClass === t.settings.damageClass)) * (e.settings.buffVsFood && 1 === t.settings.damageType ? 3 : 1) * e.damageMultiplier() * Math.min(2, Math.max(s._me, 1) * s._me),
+                                            _n: c.DAMAGE_CONSTANT * t.damage * (1 - i) * (1 + e.heteroMultiplier * (e.settings.damageClass === t.settings.damageClass)) * (t.settings.buffVsFood && 1 === e.settings.damageType ? 3 : 1) * t.damageMultiplier() * Math.min(2, Math.max(s._n, 1) * s._n)
+                                        };
+                                    e.settings.ratioEffects && (a._me *= Math.min(1, Math.pow(Math.max(e.health.ratio, e.shield.ratio), 1 / e.penetration))), t.settings.ratioEffects && (a._n *= Math.min(1, Math.pow(Math.max(t.health.ratio, t.shield.ratio), 1 / t.penetration))), e.settings.damageEffects && (a._me *= g * (1 + (o - 1) * (1 - f._n) / e.penetration) * (1 + k._n.sqrt * f._n - f._n) / k._n.sqrt), t.settings.damageEffects && (a._n *= g * (1 + (o - 1) * (1 - f._me) / t.penetration) * (1 + k._me.sqrt * f._me - f._me) / k._me.sqrt);
+                                    let r = {
+                                        _me: a._me,
+                                        _n: a._n
+                                    };
+                                    t.shield.max && (r._me -= t.shield.getDamage(r._me)), e.shield.max && (r._n -= e.shield.getDamage(r._n));
+                                    let n = e.health.getDamage(r._n, !1);
+                                    p._me = n > e.health.amount ? e.health.amount / n : 1, n = t.health.getDamage(r._me, !1), p._n = n > t.health.amount ? t.health.amount / n : 1, e.damageReceived += a._n * p._n, t.damageReceived += a._me * p._me
                                 }
-                                break;
-                                case "wall" === a.type || "wall" === o.type: {
-                                    let e = "wall" === a.type ? a : o,
-                                        s = "wall" === a.type ? o : a;
-                                    if (s.settings.diesByObstacles) return s.kill();
-                                    if (s.settings.goThruObstacle || "mazeWall" === s.type || s.isDominator) return;
-                                    if (s.settings.isHelicopter) {
-                                        if (!s.godmode && !s.invuln) {
-                                            const t = e.width ? e.size * e.width : e.size,
-                                                i = e.height ? e.size * e.height : e.size;
-                                            if (s.x + s.size < e.x - t || s.x - s.size > e.x + t || s.y + s.size < e.y - i || s.y - s.size > e.y + i) return 0;
-                                            s.health.amount -= .9
-                                        }
-                                        return
-                                    }
-                                    let i = "bullet" === s.type || "trap" === s.type ? 1 + 10 / (Math.max(s.velocity.length, e.velocity.length) + 10) : 1;
-                                    t(e, s, !1, !1, i)
-                                }
-                                break;
-                                case "shield" === a.settings.hitsOwnType || "shield" === o.settings.hitsOwnType: {
-                                    if (a.team === o.team || a.master.id === o.master.id) return;
-                                    let t = "shield" === a.settings.hitsOwnType ? a : o,
-                                        s = "shield" === a.settings.hitsOwnType ? o : a;
-                                    if (s.settings.goThruObstacle || "wall" === s.type || "food" === s.type || "mazeWall" === s.type || s.isDominator || s.master.isDominator || t.master.id === s.id) return;
-                                    e(t, s)
-                                }
-                                break;
-                                case "vaccine" === a.settings.hitsOwnType || "vaccine" === o.settings.hitsOwnType: {
-                                    let t = "vaccine" === a.settings.hitsOwnType ? a : o,
-                                        s = "vaccine" === a.settings.hitsOwnType ? o : a;
-                                    if (t.team !== s.team) return "vaccine" === t.settings.hitsOwnType && !0 === t.poisonStatic.enabled && (s.poison.active = !0, s.poison.mult = t.poisonStatic.mult, s.poison.time = t.poisonStatic.duration, s.poison.remaining = t.master.health.amount), void("vaccine" !== t.settings.hitsOwnType || !0 !== t.empStatic.enabled || s.isDominator && s.master.isDominator || (s.emp.active = !0, s.emp.time = t.empStatic.duration, s.emp.master = t.label));
-                                    if ("vaccine" === t.settings.hitsOwnType && !0 === t.vaccineStatic.enabled && t.master.id !== s.id && (s.vaccine.active = !0, s.vaccine.mult = t.vaccineStatic.mult, s.vaccine.time = t.vaccineStatic.duration, s.vaccine.remaining = t.master.health.amount), s.settings.goThruObstacle || "wall" === s.type || "mazeWall" === s.type || s.isDominator || s.master.isDominator || t.master.id === s.id) return;
-                                    e(t, s)
-                                }
-                                break;
-                                case "mazeWall" === a.type || "mazeWall" === o.type: {
-                                    if (a.type === o.type) return;
-                                    let e = "mazeWall" === a.type ? a : o,
-                                        t = "mazeWall" === a.type ? o : a;
-                                    if (t.settings.goThruObstacle || "wall" === t.type || t.isDominator) return;
-                                    if (t.settings.isHelicopter) return void(!t.godmode && !t.invuln && util.getDistance(e, t) < 1.35 * e.size && (t.health.amount -= .9));
-                                    ((e, t) => {
-                                        const s = e.width ? e.size * e.width : e.size,
-                                            i = e.height ? e.size * e.height : e.size;
-                                        if (t.x + t.size < e.x - s || t.x - t.size > e.x + s || t.y + t.size < e.y - i || t.y - t.size > e.y + i) return 0;
-                                        if (e.intangibility || "crasher" === t.type) return 0;
-                                        "tank" === t.type || "food" === t.type || "crasher" === t.type || t.type;
-                                        let a = t.x < e.x - s,
-                                            o = t.x > e.x + s,
-                                            r = t.y < e.y - i,
-                                            n = t.y > e.y + i,
-                                            l = t.x - t.size < e.x - s,
-                                            h = t.x + t.size > e.x + s,
-                                            d = t.y - t.size < e.y - i,
-                                            c = t.y + t.size > e.y + i,
-                                            m = l ? -s : h ? s : 0,
-                                            u = d ? -e.size : c ? i : 0,
-                                            y = new Vector(e.x + m - t.x, e.y + u - t.y),
-                                            p = !0;
-                                        a && o && (a = o = !1), r && n && (r = n = !1), l && h && (l = h = !1), d && c && (d = c = !1), a && !r && !n || l && !d && !c ? (t.accel.x > 0 && (t.accel.x = 0, t.velocity.x = 0), t.x = e.x - s - t.size) : o && !r && !n || h && !d && !c ? (t.accel.x < 0 && (t.accel.x = 0, t.velocity.x = 0), t.x = e.x + s + t.size) : r && !a && !o || d && !l && !h ? (t.accel.y > 0 && (t.accel.y = 0, t.velocity.y = 0), t.y = e.y - i - t.size) : n && !a && !o || c && !l && !h ? (t.accel.y < 0 && (t.accel.y = 0, t.velocity.y = 0), t.y = e.y + i + t.size) : m && u ? y.isShorterThan(t.size) || !(a || o || r || n) || (p = !1) : t.x + t.y < e.x + e.y ? t.x - t.y < e.x - e.y ? (t.accel.x > 0 && (t.accel.x = 0, t.velocity.x = 0), t.x = e.x - s - t.size) : (t.accel.y > 0 && (t.accel.y = 0, t.velocity.y = 0), t.y = e.y - i - t.size) : t.x - t.y < e.x - e.y ? (t.accel.y < 0 && (t.accel.y = 0, t.velocity.y = 0), t.y = e.y + i + t.size) : (t.accel.x < 0 && (t.accel.x = 0, t.velocity.x = 0), t.x = e.x + s + t.size), p && (t.godmode || (t.settings.bounceOnObstacles || "bullet" !== t.type && "swarm" !== t.type && "trap" !== t.type && ("food" !== t.type || t.isNestFood) && "minion" !== t.type && "drone" !== t.type ? room.wallCollisions.push({
-                                            id: t.id,
-                                            justForceIt: !(a || o || r || n) || y.isShorterThan(t.size),
-                                            left: a && !r && !n || l && !d && !c,
-                                            right: o && !r && !n || h && !d && !c,
-                                            top: r && !a && !o || d && !l && !h,
-                                            bottom: n && !a && !o || c && !l && !h
-                                        }) : t.kill()), t.collisionArray.push(e))
-                                    })(e, t)
-                                }
-                                break;
-                                case "crasher" === a.type && "food" === o.type || "crasher" === o.type && "food" === a.type:
-                                    e(a, o);
-                                    break;
-                                case a.team !== o.team && !a.hitsOwnTeam && !o.hitsOwnTeam:
-                                case a.team === o.team && (a.hitsOwnTeam || o.hitsOwnTeam) && a.master.master.id !== o.master.master.id && o.master.master.id !== a.master.master.id:
-                                    t(a, o, !0, !0);
-                                    break;
-                                case "never" === a.settings.hitsOwnType || "never" === o.settings.hitsOwnType:
-                                    break;
-                                case a.settings.hitsOwnType === o.settings.hitsOwnType && !a.multibox.enabled && !o.multibox.enabled:
-                                    switch (a.settings.hitsOwnType) {
-                                        case "mountain":
-                                            a.master.id === o.master.id && s(a, o);
-                                        case "push":
-                                            t(a, o, !1, !1);
-                                            break;
-                                        case "hard":
-                                            e(a, o);
-                                            break;
-                                        case "hardWithBuffer":
-                                            a.master.id === o.master.id && e(a, o, 30);
-                                            break;
-                                        case "spike":
-                                            ! function(e, t) {
-                                                let s = (1 + util.getDistance(e, t) / 2) * room.speed,
-                                                    i = e.intangibility ? 1 : e.pushability,
-                                                    a = t.intangibility ? 1 : t.pushability,
-                                                    o = 15 * (e.x - t.x) / s,
-                                                    r = 15 * (e.y - t.y) / s,
-                                                    n = Math.min(e.velocity.length, 3),
-                                                    l = Math.min(t.velocity.length, 3);
-                                                e.accel.x += i / (a + .3) * o * n, e.accel.y += i / (a + .3) * r * n, t.accel.x -= a / (i + .3) * o * l, t.accel.y -= a / (i + .3) * r * l
-                                            }(a, o);
-                                            break;
-                                        case "hardOnlyDrones":
-                                            a.master.id === o.master.id && e(a, o);
-                                            break;
-                                        case "hardOnlyTanks":
-                                            "tank" !== a.type || "tank" !== o.type || a.isDominator || o.isDominator || a.isInMyBase() || o.isInMyBase() || e(a, o);
-                                            break;
-                                        case "repel":
-                                            ((e, t) => {
-                                                let s = (1 + util.getDistance(e, t) / 2) * room.speed,
-                                                    i = e.intangibility ? 1 : e.pushability,
-                                                    a = t.intangibility ? 1 : t.pushability,
-                                                    o = .05 * (e.x - t.x) / s,
-                                                    r = .05 * (e.y - t.y) / s;
-                                                e.accel.x += i / (a + .3) * o, e.accel.y += i / (a + .3) * r, t.accel.x -= a / (i + .3) * o, t.accel.y -= a / (i + .3) * r
-                                            })(a, o)
-                                    }
+                                e.onDamaged && e.onDamaged(e, t), e.onDealtDamage && e.onDealtDamage(e, t), e.onDealtDamageUniv && e.onDealtDamageUniv(e, t), e.master && e.master.onDealtDamageUniv && e.master.onDealtDamageUniv(e.master, t), t.onDamaged && t.onDamaged(t, e), t.onDealtDamage && t.onDealtDamage(t, e), t.onDealtDamageUniv && t.onDealtDamageUniv(t, e), t.master && t.master.onDealtDamageUniv && t.master.onDealtDamageUniv(t.master, e), t.poisonStatic.enabled && (e.poison.active = !0, e.poison.mult = t.poisonStatic.mult, e.poison.time = t.poisonStatic.duration, e.poison.remaining = t.master.health.amount), e.poisonStatic.enabled && (t.poison.active = !0, t.poison.mult = e.poisonStatic.mult, t.poison.time = e.poisonStatic.duration, t.poison.remaining = e.master.health.amount)
+                            }
+                            if (a < 0) a *= -.5, e.accel.x -= a * u * m.x, e.accel.y -= a * u * m.y, t.accel.x += a * u * m.x, t.accel.y += a * u * m.y;
+                            else if (a > 0) t.accel.x += a * (u * m.x + b.up), t.accel.y += a * (u * m.y + b.up);
+                            else {
+                                let s = 2 - 4 * Math.atan(e.penetration * t.penetration) / Math.PI;
+                                i && e.settings.motionEffects && t.settings.motionEffects ? s *= v._me / k._me.sqrt + v._n / k._n.sqrt : s *= 2;
+                                let a = 2 * Math.sqrt(v._me * v._n) / room.speed,
+                                    o = -(Math.pow(b.down, 2) * s * u * e.mass * t.mass / (e.mass + t.mass) + c.KNOCKBACK_CONSTANT * a * b.up) * (1 - e.intangibility) * (1 - t.intangibility),
+                                    r = {
+                                        x: o * m.x,
+                                        y: o * m.y
+                                    },
+                                    n = {
+                                        _me: c.KNOCKBACK_CONSTANT * e.pushability / e.mass * p._n,
+                                        _n: c.KNOCKBACK_CONSTANT * t.pushability / t.mass * p._me
+                                    };
+                                e.accel.x += n._me * r.x, e.accel.y += n._me * r.y, t.accel.x -= n._n * r.x, t.accel.y -= n._n * r.y
                             }
                         }
                     }
-                })(),
+                },
+                    s = (e, t) => {
+                        e.SIZE >= t.SIZE ? (e.SIZE += 7, t.kill()) : (t.SIZE += 7, e.kill())
+                    };
+                return i => {
+                    let a = i[0],
+                        o = i[1];
+                    if (a.isGhost || o.isGhost) {
+                        let e = a.isGhost ? a : o;
+                        return "shield" !== e.settings.hitsOwnType && (util.error("A ghost has been found!"), util.error("Type: " + e.label), util.error("Position: (" + e.x + ", " + e.y + ")"), util.error("Collision Array: " + e.collisionArray), util.error("Health: " + e.health.amount), util.error("Ghost removed successfully.")), grid.checkIfInHSHG(e) && grid.removeObject(e), e.isInGrid = !1, 0
+                    }
+                    if (!a.activation.check() && !o.activation.check()) return 0;
+                    if (a.submarine.submerged !== o.submarine.submerged) return 0;
+                    if (c.RANKED_BATTLE && a.roomId !== o.roomId) return 0;
+                    if ("forcedNever" !== a.settings.hitsOwnType && "forcedNever" !== o.settings.hitsOwnType) {
+                        if (a.isPlane && "bullet" !== o.type && "drone" !== o.type && "minion" !== o.type || o.isPlane && "bullet" !== a.type && "drone" !== a.type && "minion" !== a.type) return 0;
+                        switch (!0) {
+                            case a.passive || o.passive:
+                                if (a.passive && o.passive && a.settings.hitsOwnType === o.settings.hitsOwnType) switch (a.settings.hitsOwnType) {
+                                    case "mountain":
+                                        a.master.id === o.master.id && s(a, o);
+                                    case "push":
+                                        a.master.id === o.master.id && t(a, o, !1, !1);
+                                        break;
+                                    case "hard":
+                                        e(a, o);
+                                        break;
+                                    case "hardWithBuffer":
+                                        a.master.id === o.master.id && e(a, o, 30);
+                                        break;
+                                    case "hardOnlyDrones":
+                                        a.master.id === o.master.id && e(a, o)
+                                }
+                                break;
+                            case a.team === o.team && ("pushOnlyTeam" === a.settings.hitsOwnType || "pushOnlyTeam" === o.settings.hitsOwnType): {
+                                if (a.settings.hitsOwnType === o.settings.hitsOwnType) return;
+                                let e = "pushOnlyTeam" === a.settings.hitsOwnType ? a : o,
+                                    s = "pushOnlyTeam" === a.settings.hitsOwnType ? o : a;
+                                if (s.settings.goThruObstacle || "tank" !== s.type || "never" === s.settings.hitsOwnType) return;
+                                if (s.settings.isHelicopter) return void (s.godmode || s.invuln || (s.health.amount -= .9));
+                                let i = 1 + 10 / (Math.max(s.velocity.length, e.velocity.length) + 10);
+                                t(e, s, !1, !1, i)
+                            }
+                                break;
+                            case "wall" === a.type || "wall" === o.type: {
+                                let e = "wall" === a.type ? a : o,
+                                    s = "wall" === a.type ? o : a;
+                                if (s.settings.diesByObstacles) return s.kill();
+                                if (s.settings.goThruObstacle || "mazeWall" === s.type || s.isDominator) return;
+                                if (s.settings.isHelicopter) {
+                                    if (!s.godmode && !s.invuln) {
+                                        const t = e.width ? e.size * e.width : e.size,
+                                            i = e.height ? e.size * e.height : e.size;
+                                        if (s.x + s.size < e.x - t || s.x - s.size > e.x + t || s.y + s.size < e.y - i || s.y - s.size > e.y + i) return 0;
+                                        s.health.amount -= .9
+                                    }
+                                    return
+                                }
+                                let i = "bullet" === s.type || "trap" === s.type ? 1 + 10 / (Math.max(s.velocity.length, e.velocity.length) + 10) : 1;
+                                t(e, s, !1, !1, i)
+                            }
+                                break;
+                            case "shield" === a.settings.hitsOwnType || "shield" === o.settings.hitsOwnType: {
+                                if (a.team === o.team || a.master.id === o.master.id) return;
+                                let t = "shield" === a.settings.hitsOwnType ? a : o,
+                                    s = "shield" === a.settings.hitsOwnType ? o : a;
+                                if (s.settings.goThruObstacle || "wall" === s.type || "food" === s.type || "mazeWall" === s.type || s.isDominator || s.master.isDominator || t.master.id === s.id) return;
+                                e(t, s)
+                            }
+                                break;
+                            case "vaccine" === a.settings.hitsOwnType || "vaccine" === o.settings.hitsOwnType: {
+                                let t = "vaccine" === a.settings.hitsOwnType ? a : o,
+                                    s = "vaccine" === a.settings.hitsOwnType ? o : a;
+                                if (t.team !== s.team) return "vaccine" === t.settings.hitsOwnType && !0 === t.poisonStatic.enabled && (s.poison.active = !0, s.poison.mult = t.poisonStatic.mult, s.poison.time = t.poisonStatic.duration, s.poison.remaining = t.master.health.amount), void ("vaccine" !== t.settings.hitsOwnType || !0 !== t.empStatic.enabled || s.isDominator && s.master.isDominator || (s.emp.active = !0, s.emp.time = t.empStatic.duration, s.emp.master = t.label));
+                                if ("vaccine" === t.settings.hitsOwnType && !0 === t.vaccineStatic.enabled && t.master.id !== s.id && (s.vaccine.active = !0, s.vaccine.mult = t.vaccineStatic.mult, s.vaccine.time = t.vaccineStatic.duration, s.vaccine.remaining = t.master.health.amount), s.settings.goThruObstacle || "wall" === s.type || "mazeWall" === s.type || s.isDominator || s.master.isDominator || t.master.id === s.id) return;
+                                e(t, s)
+                            }
+                                break;
+                            case "mazeWall" === a.type || "mazeWall" === o.type: {
+                                if (a.type === o.type) return;
+                                let e = "mazeWall" === a.type ? a : o,
+                                    t = "mazeWall" === a.type ? o : a;
+                                if (t.settings.goThruObstacle || "wall" === t.type || t.isDominator) return;
+                                if (t.settings.isHelicopter) return void (!t.godmode && !t.invuln && util.getDistance(e, t) < 1.35 * e.size && (t.health.amount -= .9));
+                                ((e, t) => {
+                                    const s = e.width ? e.size * e.width : e.size,
+                                        i = e.height ? e.size * e.height : e.size;
+                                    if (t.x + t.size < e.x - s || t.x - t.size > e.x + s || t.y + t.size < e.y - i || t.y - t.size > e.y + i) return 0;
+                                    if (e.intangibility || "crasher" === t.type) return 0;
+                                    "tank" === t.type || "food" === t.type || "crasher" === t.type || t.type;
+                                    let a = t.x < e.x - s,
+                                        o = t.x > e.x + s,
+                                        r = t.y < e.y - i,
+                                        n = t.y > e.y + i,
+                                        l = t.x - t.size < e.x - s,
+                                        h = t.x + t.size > e.x + s,
+                                        d = t.y - t.size < e.y - i,
+                                        c = t.y + t.size > e.y + i,
+                                        m = l ? -s : h ? s : 0,
+                                        u = d ? -e.size : c ? i : 0,
+                                        y = new Vector(e.x + m - t.x, e.y + u - t.y),
+                                        p = !0;
+                                    a && o && (a = o = !1), r && n && (r = n = !1), l && h && (l = h = !1), d && c && (d = c = !1), a && !r && !n || l && !d && !c ? (t.accel.x > 0 && (t.accel.x = 0, t.velocity.x = 0), t.x = e.x - s - t.size) : o && !r && !n || h && !d && !c ? (t.accel.x < 0 && (t.accel.x = 0, t.velocity.x = 0), t.x = e.x + s + t.size) : r && !a && !o || d && !l && !h ? (t.accel.y > 0 && (t.accel.y = 0, t.velocity.y = 0), t.y = e.y - i - t.size) : n && !a && !o || c && !l && !h ? (t.accel.y < 0 && (t.accel.y = 0, t.velocity.y = 0), t.y = e.y + i + t.size) : m && u ? y.isShorterThan(t.size) || !(a || o || r || n) || (p = !1) : t.x + t.y < e.x + e.y ? t.x - t.y < e.x - e.y ? (t.accel.x > 0 && (t.accel.x = 0, t.velocity.x = 0), t.x = e.x - s - t.size) : (t.accel.y > 0 && (t.accel.y = 0, t.velocity.y = 0), t.y = e.y - i - t.size) : t.x - t.y < e.x - e.y ? (t.accel.y < 0 && (t.accel.y = 0, t.velocity.y = 0), t.y = e.y + i + t.size) : (t.accel.x < 0 && (t.accel.x = 0, t.velocity.x = 0), t.x = e.x + s + t.size), p && (t.godmode || (t.settings.bounceOnObstacles || "bullet" !== t.type && "swarm" !== t.type && "trap" !== t.type && ("food" !== t.type || t.isNestFood) && "minion" !== t.type && "drone" !== t.type ? room.wallCollisions.push({
+                                        id: t.id,
+                                        justForceIt: !(a || o || r || n) || y.isShorterThan(t.size),
+                                        left: a && !r && !n || l && !d && !c,
+                                        right: o && !r && !n || h && !d && !c,
+                                        top: r && !a && !o || d && !l && !h,
+                                        bottom: n && !a && !o || c && !l && !h
+                                    }) : t.kill()), t.collisionArray.push(e))
+                                })(e, t)
+                            }
+                                break;
+                            case "crasher" === a.type && "food" === o.type || "crasher" === o.type && "food" === a.type:
+                                e(a, o);
+                                break;
+                            case a.team !== o.team && !a.hitsOwnTeam && !o.hitsOwnTeam:
+                            case a.team === o.team && (a.hitsOwnTeam || o.hitsOwnTeam) && a.master.master.id !== o.master.master.id && o.master.master.id !== a.master.master.id:
+                                t(a, o, !0, !0);
+                                break;
+                            case "never" === a.settings.hitsOwnType || "never" === o.settings.hitsOwnType:
+                                break;
+                            case a.settings.hitsOwnType === o.settings.hitsOwnType && !a.multibox.enabled && !o.multibox.enabled:
+                                switch (a.settings.hitsOwnType) {
+                                    case "mountain":
+                                        a.master.id === o.master.id && s(a, o);
+                                    case "push":
+                                        t(a, o, !1, !1);
+                                        break;
+                                    case "hard":
+                                        e(a, o);
+                                        break;
+                                    case "hardWithBuffer":
+                                        a.master.id === o.master.id && e(a, o, 30);
+                                        break;
+                                    case "spike":
+                                        ! function (e, t) {
+                                            let s = (1 + util.getDistance(e, t) / 2) * room.speed,
+                                                i = e.intangibility ? 1 : e.pushability,
+                                                a = t.intangibility ? 1 : t.pushability,
+                                                o = 15 * (e.x - t.x) / s,
+                                                r = 15 * (e.y - t.y) / s,
+                                                n = Math.min(e.velocity.length, 3),
+                                                l = Math.min(t.velocity.length, 3);
+                                            e.accel.x += i / (a + .3) * o * n, e.accel.y += i / (a + .3) * r * n, t.accel.x -= a / (i + .3) * o * l, t.accel.y -= a / (i + .3) * r * l
+                                        }(a, o);
+                                        break;
+                                    case "hardOnlyDrones":
+                                        a.master.id === o.master.id && e(a, o);
+                                        break;
+                                    case "hardOnlyTanks":
+                                        "tank" !== a.type || "tank" !== o.type || a.isDominator || o.isDominator || a.isInMyBase() || o.isInMyBase() || e(a, o);
+                                        break;
+                                    case "repel":
+                                        ((e, t) => {
+                                            let s = (1 + util.getDistance(e, t) / 2) * room.speed,
+                                                i = e.intangibility ? 1 : e.pushability,
+                                                a = t.intangibility ? 1 : t.pushability,
+                                                o = .05 * (e.x - t.x) / s,
+                                                r = .05 * (e.y - t.y) / s;
+                                            e.accel.x += i / (a + .3) * o, e.accel.y += i / (a + .3) * r, t.accel.x -= a / (i + .3) * o, t.accel.y -= a / (i + .3) * r
+                                        })(a, o)
+                                }
+                        }
+                    }
+                }
+            })(),
                 t = e => {
                     let t = room.wallCollisions.filter((t => t.id === e.id));
                     if (t.length > 1) {
@@ -5491,189 +5508,189 @@ global.utility = util, global.minifyModules = !1, (async () => {
                 let t = ["nest", "port", "domi", "edge"];
                 for (let e = 1; e < 5; e++) t.push("bas" + e), t.push("n_b" + e), t.push("bad" + e), t.push("dom" + e);
                 const s = c.MAZE.CAVES ? new class {
-                        constructor(e = {}) {
-                            if (null == e.width && (e.width = 32), !Number.isFinite(e.width) || e.width < 16 || e.width != e.width | 0) throw new RangeError("If specified, options.width must be a finite integer greater than 15! (Defaults to 32)");
-                            if (null == e.height && (e.height = 32), !Number.isFinite(e.height) || e.height < 16 || e.height != e.height | 0) throw new RangeError("If specified, options.height must be a finite integer greater than 15! (Defaults to 32)");
-                            if (null == e.clumpSize) e.clumpSize = [1, 2];
-                            else if (!Array.isArray(e.clumpSize) || 2 !== e.clumpSize.length || e.clumpSize.some((e => e < 1 || e != e | 0))) throw new RangeError("If specified, options.clumpSize must be an array of two positive integers! (Defaults to [1, 2])");
-                            if (null == e.lineThreshold) e.lineThreshold = 1;
-                            else if (Array.isArray(e.lineThreshold)) {
-                                if (e.lineThreshold.some((e => e < 0 || e != e | 0))) throw new RangeError("If specified as an array, options.lineThreshold must be an array of two zero or positive integers! (Defaults to 1)")
-                            } else if (!Number.isFinite(e.lineThreshold) || e.lineThreshold < 0 || e.lineThreshold != e.lineThreshold | 0) throw new RangeError("If specified, options.lineThreshold must be a finite positive or zero integer! (Defaults to 1)");
-                            if (null == e.soloThreshold) e.soloThreshold = .95;
-                            else if (e.soloThreshold !== Math.min(1, Math.max(.5, e.soloThreshold))) throw new RangeError("If specified, options.soloThreshold must be a decimal from .5 to 1! (Defaults to .95)");
-                            if (null == e.loopCap && (e.loopCap = 1e7), !Number.isFinite(e.loopCap) || e.loopCap < 1e6 || e.loopCap != e.loopCap | 0) throw new RangeError("If specified, options.loopCap must be a finite integer greater than 999999! (Defaults to 10000000)");
-                            if (e.cardinals = !!e.cardinals, e.openMiddle = !!e.openMiddle, this.options = e, this.maze = null != e.mapString ? this.parseMapString(e.mapString) : JSON.parse(JSON.stringify(Array(e.width || 32).fill(Array(e.height || 32).fill(!1)))), null == e.mapString) {
-                                this.clearRing(0), this.clearRing(5);
-                                let e = this.width / 2 | 0,
-                                    t = this.height / 2 | 0,
-                                    s = this.width / 5 | 0;
-                                s % 2 && s++;
-                                for (let i = e - s / 2; i < e + s / 2; i++)
-                                    for (let e = t - s / 2; e < t + s / 2; e++) this.maze[0 | i][0 | e] = !1
+                    constructor(e = {}) {
+                        if (null == e.width && (e.width = 32), !Number.isFinite(e.width) || e.width < 16 || e.width != e.width | 0) throw new RangeError("If specified, options.width must be a finite integer greater than 15! (Defaults to 32)");
+                        if (null == e.height && (e.height = 32), !Number.isFinite(e.height) || e.height < 16 || e.height != e.height | 0) throw new RangeError("If specified, options.height must be a finite integer greater than 15! (Defaults to 32)");
+                        if (null == e.clumpSize) e.clumpSize = [1, 2];
+                        else if (!Array.isArray(e.clumpSize) || 2 !== e.clumpSize.length || e.clumpSize.some((e => e < 1 || e != e | 0))) throw new RangeError("If specified, options.clumpSize must be an array of two positive integers! (Defaults to [1, 2])");
+                        if (null == e.lineThreshold) e.lineThreshold = 1;
+                        else if (Array.isArray(e.lineThreshold)) {
+                            if (e.lineThreshold.some((e => e < 0 || e != e | 0))) throw new RangeError("If specified as an array, options.lineThreshold must be an array of two zero or positive integers! (Defaults to 1)")
+                        } else if (!Number.isFinite(e.lineThreshold) || e.lineThreshold < 0 || e.lineThreshold != e.lineThreshold | 0) throw new RangeError("If specified, options.lineThreshold must be a finite positive or zero integer! (Defaults to 1)");
+                        if (null == e.soloThreshold) e.soloThreshold = .95;
+                        else if (e.soloThreshold !== Math.min(1, Math.max(.5, e.soloThreshold))) throw new RangeError("If specified, options.soloThreshold must be a decimal from .5 to 1! (Defaults to .95)");
+                        if (null == e.loopCap && (e.loopCap = 1e7), !Number.isFinite(e.loopCap) || e.loopCap < 1e6 || e.loopCap != e.loopCap | 0) throw new RangeError("If specified, options.loopCap must be a finite integer greater than 999999! (Defaults to 10000000)");
+                        if (e.cardinals = !!e.cardinals, e.openMiddle = !!e.openMiddle, this.options = e, this.maze = null != e.mapString ? this.parseMapString(e.mapString) : JSON.parse(JSON.stringify(Array(e.width || 32).fill(Array(e.height || 32).fill(!1)))), null == e.mapString) {
+                            this.clearRing(0), this.clearRing(5);
+                            let e = this.width / 2 | 0,
+                                t = this.height / 2 | 0,
+                                s = this.width / 5 | 0;
+                            s % 2 && s++;
+                            for (let i = e - s / 2; i < e + s / 2; i++)
+                                for (let e = t - s / 2; e < t + s / 2; e++) this.maze[0 | i][0 | e] = !1
+                        }
+                        this.run(.325 * this.maze.flat().length)
+                    }
+                    get width() {
+                        return this.maze.length
+                    }
+                    get height() {
+                        return this.maze[0].length
+                    }
+                    parseMapString(e) {
+                        const t = e.trim().split("\n").map((e => e.trim().split("").map((e => "#" === e ? 1 : "@" === e))));
+                        return Array(t[0].length).fill().map(((e, s) => Array(t.length).fill().map(((e, i) => t[i][s]))))
+                    }
+                    randomPosition(e) {
+                        let t = Math.floor(Math.random() * this.width),
+                            s = Math.floor(Math.random() * this.height);
+                        for (; this.maze[t][s] != e;) t = Math.floor(Math.random() * this.width), s = Math.floor(Math.random() * this.height);
+                        return [t, s]
+                    }
+                    clearRing(e) {
+                        for (let t = e; t < this.width - e; t++) this.maze[t][e] = !1, this.maze[t][this.height - 1 - e] = !1;
+                        for (let t = e; t < this.height - e; t++) this.maze[e][t] = !1, this.maze[this.width - 1 - e][t] = !1
+                    }
+                    getDistance(e, t) {
+                        return Math.sqrt((t.x - e.x) ** 2 + (t.y - e.y) ** 2)
+                    }
+                    run(e) {
+                        let t = [];
+                        for (let s = 0; s < .04 * e; s++) {
+                            let e, s, i = this.options.clumpSize[0] + Math.round(Math.random() * (this.options.clumpSize[1] - this.options.clumpSize[0])),
+                                a = 100;
+                            do {
+                                [e, s] = this.randomPosition(0)
+                            } while (t.some((t => t.id !== a && this.getDistance(t, {
+                                x: e,
+                                y: s
+                            }) < t.size + i + a / 7.5)) && a--);
+                            t.push({
+                                x: e,
+                                y: s,
+                                size: i,
+                                id: a
+                            })
+                        }
+                        for (let e = 0; e < this.width; e++)
+                            for (let s = 0; s < this.height; s++) t.some((t => this.getDistance(t, {
+                                x: e,
+                                y: s
+                            }) < t.size)) && (this.maze[e][s] = !0);
+                        let s = 0;
+                        e: for (; this.maze.flat().filter((e => !!e)).length < e && s++ < this.options.loopCap && (this.disposeOfBadAreas(), !(this.maze.flat().filter((e => !!e)).length > e));) t: for (let t = 1; t < this.width - 1; t++) {
+                            for (let s = 1; s < this.height - 1; s++) {
+                                const i = [this.maze[t + 1][s], this.maze[t - 1][s], this.maze[t][s + 1], this.maze[t][s - 1]].concat(this.options.cardinals ? [] : [this.maze[t + 1][s + 1], this.maze[t - 1][s + 1], this.maze[t + 1][s - 1], this.maze[t - 1][s - 1]]).filter((e => !!e)).length;
+                                if (Math.random() > .45 ? (this.options.lineThreshold instanceof Array && i >= this.options.lineThreshold[0] && i <= this.options.lineThreshold[1] || i === this.options.lineThreshold) && (this.maze[t][s] = !0) : 0 === i && Math.random() > this.options.soloThreshold && (this.maze[t][s] = !0), this.maze.flat().filter((e => !!e)).length > e) break e
                             }
-                            this.run(.325 * this.maze.flat().length)
+                            if (this.maze.flat().filter((e => !!e)).length > e) break t
                         }
-                        get width() {
-                            return this.maze.length
+                        this.disposeOfBadAreas()
+                    }
+                    disposeOfBadAreas() {
+                        if (this.clearRing(0), this.options.openMiddle) {
+                            let e = this.width / 2 | 0,
+                                t = this.height / 2 | 0,
+                                s = this.width / 5 | 0;
+                            s % 2 && s++;
+                            for (let i = e - s / 2; i < e + s / 2; i++)
+                                for (let e = t - s / 2; e < t + s / 2; e++) this.maze[0 | i][0 | e] = !1
                         }
-                        get height() {
-                            return this.maze[0].length
-                        }
-                        parseMapString(e) {
-                            const t = e.trim().split("\n").map((e => e.trim().split("").map((e => "#" === e ? 1 : "@" === e))));
-                            return Array(t[0].length).fill().map(((e, s) => Array(t.length).fill().map(((e, i) => t[i][s]))))
-                        }
-                        randomPosition(e) {
-                            let t = Math.floor(Math.random() * this.width),
-                                s = Math.floor(Math.random() * this.height);
-                            for (; this.maze[t][s] != e;) t = Math.floor(Math.random() * this.width), s = Math.floor(Math.random() * this.height);
-                            return [t, s]
-                        }
-                        clearRing(e) {
-                            for (let t = e; t < this.width - e; t++) this.maze[t][e] = !1, this.maze[t][this.height - 1 - e] = !1;
-                            for (let t = e; t < this.height - e; t++) this.maze[e][t] = !1, this.maze[this.width - 1 - e][t] = !1
-                        }
-                        getDistance(e, t) {
-                            return Math.sqrt((t.x - e.x) ** 2 + (t.y - e.y) ** 2)
-                        }
-                        run(e) {
-                            let t = [];
-                            for (let s = 0; s < .04 * e; s++) {
-                                let e, s, i = this.options.clumpSize[0] + Math.round(Math.random() * (this.options.clumpSize[1] - this.options.clumpSize[0])),
-                                    a = 100;
-                                do {
-                                    [e, s] = this.randomPosition(0)
-                                } while (t.some((t => t.id !== a && this.getDistance(t, {
-                                        x: e,
-                                        y: s
-                                    }) < t.size + i + a / 7.5)) && a--);
-                                t.push({
-                                    x: e,
-                                    y: s,
-                                    size: i,
-                                    id: a
-                                })
-                            }
-                            for (let e = 0; e < this.width; e++)
-                                for (let s = 0; s < this.height; s++) t.some((t => this.getDistance(t, {
-                                    x: e,
-                                    y: s
-                                }) < t.size)) && (this.maze[e][s] = !0);
-                            let s = 0;
-                            e: for (; this.maze.flat().filter((e => !!e)).length < e && s++ < this.options.loopCap && (this.disposeOfBadAreas(), !(this.maze.flat().filter((e => !!e)).length > e));) t: for (let t = 1; t < this.width - 1; t++) {
-                                for (let s = 1; s < this.height - 1; s++) {
-                                    const i = [this.maze[t + 1][s], this.maze[t - 1][s], this.maze[t][s + 1], this.maze[t][s - 1]].concat(this.options.cardinals ? [] : [this.maze[t + 1][s + 1], this.maze[t - 1][s + 1], this.maze[t + 1][s - 1], this.maze[t - 1][s - 1]]).filter((e => !!e)).length;
-                                    if (Math.random() > .45 ? (this.options.lineThreshold instanceof Array && i >= this.options.lineThreshold[0] && i <= this.options.lineThreshold[1] || i === this.options.lineThreshold) && (this.maze[t][s] = !0) : 0 === i && Math.random() > this.options.soloThreshold && (this.maze[t][s] = !0), this.maze.flat().filter((e => !!e)).length > e) break e
+                        for (let e = 1; e < this.width - 1; e++)
+                            for (let t = 1; t < this.height - 1; t++)
+                                if (!1 === this.maze[e][t] && [this.maze[e + 1][t], this.maze[e - 1][t], this.maze[e][t + 1], this.maze[e][t - 1]].filter((e => !!e)).length > 0) {
+                                    let s = this.floodFill(e, t, !1);
+                                    s.fill && s.positions.forEach((e => {
+                                        this.maze[e.x][e.y] = !0
+                                    }))
                                 }
-                                if (this.maze.flat().filter((e => !!e)).length > e) break t
-                            }
-                            this.disposeOfBadAreas()
+                    }
+                    floodFill(e, t, s = 1) {
+                        let i = [],
+                            a = !0,
+                            o = (e, t) => {
+                                i.some((s => s.x === e && s.y === t)) || (i.push({
+                                    x: e,
+                                    y: t
+                                }), e + 1 >= this.width || t + 1 >= this.height || e - 1 < 0 || t - 1 < 0 ? a = !1 : (!!this.maze[e + 1][t] === s && o(e + 1, t), !!this.maze[e - 1][t] === s && o(e - 1, t), !!this.maze[e][t + 1] === s && o(e, t + 1), !!this.maze[e][t - 1] === s && o(e, t - 1)))
+                            };
+                        return o(e, t), {
+                            fill: a,
+                            positions: i
                         }
-                        disposeOfBadAreas() {
-                            if (this.clearRing(0), this.options.openMiddle) {
-                                let e = this.width / 2 | 0,
-                                    t = this.height / 2 | 0,
-                                    s = this.width / 5 | 0;
-                                s % 2 && s++;
-                                for (let i = e - s / 2; i < e + s / 2; i++)
-                                    for (let e = t - s / 2; e < t + s / 2; e++) this.maze[0 | i][0 | e] = !1
-                            }
-                            for (let e = 1; e < this.width - 1; e++)
-                                for (let t = 1; t < this.height - 1; t++)
-                                    if (!1 === this.maze[e][t] && [this.maze[e + 1][t], this.maze[e - 1][t], this.maze[e][t + 1], this.maze[e][t - 1]].filter((e => !!e)).length > 0) {
-                                        let s = this.floodFill(e, t, !1);
-                                        s.fill && s.positions.forEach((e => {
-                                            this.maze[e.x][e.y] = !0
-                                        }))
-                                    }
-                        }
-                        floodFill(e, t, s = 1) {
-                            let i = [],
-                                a = !0,
-                                o = (e, t) => {
-                                    i.some((s => s.x === e && s.y === t)) || (i.push({
-                                        x: e,
-                                        y: t
-                                    }), e + 1 >= this.width || t + 1 >= this.height || e - 1 < 0 || t - 1 < 0 ? a = !1 : (!!this.maze[e + 1][t] === s && o(e + 1, t), !!this.maze[e - 1][t] === s && o(e - 1, t), !!this.maze[e][t + 1] === s && o(e, t + 1), !!this.maze[e][t - 1] === s && o(e, t - 1)))
-                                };
-                            return o(e, t), {
-                                fill: a,
-                                positions: i
-                            }
-                        }
-                    }(c.MAZE) : new class {
-                        constructor(e = {}) {
-                            null == e.erosionPattern ? e.erosionPattern = {
-                                amount: .4,
-                                getter: (e, t) => e > .3 * t ? [Math.random() > .4 ? 2 : Math.random() > .4 ? 1 : 0, Math.random() > .3 ? 2 : 2 * Math.random() | 0] : [+(Math.random() > .6), 3 * Math.random() | 0]
-                            } : (null == e.erosionPattern.amount && (e.erosionPattern.amount = .4), null == e.erosionPattern.getter && (e.erosionPattern.getter = (e, t) => e > .4 * t ? [Math.random() > .4 ? 2 : Math.random() > .5 ? 1 : 0, Math.random() > .1 ? 2 : 2 * Math.random() | 0] : [+(Math.random() > .5), 3 * Math.random() | 0])), this.options = e, this.maze = null != e.mapString ? this.parseMapString(e.mapString) : JSON.parse(JSON.stringify(Array(e.width || 32).fill(Array(e.height || 32).fill(!0))));
-                            const s = room.width / this.width;
-                            for (let e = 0; e < this.width; e++)
-                                for (let i = 0; i < this.height; i++)
-                                    for (let a of t) room.isIn(a, {
-                                        x: e * s + .5 * s,
-                                        y: i * s + .5 * s
-                                    }) && (this.maze[e][i] = !1);
-                            null == e.mapString && (this.clearRing(0), this.clearRing(5));
-                            const i = this.maze.flat().length * e.erosionPattern.amount;
-                            for (let t = 0; t < i; t++) this.randomErosion(...e.erosionPattern.getter(t, i))
-                        }
-                        get width() {
-                            return this.maze.length
-                        }
-                        get height() {
-                            return this.maze[0].length
-                        }
-                        parseMapString(e) {
-                            const t = e.trim().split("\n").map((e => e.trim().split("").map((e => "#" === e ? 1 : "@" === e))));
-                            return Array(t[0].length).fill().map(((e, s) => Array(t.length).fill().map(((e, i) => t[i][s]))))
-                        }
-                        randomPosition(e) {
-                            let t = Math.floor(Math.random() * this.width),
-                                s = Math.floor(Math.random() * this.height);
-                            for (; this.maze[t][s] != e;) t = Math.floor(Math.random() * this.width), s = Math.floor(Math.random() * this.height);
-                            return [t, s]
-                        }
-                        clearRing(e) {
-                            for (let t = e; t < this.width - e; t++) this.maze[t][e] = !1, this.maze[t][this.height - 1 - e] = !1;
-                            for (let t = e; t < this.height - e; t++) this.maze[e][t] = !1, this.maze[this.width - 1 - e][t] = !1
-                        }
-                        randomErosion(e, t) {
-                            for (let s = 0; s < 750; s++) {
-                                const [s, i] = this.randomPosition(!1);
-                                if (!(0 !== s && s !== this.width - 1 || 0 !== i && i !== this.height - 1)) continue;
-                                let a = 4 * Math.random() | 0;
-                                0 === s ? a = 0 : 0 === i ? a = 1 : s === this.width - 1 ? a = 2 : i === this.height - 1 && (a = 3);
-                                let o = 0 === a ? s + 1 : 2 === a ? s - 1 : s,
-                                    r = 1 === a ? i + 1 : 3 === a ? i - 1 : i;
-                                if (!0 === this.test(o, r)) {
-                                    if (null !== t) {
-                                        let e = this.maze[2 === a || 3 === a ? s - 1 : s + 1][0 === a || 3 === a ? i - 1 : i + 1],
-                                            o = this.maze[1 === a || 2 === a ? s - 1 : s + 1][2 === a || 3 === a ? i - 1 : i + 1];
-                                        if ((!0 !== t || !e && !o) && t !== +e + +o) continue
-                                    }
-                                    if (null !== e) {
-                                        let t = this.maze[3 === a ? s + 1 : 1 === a ? s - 1 : s][0 === a ? i + 1 : 2 === a ? i - 1 : i],
-                                            o = this.maze[1 === a ? s + 1 : 3 === a ? s - 1 : s][2 === a ? i + 1 : 0 === a ? i - 1 : i];
-                                        if ((!0 !== e || !t && !o) && e !== +t + +o) continue
-                                    }
-                                    return void(this.maze[o][r] = !1)
+                    }
+                }(c.MAZE) : new class {
+                    constructor(e = {}) {
+                        null == e.erosionPattern ? e.erosionPattern = {
+                            amount: .4,
+                            getter: (e, t) => e > .3 * t ? [Math.random() > .4 ? 2 : Math.random() > .4 ? 1 : 0, Math.random() > .3 ? 2 : 2 * Math.random() | 0] : [+(Math.random() > .6), 3 * Math.random() | 0]
+                        } : (null == e.erosionPattern.amount && (e.erosionPattern.amount = .4), null == e.erosionPattern.getter && (e.erosionPattern.getter = (e, t) => e > .4 * t ? [Math.random() > .4 ? 2 : Math.random() > .5 ? 1 : 0, Math.random() > .1 ? 2 : 2 * Math.random() | 0] : [+(Math.random() > .5), 3 * Math.random() | 0])), this.options = e, this.maze = null != e.mapString ? this.parseMapString(e.mapString) : JSON.parse(JSON.stringify(Array(e.width || 32).fill(Array(e.height || 32).fill(!0))));
+                        const s = room.width / this.width;
+                        for (let e = 0; e < this.width; e++)
+                            for (let i = 0; i < this.height; i++)
+                                for (let a of t) room.isIn(a, {
+                                    x: e * s + .5 * s,
+                                    y: i * s + .5 * s
+                                }) && (this.maze[e][i] = !1);
+                        null == e.mapString && (this.clearRing(0), this.clearRing(5));
+                        const i = this.maze.flat().length * e.erosionPattern.amount;
+                        for (let t = 0; t < i; t++) this.randomErosion(...e.erosionPattern.getter(t, i))
+                    }
+                    get width() {
+                        return this.maze.length
+                    }
+                    get height() {
+                        return this.maze[0].length
+                    }
+                    parseMapString(e) {
+                        const t = e.trim().split("\n").map((e => e.trim().split("").map((e => "#" === e ? 1 : "@" === e))));
+                        return Array(t[0].length).fill().map(((e, s) => Array(t.length).fill().map(((e, i) => t[i][s]))))
+                    }
+                    randomPosition(e) {
+                        let t = Math.floor(Math.random() * this.width),
+                            s = Math.floor(Math.random() * this.height);
+                        for (; this.maze[t][s] != e;) t = Math.floor(Math.random() * this.width), s = Math.floor(Math.random() * this.height);
+                        return [t, s]
+                    }
+                    clearRing(e) {
+                        for (let t = e; t < this.width - e; t++) this.maze[t][e] = !1, this.maze[t][this.height - 1 - e] = !1;
+                        for (let t = e; t < this.height - e; t++) this.maze[e][t] = !1, this.maze[this.width - 1 - e][t] = !1
+                    }
+                    randomErosion(e, t) {
+                        for (let s = 0; s < 750; s++) {
+                            const [s, i] = this.randomPosition(!1);
+                            if (!(0 !== s && s !== this.width - 1 || 0 !== i && i !== this.height - 1)) continue;
+                            let a = 4 * Math.random() | 0;
+                            0 === s ? a = 0 : 0 === i ? a = 1 : s === this.width - 1 ? a = 2 : i === this.height - 1 && (a = 3);
+                            let o = 0 === a ? s + 1 : 2 === a ? s - 1 : s,
+                                r = 1 === a ? i + 1 : 3 === a ? i - 1 : i;
+                            if (!0 === this.test(o, r)) {
+                                if (null !== t) {
+                                    let e = this.maze[2 === a || 3 === a ? s - 1 : s + 1][0 === a || 3 === a ? i - 1 : i + 1],
+                                        o = this.maze[1 === a || 2 === a ? s - 1 : s + 1][2 === a || 3 === a ? i - 1 : i + 1];
+                                    if ((!0 !== t || !e && !o) && t !== +e + +o) continue
                                 }
+                                if (null !== e) {
+                                    let t = this.maze[3 === a ? s + 1 : 1 === a ? s - 1 : s][0 === a ? i + 1 : 2 === a ? i - 1 : i],
+                                        o = this.maze[1 === a ? s + 1 : 3 === a ? s - 1 : s][2 === a ? i + 1 : 0 === a ? i - 1 : i];
+                                    if ((!0 !== e || !t && !o) && e !== +t + +o) continue
+                                }
+                                return void (this.maze[o][r] = !1)
                             }
                         }
-                        test(e, t) {
-                            return this.maze[e][t]
+                    }
+                    test(e, t) {
+                        return this.maze[e][t]
+                    }
+                    toMapString() {
+                        let e = "";
+                        for (let t = 0; t < this.height; t++) {
+                            for (let s = 0; s < this.width; s++) e += 1 === this.maze[s][t] ? "#" : this.maze[s][t] ? "@" : "-";
+                            e += "\n"
                         }
-                        toMapString() {
-                            let e = "";
-                            for (let t = 0; t < this.height; t++) {
-                                for (let s = 0; s < this.width; s++) e += 1 === this.maze[s][t] ? "#" : this.maze[s][t] ? "@" : "-";
-                                e += "\n"
-                            }
-                            return e
-                        }
-                    }(c.MAZE),
+                        return e
+                    }
+                }(c.MAZE),
                     i = new class {
                         constructor(e) {
                             this._ref = JSON.parse(JSON.stringify(e)), this.maze = e, this.blocks = []
@@ -5781,127 +5798,127 @@ global.utility = util, global.minifyModules = !1, (async () => {
                 }
             }, room.modelMode || placeObstacles(), c.MAZE.ENABLED && global.generateMaze();
             const e = (() => {
-                    if (room.modelMode) return;
-                    let e = 0;
-                    const t = (() => {
-                        let e = 0,
-                            t = [],
-                            s = [Class.egg],
-                            i = 0,
-                            a = "Placeholder message for spawnBosses.begin()",
-                            o = "Placeholder message for spawnBosses.arrival()",
-                            r = "norm";
-                        const n = () => {
-                            let i, a = 150;
-                            do {
-                                i = room.randomType(r)
-                            } while (dirtyCheck(i, 500) && a-- > 0);
-                            let o = new Entity(i);
-                            o.define(ran.choose(s)), o.team = -100, o.name = t[e++]
-                        };
-                        return {
-                            prepareToSpawn: (n, l, h, d = "norm") => {
-                                if (i = l, s = n, r = d, t = ran.chooseBossName(h, l), e = 0, 1 === i) a = "A boss is coming...", o = t[0] + " has arrived!";
-                                else {
-                                    a = "Bosses are coming...", o = "";
-                                    for (let e = 0; e < i - 2; e++) o += t[e] + ", ";
-                                    o += t[i - 2] + " and " + t[i - 1] + " have arrived!"
-                                }
-                            },
-                            spawn: () => {
-                                sockets.broadcast(a);
-                                for (let e = 0; e < i; e++) setTimeout(n, ran.randomRange(3500, 5e3));
-                                setTimeout((() => sockets.broadcast(o)), 5e3), util.spawn(o)
+                if (room.modelMode) return;
+                let e = 0;
+                const t = (() => {
+                    let e = 0,
+                        t = [],
+                        s = [Class.egg],
+                        i = 0,
+                        a = "Placeholder message for spawnBosses.begin()",
+                        o = "Placeholder message for spawnBosses.arrival()",
+                        r = "norm";
+                    const n = () => {
+                        let i, a = 150;
+                        do {
+                            i = room.randomType(r)
+                        } while (dirtyCheck(i, 500) && a-- > 0);
+                        let o = new Entity(i);
+                        o.define(ran.choose(s)), o.team = -100, o.name = t[e++]
+                    };
+                    return {
+                        prepareToSpawn: (n, l, h, d = "norm") => {
+                            if (i = l, s = n, r = d, t = ran.chooseBossName(h, l), e = 0, 1 === i) a = "A boss is coming...", o = t[0] + " has arrived!";
+                            else {
+                                a = "Bosses are coming...", o = "";
+                                for (let e = 0; e < i - 2; e++) o += t[e] + ", ";
+                                o += t[i - 2] + " and " + t[i - 1] + " have arrived!"
                             }
+                        },
+                        spawn: () => {
+                            sockets.broadcast(a);
+                            for (let e = 0; e < i; e++) setTimeout(n, ran.randomRange(3500, 5e3));
+                            setTimeout((() => sockets.broadcast(o)), 5e3), util.spawn(o)
                         }
-                    })();
-                    return s => {
-                        if (e > c.BOSS_SPAWN_TIMER && ran.dice(3 * c.BOSS_SPAWN_TIMER - e)) {
-                            util.spawn("Preparing to spawn bosses..."), e = 0;
-                            let s = [];
-                            switch (Math.floor(27 * Math.random())) {
-                                case 0:
-                                case 1:
-                                case 2:
-                                    s = [
-                                        [Class.eliteDestroyerAI, Class.eliteGunnerAI, Class.eliteSprayerAI, Class.eliteTwinAI, Class.eliteMachineAI, Class.eliteTrapAI, Class.eliteBorerAI, Class.eliteSniperAI, Class.eliteBasicAI, Class.eliteInfernoAI], Math.floor(2 * Math.random()) + 1, "a", "nest"
-                                    ], sockets.broadcast("A stirring in the distance...");
-                                    break;
-                                case 3:
-                                case 4:
-                                    s = [
-                                        [Class.fallenBoosterAI, Class.fallenOverlordAI, Class.fallenPistonAI, Class.fallenAutoTankAI, Class.fallenCavalcadeAI, Class.fallenFighterAI, Class.fallenDrifterAI], Math.floor(3 * Math.random()) + 1, "a", "norm"
-                                    ], sockets.broadcast("The dead are rising...");
-                                    break;
-                                case 5:
-                                case 6:
-                                    s = [
-                                        [Class.reanimFarmerAI, Class.reanimHeptaTrapAI, Class.reanimUziAI], 1, "a", "norm"
-                                    ], sockets.broadcast("Many had sought for the day when they'd return... Just not in this way...");
-                                    break;
-                                case 7:
-                                case 8:
-                                case 9:
-                                case 26:
-                                    s = [
-                                        [Class.palisadeAI, Class.skimBossAI, Class.leviathanAI, Class.ultMultitoolAI, Class.nailerAI, Class.gravibusAI, Class.cometAI, Class.brownCometAI, Class.orangicusAI, Class.atriumAI, Class.constructionistAI, Class.dropshipAI, Class.eggQueenTier1AI], ran.chooseChance(60, 20, 20) + 1, "castle", "norm"
-                                    ], sockets.broadcast("A strange trembling...");
-                                    break;
-                                case 10:
-                                case 11:
-                                    s = [
-                                        [Class.armySentrySwarmAI, Class.armySentryGunAI, Class.armySentryTrapAI, Class.armySentryRangerAI, Class.armySentrySwarmAI, Class.armySentryGunAI, Class.armySentryTrapAI, Class.armySentryRangerAI], 8, "castle", "nest"
-                                    ], sockets.broadcast("Sentries unite...");
-                                    break;
-                                case 12:
-                                case 13:
-                                case 14:
-                                    s = [
-                                        [Class.derogatorAI, Class.hexadecagorAI, Class.blitzkriegAI, Class.demolisherAI, Class.octogeddonAI, Class.octagronAI, Class.ultimateAI, Class.cutterAI, Class.alphaSentryAI, Class.asteroidAI, Class.eggQueenTier2AI], Math.floor(2 * Math.random()) + 1, "castle", "norm"
-                                    ], sockets.broadcast("Influx detected...");
-                                    break;
-                                case 15:
-                                case 16:
-                                    s = [
-                                        [Class.trapeFighterAI, Class.visUltimaAI, Class.gunshipAI, Class.messengerAI, Class.pulsarAI, Class.colliderAI, Class.deltrabladeAI, Class.aquamarineAI, Class.kioskAI, Class.vanguardAI, Class.magnetarAI], Math.floor(2 * Math.random()) + 1, "a", "nest"
-                                    ], sockets.broadcast("Don't get distracted...");
-                                    break;
-                                case 17:
-                                case 18:
-                                    s = [
-                                        [Class.guardianAI, Class.summonerAI, Class.defenderAI], 3, "a", "nest"
-                                    ], sockets.broadcast("And then they found refuge here."), sockets.broadcast("Copycats of them came to replace them; They had to flee."), sockets.broadcast("First heard of in only myths, the trio has arrived in an alternate dimension.");
-                                case 19:
-                                    s = [
-                                        [Class.xyvAI], 1, "castle", "norm"
-                                    ], sockets.broadcast("Souls unite...");
-                                    break;
-                                case 20:
-                                    s = [
-                                        [Class.conquistadorAI], 1, "castle", "norm"
-                                    ], sockets.broadcast("To put it bluntly, he's found it now."), sockets.broadcast("Searching all across the land, he only wanted one thing.");
-                                    break;
-                                case 21:
-                                    s = [
-                                        [Class.sassafrasAI], 1, "sassafras", ["roid", "rock"][Math.floor(2 * Math.random())]
-                                    ], sockets.broadcast("i like crackers");
-                                    break;
-                                case 22:
-                                case 23:
-                                case 24:
-                                    s = [
-                                        [Class.constAI, Class.bowAI, Class.snowflakeAI], 1, "a", ["norm", "nest"][Math.floor(2 * Math.random())]
-                                    ], sockets.broadcast("A disturbance...");
-                                    break;
-                                case 25:
-                                    s = [
-                                        [Class.greenGuardianAI], 1, "a", ["norm", "nest"][Math.floor(2 * Math.random())]
-                                    ], sockets.broadcast("I smell green paint...")
-                            }
-                            t.prepareToSpawn(...s), setTimeout(t.spawn, 3e3)
-                        } else s.miniboss || e++
                     }
-                })(),
+                })();
+                return s => {
+                    if (e > c.BOSS_SPAWN_TIMER && ran.dice(3 * c.BOSS_SPAWN_TIMER - e)) {
+                        util.spawn("Preparing to spawn bosses..."), e = 0;
+                        let s = [];
+                        switch (Math.floor(27 * Math.random())) {
+                            case 0:
+                            case 1:
+                            case 2:
+                                s = [
+                                    [Class.eliteDestroyerAI, Class.eliteGunnerAI, Class.eliteSprayerAI, Class.eliteTwinAI, Class.eliteMachineAI, Class.eliteTrapAI, Class.eliteBorerAI, Class.eliteSniperAI, Class.eliteBasicAI, Class.eliteInfernoAI], Math.floor(2 * Math.random()) + 1, "a", "nest"
+                                ], sockets.broadcast("A stirring in the distance...");
+                                break;
+                            case 3:
+                            case 4:
+                                s = [
+                                    [Class.fallenBoosterAI, Class.fallenOverlordAI, Class.fallenPistonAI, Class.fallenAutoTankAI, Class.fallenCavalcadeAI, Class.fallenFighterAI, Class.fallenDrifterAI], Math.floor(3 * Math.random()) + 1, "a", "norm"
+                                ], sockets.broadcast("The dead are rising...");
+                                break;
+                            case 5:
+                            case 6:
+                                s = [
+                                    [Class.reanimFarmerAI, Class.reanimHeptaTrapAI, Class.reanimUziAI], 1, "a", "norm"
+                                ], sockets.broadcast("Many had sought for the day when they'd return... Just not in this way...");
+                                break;
+                            case 7:
+                            case 8:
+                            case 9:
+                            case 26:
+                                s = [
+                                    [Class.palisadeAI, Class.skimBossAI, Class.leviathanAI, Class.ultMultitoolAI, Class.nailerAI, Class.gravibusAI, Class.cometAI, Class.brownCometAI, Class.orangicusAI, Class.atriumAI, Class.constructionistAI, Class.dropshipAI, Class.eggQueenTier1AI], ran.chooseChance(60, 20, 20) + 1, "castle", "norm"
+                                ], sockets.broadcast("A strange trembling...");
+                                break;
+                            case 10:
+                            case 11:
+                                s = [
+                                    [Class.armySentrySwarmAI, Class.armySentryGunAI, Class.armySentryTrapAI, Class.armySentryRangerAI, Class.armySentrySwarmAI, Class.armySentryGunAI, Class.armySentryTrapAI, Class.armySentryRangerAI], 8, "castle", "nest"
+                                ], sockets.broadcast("Sentries unite...");
+                                break;
+                            case 12:
+                            case 13:
+                            case 14:
+                                s = [
+                                    [Class.derogatorAI, Class.hexadecagorAI, Class.blitzkriegAI, Class.demolisherAI, Class.octogeddonAI, Class.octagronAI, Class.ultimateAI, Class.cutterAI, Class.alphaSentryAI, Class.asteroidAI, Class.eggQueenTier2AI], Math.floor(2 * Math.random()) + 1, "castle", "norm"
+                                ], sockets.broadcast("Influx detected...");
+                                break;
+                            case 15:
+                            case 16:
+                                s = [
+                                    [Class.trapeFighterAI, Class.visUltimaAI, Class.gunshipAI, Class.messengerAI, Class.pulsarAI, Class.colliderAI, Class.deltrabladeAI, Class.aquamarineAI, Class.kioskAI, Class.vanguardAI, Class.magnetarAI], Math.floor(2 * Math.random()) + 1, "a", "nest"
+                                ], sockets.broadcast("Don't get distracted...");
+                                break;
+                            case 17:
+                            case 18:
+                                s = [
+                                    [Class.guardianAI, Class.summonerAI, Class.defenderAI], 3, "a", "nest"
+                                ], sockets.broadcast("And then they found refuge here."), sockets.broadcast("Copycats of them came to replace them; They had to flee."), sockets.broadcast("First heard of in only myths, the trio has arrived in an alternate dimension.");
+                            case 19:
+                                s = [
+                                    [Class.xyvAI], 1, "castle", "norm"
+                                ], sockets.broadcast("Souls unite...");
+                                break;
+                            case 20:
+                                s = [
+                                    [Class.conquistadorAI], 1, "castle", "norm"
+                                ], sockets.broadcast("To put it bluntly, he's found it now."), sockets.broadcast("Searching all across the land, he only wanted one thing.");
+                                break;
+                            case 21:
+                                s = [
+                                    [Class.sassafrasAI], 1, "sassafras", ["roid", "rock"][Math.floor(2 * Math.random())]
+                                ], sockets.broadcast("i like crackers");
+                                break;
+                            case 22:
+                            case 23:
+                            case 24:
+                                s = [
+                                    [Class.constAI, Class.bowAI, Class.snowflakeAI], 1, "a", ["norm", "nest"][Math.floor(2 * Math.random())]
+                                ], sockets.broadcast("A disturbance...");
+                                break;
+                            case 25:
+                                s = [
+                                    [Class.greenGuardianAI], 1, "a", ["norm", "nest"][Math.floor(2 * Math.random())]
+                                ], sockets.broadcast("I smell green paint...")
+                        }
+                        t.prepareToSpawn(...s), setTimeout(t.spawn, 3e3)
+                    } else s.miniboss || e++
+                }
+            })(),
                 t = (() => {
                     if (!room.modelMode) {
                         if ("tdm" === room.gameMode && c.DO_BASE_DAMAGE) {
@@ -5916,9 +5933,9 @@ global.utility = util, global.minifyModules = !1, (async () => {
                                 }
                             }
                             if ("Carrier Battle" === c.serverName && c.SPAWN_DOMINATORS ? carrierBattle() : (c.serverName.includes("Domination") || c.SPAWN_DOMINATORS) && room.domi.length > 0 && dominatorLoop(), c.serverName.includes("Boss") && bossRushLoop({
-                                    x: Math.random() * room.width,
-                                    y: Math.random() * room.height
-                                }), c.serverName.includes("Mothership"))
+                                x: Math.random() * room.width,
+                                y: Math.random() * room.height
+                            }), c.serverName.includes("Mothership"))
                                 for (let e = 1; e < room.teamAmount + 1; e++)
                                     for (let t of room["mot" + e]) mothershipLoop(t, e)
                         }
@@ -5930,18 +5947,18 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             };
                             for (let e of entities) null != t[e.type] && t[e.type]++;
                             if (room.modelMode || c.RANKED_BATTLE || (e => {
-                                    if (!room.modelMode && ran.chance(1 - 2 * e.crasher / room.maxFood / room.nestFoodAmount)) {
-                                        let e, t = 10;
-                                        do {
-                                            e = room.randomType("nest")
-                                        } while (dirtyCheck(e, 100) && t-- > 0);
-                                        let s = [Class.sentryGunAI, Class.sentrySwarmAI, Class.sentryTrapAI, Class.sentryRangerAI, Class.flashSentryAI, Class.semiCrushSentryAI, Class.crushSentryAI, Class.bladeSentryAI, Class.greenSentrySwarmAI, Class.skimSentryAI, Class.kamikazeCrasherLite],
-                                            i = [Class.crasher, Class.fastCrasher, Class.semiCrushCrasher, Class.crushCrasher, Class.bladeCrasher, Class.destroyCrasher, Class.wallerCrasher, Class.grouperSpawn, Class.visDestructia, Class.megaCrushCrasher, Class.iceCrusher, Class.poisonBlades, Class.longCrasher, Class.asteroidCrasher, Class.walletCrasher, Class.boomCrasher, Class.zoomCrasher, Class.invisoCrasher, Class.redRunner1, Class.greenRunner, Class.destroyCrasherSquare, Class.kamikazeCrasher],
-                                            a = ran.dice(80) ? s[ran.chooseChance(15, 15, 15, 15, 12, 10, 8, 8, 8, 8, 10)] : i[ran.chooseChance(50, 25, 10, 10, 15, 10, 10, 25, 2, 2, 2, 2, 25, 2, 10, 5, 10, 10, 15, 25, 15, 20)],
-                                            o = new Entity(e);
-                                        o.define(a), o.team = -100
-                                    }
-                                })(t), !room.arenaClosed && !room.modelMode && !c.RANKED_BATTLE) {
+                                if (!room.modelMode && ran.chance(1 - 2 * e.crasher / room.maxFood / room.nestFoodAmount)) {
+                                    let e, t = 10;
+                                    do {
+                                        e = room.randomType("nest")
+                                    } while (dirtyCheck(e, 100) && t-- > 0);
+                                    let s = [Class.sentryGunAI, Class.sentrySwarmAI, Class.sentryTrapAI, Class.sentryRangerAI, Class.flashSentryAI, Class.semiCrushSentryAI, Class.crushSentryAI, Class.bladeSentryAI, Class.greenSentrySwarmAI, Class.skimSentryAI, Class.kamikazeCrasherLite],
+                                        i = [Class.crasher, Class.fastCrasher, Class.semiCrushCrasher, Class.crushCrasher, Class.bladeCrasher, Class.destroyCrasher, Class.wallerCrasher, Class.grouperSpawn, Class.visDestructia, Class.megaCrushCrasher, Class.iceCrusher, Class.poisonBlades, Class.longCrasher, Class.asteroidCrasher, Class.walletCrasher, Class.boomCrasher, Class.zoomCrasher, Class.invisoCrasher, Class.redRunner1, Class.greenRunner, Class.destroyCrasherSquare, Class.kamikazeCrasher],
+                                        a = ran.dice(80) ? s[ran.chooseChance(15, 15, 15, 15, 12, 10, 8, 8, 8, 8, 10)] : i[ran.chooseChance(50, 25, 10, 10, 15, 10, 10, 25, 2, 2, 2, 2, 25, 2, 10, 5, 10, 10, 15, 25, 15, 20)],
+                                        o = new Entity(e);
+                                    o.define(a), o.team = -100
+                                }
+                            })(t), !room.arenaClosed && !room.modelMode && !c.RANKED_BATTLE) {
                                 if (e(t), room.maxBots > 0) {
                                     bots = bots.filter((e => e.isAlive())), bots.length < room.maxBots && spawnBot();
                                     for (let e of bots) e.skill.level < 60 && (e.skill.score += 35, e.skill.maintain())
@@ -6009,7 +6026,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         } while (room.isIn("nest", e));
                         i(e, s())
                     }
-                    return global.foodTypeForces = [], global.forceFoodSpawn = function(e) {
+                    return global.foodTypeForces = [], global.forceFoodSpawn = function (e) {
                         let s = t.findIndex((t => t.name.toLowerCase() === e.toLowerCase()));
                         return s > -1 && (global.foodTypeForces.push(s), !0)
                     }, () => {
@@ -6062,10 +6079,10 @@ global.utility = util, global.minifyModules = !1, (async () => {
             }, e
         })();
     if (window.connectToGame = () => {
-            sockets.connect(__websocketPolyfill.client.sockets["ws://localhost:3001/"], {
-                headers: {}
-            })
-        }, setInterval(abilityLoop, 7.5 * room.cycleSpeed), setInterval(gameLoop, room.cycleSpeed), setInterval(maintainLoop, 200), setInterval(speedCheckLoop, 1e3), "win32" === process.platform) {
+        sockets.connect(__websocketPolyfill.client.sockets["ws://localhost:3001/"], {
+            headers: {}
+        })
+    }, setInterval(abilityLoop, 7.5 * room.cycleSpeed), setInterval(gameLoop, room.cycleSpeed), setInterval(maintainLoop, 200), setInterval(speedCheckLoop, 1e3), "win32" === process.platform) {
         const e = require("readline").createInterface({
             input: process.stdin,
             output: process.stdout
@@ -6075,8 +6092,8 @@ global.utility = util, global.minifyModules = !1, (async () => {
         }))
     }
     if (process.on("SIGINT", (() => {
-            room.arenaClosed ? (util.warn("Force exit induced! Ending process..."), process.exit()) : (c.enableBot && sendClosed(c.serverName, "Reason: Force Exit", "Arena has been closed by the host."), closeArena(), util.info("Server going down! Warning broadcasted."))
-        })), room.maxBots > 0 && setTimeout((() => util.log(`Spawned ${room.maxBots} AI bot${room.maxBots > 1 ? "s." : "."}`)), 350), c.enableBot) {
+        room.arenaClosed ? (util.warn("Force exit induced! Ending process..."), process.exit()) : (c.enableBot && sendClosed(c.serverName, "Reason: Force Exit", "Arena has been closed by the host."), closeArena(), util.info("Server going down! Warning broadcasted."))
+    })), room.maxBots > 0 && setTimeout((() => util.log(`Spawned ${room.maxBots} AI bot${room.maxBots > 1 ? "s." : "."}`)), 350), c.enableBot) {
         const Eris = require("eris");
         let prefix = c.botPrefix,
             prefix2 = "!!global!!";
@@ -6129,40 +6146,40 @@ global.utility = util, global.minifyModules = !1, (async () => {
             let users = clients.filter((e => null != e.player.body)),
                 command = msg.content.split(" ");
             const checkPermission = (e = !0, t = 0) => {
-                    let s = !1;
-                    if (devUsers.includes(msg.author.id)) s = !0;
-                    else try {
-                        switch (t) {
-                            case 0:
-                                s = msg.member.roles.includes("945483634482229288");
-                                break;
-                            case 2:
-                                s = msg.member.roles.includes("945303243834150953") || msg.member.roles.includes("945483634482229288");
-                                break;
-                            case 3:
-                                s = msg.member.roles.includes("945147881881493574") || msg.member.roles.includes("945483634482229288");
-                                break;
-                            case 4:
-                                s = msg.member.roles.includes("945147881881493574") || msg.member.roles.includes("945483634482229288") || msg.member.roles.includes("945763995414036502")
-                        }
-                    } catch (e) {
-                        util.warn(msg.author.username + " attempted to use a bot command in a DM.")
+                let s = !1;
+                if (devUsers.includes(msg.author.id)) s = !0;
+                else try {
+                    switch (t) {
+                        case 0:
+                            s = msg.member.roles.includes("945483634482229288");
+                            break;
+                        case 2:
+                            s = msg.member.roles.includes("945303243834150953") || msg.member.roles.includes("945483634482229288");
+                            break;
+                        case 3:
+                            s = msg.member.roles.includes("945147881881493574") || msg.member.roles.includes("945483634482229288");
+                            break;
+                        case 4:
+                            s = msg.member.roles.includes("945147881881493574") || msg.member.roles.includes("945483634482229288") || msg.member.roles.includes("945763995414036502")
                     }
-                    return e && !s && bot.createMessage(msg.channel.id, {
-                        embed: {
-                            author: {
-                                name: "Arras.io Controller (" + c.serverName + ")",
-                                icon_url: "https://cdn.discordapp.com/avatars/462721019959050240/ee8807bc4fccc425cde794713c9daf54.png?size=256"
-                            },
-                            color: 16711680,
-                            fields: [{
-                                name: "Warning",
-                                value: "You are not permitted to perform this action.",
-                                inline: !1
-                            }]
-                        }
-                    }), s
-                },
+                } catch (e) {
+                    util.warn(msg.author.username + " attempted to use a bot command in a DM.")
+                }
+                return e && !s && bot.createMessage(msg.channel.id, {
+                    embed: {
+                        author: {
+                            name: "Arras.io Controller (" + c.serverName + ")",
+                            icon_url: "https://cdn.discordapp.com/avatars/462721019959050240/ee8807bc4fccc425cde794713c9daf54.png?size=256"
+                        },
+                        color: 16711680,
+                        fields: [{
+                            name: "Warning",
+                            value: "You are not permitted to perform this action.",
+                            inline: !1
+                        }]
+                    }
+                }), s
+            },
                 sendDisabled = e => bot.createMessage(msg.channel.id, {
                     embed: {
                         author: {
@@ -6489,7 +6506,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             }
                         })
                     }
-                    break;
+                        break;
                     case prefix + "bl":
                     case prefix + "botlist":
                     case prefix2 + "bl":
@@ -6513,7 +6530,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             }
                         })
                     }
-                    break;
+                        break;
                     case prefix + "kick":
                     case prefix2 + "kick": {
                         if (commandsDisabled) return sendDisabled("Kick");
@@ -6527,7 +6544,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         for (let e of users) e.player.body.id === i.id && (e.talk("P", msg.author.username + " has kicked you from the server. Reason: " + (t || "Unspecified.")), sendNormal("Kick", "Kicked " + trimName(i.name) + " from the server. Reason: " + (t || "Unspecified."), "Info", 2588365), e.kick(trimName(i.name) + " was kicked by " + msg.author.username + ". Reason: " + (t || "Unspecified.")), i.miscIdentifier = "No Death Log", i.kill(), s = !1);
                         s && sendNormal("Kick", "This command only works on players.", "Error", 16776960)
                     }
-                    break;
+                        break;
                     case prefix + "br":
                     case prefix + "broadcast":
                     case prefix2 + "br":
@@ -6537,7 +6554,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (!e) return sendNormal("Broadcast", "Please specify a message to broadcast.", "Error", 16711680);
                         sockets.broadcast(msg.author.username + " says: " + e), sendNormal("Broadcast", "Broadcasting your message to all players.", "Info", 9092159)
                     }
-                    break;
+                        break;
                     case prefix + "cb":
                     case prefix + "colorbroadcast":
                     case prefix2 + "cb":
@@ -6551,7 +6568,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (!t) return sendNormal("Colored Broadcast", "Please specify a message to broadcast.", "Error", 16711680);
                         sockets.broadcast((checkPermission(!1, 1) ? "" : msg.author.username + " says: ") + t, "rainbow" === e || e.includes("#") ? e : "#" + e), sendNormal("Colored Broadcast", "Broadcasting your colorized message to all players.", "Info", 9092159)
                     }
-                    break;
+                        break;
                     case prefix + "kill":
                     case prefix2 + "kill": {
                         if (commandsDisabled) return sendDisabled("Kill");
@@ -6617,7 +6634,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             t.kill(), sendNormal("Kill", "Killed " + trimName(t.name) + ".", "Info", 2588365)
                         }
                     }
-                    break;
+                        break;
                     case prefix + "setstat":
                     case prefix2 + "setstat": {
                         if (commandsDisabled) return sendDisabled("Set Stat");
@@ -6655,7 +6672,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         }
                         sendNormal("Set Stat", "Set " + trimName(a.name) + "'s " + t + " stat to " + s + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "settank":
                     case prefix2 + "settank": {
                         if (commandsDisabled) return sendDisabled("Set Tank");
@@ -6668,7 +6685,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (null == s) return sendInvalidID("Set Tank", e);
                         s.upgradeTank(Class[t]), sendNormal("Set Tank", "Set " + trimName(s.name) + "'s tank to " + t + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "setsize":
                     case prefix2 + "setsize": {
                         if (commandsDisabled) return sendDisabled("Set Size");
@@ -6681,7 +6698,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (null == s) return sendInvalidID("Set Size", e);
                         s.SIZE = t, sendNormal("Set Size", "Set " + trimName(s.name) + "'s size to " + t + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "setfov":
                     case prefix2 + "setfov": {
                         if (commandsDisabled) return sendDisabled("Set FoV");
@@ -6694,7 +6711,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (null == s) return sendInvalidID("Set FoV", e);
                         s.FOV = t, s.refreshFOV(), sendNormal("Set FoV", "Set " + trimName(s.name) + "'s FoV to " + t + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "setscore":
                     case prefix2 + "setscore": {
                         if (commandsDisabled) return sendDisabled("Set Score");
@@ -6707,7 +6724,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (null == s) return sendInvalidID("Set Score", e);
                         s.skill.score = t, sendNormal("Set Score", "Set " + trimName(s.name) + "'s score to " + t + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "restore":
                     case prefix2 + "restore": {
                         if (commandsDisabled) return sendDisabled("Restore Score");
@@ -6720,7 +6737,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (null == s) return sendInvalidID("Restore Score", e);
                         s.skill.score += t, sendNormal("Restore Score", "Restored " + trimName(s.name) + "'s score to " + s.skill.score + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "tp":
                     case prefix + "teleport":
                     case prefix2 + "tp":
@@ -6736,7 +6753,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (null == i) return sendInvalidID("Teleport", e);
                         i.x = t, i.y = s, sendNormal("Teleport", "Teleported " + trimName(i.name) + " to (" + t + ", " + s + ").", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "setentity":
                     case prefix2 + "setentity": {
                         if (commandsDisabled) return sendDisabled("Set F Key Entity");
@@ -6749,7 +6766,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (null == s) return sendInvalidID("Set F Key Entity", e);
                         s.keyFEntity = t, sendNormal("Set F Key Entity", "Set " + trimName(s.name) + "'s F key entity to " + t + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "botamount":
                     case prefix2 + "botamount": {
                         if (commandsDisabled) return sendDisabled("Set Bot Amount");
@@ -6758,7 +6775,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (!e || isNaN(e)) return sendNormal("Set Bot Amount", "Please specify a valid bot amount.", "Error", 16776960);
                         room.maxBots = e, sendNormal("Set Bot Amount", "Set the maximum bot amount to " + e + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "k":
                     case prefix2 + "k":
                         bot.createMessage(msg.channel.id, ["k", "***__K__***", ":regional_indicator_k:", "<:arrask:479873599868633089>", "|/\n|\\\\", "<:arrask2:479873599834947587>", "K", "ʞ", "ⓚ"][Math.floor(9 * Math.random())]);
@@ -6790,7 +6807,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         };
                         sendNormal("Uptime", "`" + e(process.uptime()) + "`", "Server Uptime:", 9092159)
                     }
-                    break;
+                        break;
                     case prefix + "playingtag":
                     case prefix2 + "playingtag": {
                         if (commandsDisabled) return sendDisabled("Set Playing Status");
@@ -6801,7 +6818,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             type: 0
                         }), sendNormal("Set Playing Status", "My playing tag has been set to `" + playingTag + "`.", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "setgodmode":
                     case prefix2 + "setgodmode": {
                         if (commandsDisabled) return sendDisabled("Set God-mode");
@@ -6815,7 +6832,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         for (let e of entities) e.master.id === t.id && e.id !== t.id && (e.diesToTeamBase = !t.godmode);
                         sendNormal("Set God-mode", (t.godmode ? "En" : "Dis") + "abled god-mode for " + trimName(t.name) + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "setpassive":
                     case prefix2 + "setpassive": {
                         if (commandsDisabled) return sendDisabled("Set Passive Mode");
@@ -6829,7 +6846,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         for (let e of entities) e.master.id === t.id && e.id !== t.id && (e.passive = t.passive);
                         sendNormal("Set Passive Mode", (t.passive ? "En" : "Dis") + "abled passive mode for " + trimName(t.name) + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "rainbowspeed":
                     case prefix2 + "rainbowspeed": {
                         if (commandsDisabled) return sendDisabled("Set Rainbow Cycle Speed");
@@ -6842,7 +6859,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (null == s) return sendInvalidID("Set Rainbow Cycle Speed", e);
                         s.rainbowSpeed = t, s.toggleRainbow(), s.toggleRainbow(), sendNormal("Set Rainbow Cycle Speed", "Set" + trimName(s.name) + "'s rainbow cycle speed to " + s.rainbowSpeed + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "togglecommands":
                     case prefix2 + "togglecommands":
                         if (!checkPermission(!0, 1)) return;
@@ -6884,7 +6901,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         }
                         sendNormal("Eval Deluxe", "```js\n" + out + "\n```", "OUTPUT               ​", 16746496), util.warn(msg.author.username + " ran the advancedeval command in " + (msg.channel.name ? "the " + msg.channel.name : "a DM") + " channel.")
                     }
-                    break;
+                        break;
                     case prefix + "ge":
                     case prefix + "globaleval":
                     case prefix2 + "ge":
@@ -6904,7 +6921,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         }
                         util.warn(msg.author.username + " ran the globaleval command in " + (msg.channel.name ? "the " + msg.channel.name : "a DM") + " channel.")
                     }
-                    break;
+                        break;
                     case prefix + "silenteval":
                     case prefix2 + "silenteval":
                         if (commandsDisabled) return sendDisabled("Eval");
@@ -6912,7 +6929,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         try {
                             let string = command.slice(1, command.length).join(" ");
                             eval(string)
-                        } catch (e) {}
+                        } catch (e) { }
                         break;
                     case prefix + "ban":
                     case prefix2 + "ban": {
@@ -6923,7 +6940,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if ("number" != typeof e) return sendNormal("Ban", "Please specify a valid socket ID.", "Error", 16776960);
                         sockets.ban(e, t, msg.author.username + " has banned you from the server. Reason: " + (t || "Unspecified.")) ? sendNormal("Ban", `Socket (${e}) has been banned. Reason: ${t || "Unspecified."}`, "Info", 2588365) : sendNormal("Ban", "This user couldn't be banned.", "Error", 16776960)
                     }
-                    break;
+                        break;
                     case prefix + "unban":
                     case prefix2 + "unban": {
                         if (commandsDisabled) return sendDisabled("Unban");
@@ -6932,7 +6949,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if ("number" != typeof e) return sendNormal("Ban", "Please specify a valid socket ID.", "Error", 16776960);
                         sockets.unban(e) ? sendNormal("Unban", `Socket (${e}) is no longer banned from the server.`, "Info", 2588365) : sendNormal("Unban", "This user couldn't be unbanned.", "Error", 16776960)
                     }
-                    break;
+                        break;
                     case prefix + "dm":
                     case prefix + "directmessage":
                     case prefix2 + "dm":
@@ -6946,7 +6963,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (null == s) return sendInvalidID("Direct Message", e);
                         s.sendMessage(msg.author.username + " says to you: " + t), sendNormal("Direct Message", "Sending your message to " + trimName(s.name) + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "exit":
                     case prefix + "closearena":
                     case prefix2 + "exit":
@@ -6986,7 +7003,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                                 }, s.multibox.enabled || s.toggleMultibox(), s.multibox.enabled = !0
                             }
                     }
-                    break;
+                        break;
                     case prefix + "disco":
                     case prefix2 + "disco": {
                         if (commandsDisabled) return sendDisabled("Disco");
@@ -6997,7 +7014,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         let t = "reset" !== e ? "discofied" : "reset";
                         sendNormal("Disco", "Map has been " + t + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "manualOffset":
                     case prefix + "mo":
                     case prefix2 + "manualOffset":
@@ -7008,7 +7025,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (isNaN(e) || e < -188 || e > tankList.length - 189) return sendNormal("Manual Offset", "Please specify a number between -188 and " + (tankList.length - 189) + " .", "Error", 16776960);
                         "" == e && (e = Math.floor(Math.random() * tankList.length - 189) - 188), room.manualOffset = Number(e), sendNormal("Manual Offset", "The Upgrades have been mixed up. Seed: " + e, "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "push":
                     case prefix2 + "push": {
                         if (commandsDisabled) return sendDisabled("Push Upgrades");
@@ -7029,7 +7046,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         }
                         sendNormal("Push Upgrades", `${Class[s].LABEL} is now a tier ${t + 1} upgrade from ${Class[e].LABEL}.`, "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "msg":
                     case prefix + "message":
                     case prefix2 + "msg":
@@ -7041,7 +7058,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (isNaN(e)) return sendNormal("Message", "Please specify a valid channel ID.", "Error", 16776960);
                         bot.createMessage(e, t), sendNormal("Message", `Message sent to <#${e}>.`, "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "s":
                     case prefix + "search":
                     case prefix2 + "s":
@@ -7071,7 +7088,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             }
                         })
                     }
-                    break;
+                        break;
                     case prefix + "tpt":
                     case prefix2 + "tpt": {
                         if (commandsDisabled) return sendDisabled("Teleport To");
@@ -7085,7 +7102,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                         if (null == i) return sendInvalidID("Teleport To", t);
                         s.x = i.x, s.y = i.y, sendNormal("Teleport To", "Teleported " + trimName(s.name) + " to " + trimName(i.name) + ".", "Info", 2588365)
                     }
-                    break;
+                        break;
                     case prefix + "guninfo":
                     case prefix + "g":
                     case prefix2 + "guninfo":
@@ -7127,7 +7144,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             }
                         })
                     }
-                    break;
+                        break;
                     case prefix + "rt":
                     case prefix + "restarttime":
                     case prefix2 + "rt":
@@ -7148,7 +7165,7 @@ global.utility = util, global.minifyModules = !1, (async () => {
                             sendNormal("Restart Timer", (e < 1 ? t : e) + (e < 1 ? " minutes." : " hours."), "Time until the next restart:", 9092159)
                         }
                     }
-                    break;
+                        break;
                     default:
                         (msg.content.startsWith(prefix) || msg.content.startsWith(prefix2)) && msg.content.length > 1 && sendNormal("Arras.io Controller", "That is an invalid command. Try `" + prefix + "help` for a list of commands.", "Error", 16711680)
                 }
@@ -7223,12 +7240,12 @@ global.utility = util, global.minifyModules = !1, (async () => {
             }
         };
         const parseCommands = e => {
-                if (!e) return;
-                let t = e.split(" "),
-                    s = CommandList[t[0].toLowerCase()];
-                if (void 0 === s) return util.warn("Invalid command specified.");
-                s(t)
-            },
+            if (!e) return;
+            let t = e.split(" "),
+                s = CommandList[t[0].toLowerCase()];
+            if (void 0 === s) return util.warn("Invalid command specified.");
+            s(t)
+        },
             prompt = () => {
                 input.question("", (e => {
                     try {
@@ -7242,14 +7259,14 @@ global.utility = util, global.minifyModules = !1, (async () => {
             };
         setTimeout(prompt, 200)
     }
-    setInterval((function() {
+    setInterval((function () {
         newLogs.network.reset();
         for (let e of players) e.socket.view.gazeUpon(), e.socket.lastUptime = 1 / 0
-    }), 1e3 / 30), setInterval((function() {
+    }), 1e3 / 30), setInterval((function () {
         for (let e of players) e.socket.view.setView([]);
         for (let e of entities)
             for (let t of players) t.socket.view.add(e)
-    }), c.visibleListInterval), c.RANKED_BATTLE && setInterval((function() {
+    }), c.visibleListInterval), c.RANKED_BATTLE && setInterval((function () {
         let e = clients.filter((e => null == e.roomId));
         e.length > 1 && (e.length = 2, console.log("New room created!"), new RankedRoom(e))
     }), 500)
